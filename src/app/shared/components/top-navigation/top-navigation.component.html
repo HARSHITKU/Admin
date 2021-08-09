@@ -1,1 +1,17 @@
-<p>top-navigation works!</p>
+<header class="main-container">
+  <div class="container">
+    <div class="logo-container">
+      <div class="image-logo-wrapper" *ngIf="isImageLogo">
+        <img [src]="imageLogoPath" class="image-logo" alt="logo"/>
+      </div>
+      <p *ngIf="isTextLogo" class="text-logo">{{brandNameText}}</p>
+    </div>
+    <nav class="navigation-container">
+      <ul class="navigation-wrapper">
+        <li class="navItem" *ngFor="let navItem of navigationItems">
+          <mat-icon>{{navItem.icon}}</mat-icon>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

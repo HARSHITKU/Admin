@@ -1,0 +1,99 @@
+@import '../../../../theme/styles-global.scss';
+@import '../../../../theme/mixins.scss';
+
+.main-container{
+  padding: 0 10px;
+
+  .container{
+    @include flex-view;
+
+    .logo-container{
+       @include flex-view;
+
+      .text-logo{
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: $admin-secondary;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .image-logo-wrapper{
+        width: 40px;
+        height: 40px;
+        padding-right: 10px;
+
+        .image-logo{
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .navigation-container{
+      margin-left: auto;
+      min-width: 10%;
+      color: $admin-secondary;
+
+      .navigation-wrapper{
+        @include flex-view;
+        justify-content: space-between;
+        list-style-type: none;
+
+        .navItem{
+          padding: 0 6px;
+          cursor: pointer;
+          margin: 0 4px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 425px){
+
+  .main-container{
+
+    .container{
+
+      .logo-container{
+
+        .text-logo{
+          font-size: 1.1rem;
+          font-weight: 400;
+          letter-spacing: 0 ;
+        }
+
+        .image-logo-wrapper{
+          width: 30px;
+          height: 30px;
+          padding-right: 5px;
+
+          .image-logo{
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+
+      .navigation-container{
+
+        .navigation-wrapper{
+
+          .navItem{
+            padding: 0 3px;
+            cursor: pointer;
+            margin: 0 3px;
+
+            mat-icon{
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+ }

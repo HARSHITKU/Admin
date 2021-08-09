@@ -4,6 +4,7 @@ import { SharedComponent } from './shared.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TopNavigationComponent } from './components/top-navigation/top-navigati
     DataTableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [
     TopNavigationComponent,
