@@ -1,8 +1,44 @@
 // Color Variables
 
-$admin-primary: #1976d2;
+$admin-primary: rgba(121,8,234, 1);
 $admin-secondary: #ffffff;
+$admin-text-color: rgba(0,0,0,.87);
 
-// Media Query Variables
+// Background Variables
 
-// $admin-desktop-screen: "@media and (max-width:)"
+// $admin-fallback-bg: rgb(216,112,250);
+// $admin-primary-bg: linear-gradient(124deg, rgba(216,112,250,1) 0%, rgba(121,8,234,1) 100%);
+
+// Height Variables
+
+$h-100: 100%;
+$h-50: 50%;
+
+// Width Variables
+
+$w-100: 100%;
+$w-50: 50%;
+
+// Padding Variables
+
+$p-0: 0;
+$p-1: 0.5rem;
+$p-2: 1rem;
+$p-3: 2rem;
+
+// Margin Variables
+
+$m-0: 0;
+$m-1: 0.5rem;
+$m-2: 1rem;
+$m-3: 2rem;
+$m-4: 3rem;
+
+// Border Variables
+
+$border-none: none;
+
+// Border Radius Varables
+
+$border-radius-circle: 50%;
+

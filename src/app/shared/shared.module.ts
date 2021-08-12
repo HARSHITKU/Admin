@@ -4,23 +4,23 @@ import { SharedComponent } from './shared.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
     SharedComponent,
     TopNavigationComponent,
     SideNavigationComponent,
-    DataTableComponent
+    DataTableComponent,
   ],
-  imports: [
-    CommonModule,
-    MatIconModule
-  ],
+  imports: [CommonModule, MatIconModule, MatSidenavModule, MatListModule],
   exports: [
     TopNavigationComponent,
     SideNavigationComponent,
-    DataTableComponent
-  ]
+    DataTableComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

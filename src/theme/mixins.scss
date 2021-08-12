@@ -2,3 +2,11 @@
   display: flex;
   align-items: center;
 }
+
+@function flex-variables($value){
+  @return $value;
+}
+
+@function setPosition($position-value){
+  @return $position-value;
+}

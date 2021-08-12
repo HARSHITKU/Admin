@@ -1,0 +1,133 @@
+@import "../../../../theme/styles-global.scss";
+@import "../../../../theme/mixins.scss";
+
+aside {
+  height: $h-100;
+  width: 230px;
+
+  .container {
+    height: inherit;
+
+    .wrapper {
+      .sidenav {
+        box-shadow: 0 0 10px lightgrey;
+        position: setPosition(relative);
+        background: $admin-secondary;
+
+        .toggle-button {
+          position: setPosition(absolute);
+          right: -20px;
+          top: 20px;
+
+          button {
+            border-radius: $border-radius-circle;
+            -webkit-border-radius: $border-radius-circle;
+            -moz-border-radius: $border-radius-circle;
+            padding: $p-1;
+            @include flex-view;
+            border: $border-none;
+            background: $admin-primary;
+            color: $admin-secondary;
+            cursor: pointer;
+          }
+        }
+
+        .profile-container{
+          border-bottom: 1px dashed $admin-primary;
+
+          .profile-wrapper{
+            padding: $p-2;
+
+            .profile-detail-wrapper{
+              @include flex-view;
+
+              .picture-container{
+                border-radius: $border-radius-circle;
+                width: 60px;
+                height: 60px;
+
+                img{
+                  border-radius: $border-radius-circle;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+
+              .details-container{
+                margin-left: $m-1;
+                color: $admin-text-color;
+
+                p{
+                  margin-bottom: $p-0;
+                }
+
+                .name{
+                  font-weight: 500;
+                  letter-spacing: 1px;
+                  font-size: 0.8rem;
+                }
+
+                .designation{
+                  text-align: center;
+                  font-size: 0.6rem;
+                }
+              }
+            }
+
+            .actions{
+              padding-top: $p-2;
+              color: $admin-primary;
+              @include flex-view;
+              justify-content: flex-variables(space-around);
+
+              mat-icon{
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .sidenav-wrapper {
+          padding-left: $p-0;
+          margin: $m-0;
+
+          .navigation-items {
+            list-style-type: none;
+
+            .items {
+              @include flex-view;
+              padding: $p-2;
+              font-size: 1rem;
+
+              mat-icon{
+                color: $admin-primary;
+              }
+
+              span{
+                margin-left: $m-2;
+                color: $admin-text-color;
+              }
+            }
+          }
+
+          .navigation-items:hover {
+            background: $admin-primary;
+            cursor: pointer;
+
+            .items {
+
+              mat-icon{
+                color: $admin-secondary;
+              }
+
+              span{
+                color: $admin-secondary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

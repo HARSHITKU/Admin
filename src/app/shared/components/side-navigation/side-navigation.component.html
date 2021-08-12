@@ -1,1 +1,40 @@
-<p>side-navigation works!</p>
+<aside>
+  <div class="container">
+    <div class="wrapper">
+
+      <div class="sidenav">
+        <div class="toggle-button">
+          <button>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+        <div class="profile-container">
+          <div class="profile-wrapper">
+            <div class="profile-detail-wrapper">
+              <div class="picture-container">
+                <img src="/assets/bg-images/male-profile-default.png" alt="profile-picture"/>
+              </div>
+              <div class="details-container">
+                <p class="name">Harshit Kumar</p>
+                <p class="designation">Product Owner</p>
+              </div>
+            </div>
+            <div class="actions">
+              <mat-icon>person</mat-icon>
+              <mat-icon>email</mat-icon>
+              <mat-icon>power_settings_new</mat-icon>
+            </div>
+          </div>
+        </div>
+        <ul class="sidenav-wrapper">
+          <li class="navigation-items" *ngFor="let items of navigationItems">
+            <a class="items">
+              <mat-icon>{{items.icon}}</mat-icon>
+              <span>{{items.name}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
