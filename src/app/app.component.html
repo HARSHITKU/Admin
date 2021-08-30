@@ -1,2 +1,11 @@
-<admin-top-navigation></admin-top-navigation>
-<admin-side-navigation></admin-side-navigation>
+<main>
+  <admin-top-navigation></admin-top-navigation>
+  <section class="two-column-layout">
+    <div>
+      <admin-side-navigation></admin-side-navigation>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,10 @@
+@import "../theme/styles-global.scss";
+@import "../theme/mixins.scss";
+
+main{
+
+  .two-column-layout{
+    @include flex-view;
+    align-items: flex-start;
+  }
+}
