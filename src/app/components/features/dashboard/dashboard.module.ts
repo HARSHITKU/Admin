@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { Routes } from '@angular/router';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent}
@@ -17,7 +18,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }
