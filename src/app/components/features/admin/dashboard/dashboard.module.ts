@@ -5,10 +5,6 @@ import { Routes } from '@angular/router';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-const routes: Routes = [
-  {path: '', component: DashboardComponent}
-];
-
 @NgModule({
   declarations: [
     DashboardComponent

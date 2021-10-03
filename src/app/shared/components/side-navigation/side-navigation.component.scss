@@ -18,12 +18,13 @@ aside {
           position: setPosition(absolute);
           right: -20px;
           top: 20px;
+          display: none;
 
           button {
             border-radius: $border-radius-circle;
             -webkit-border-radius: $border-radius-circle;
             -moz-border-radius: $border-radius-circle;
-            padding: $p-1;
+            padding: 0.5rem;
             @include flex-view;
             border: $border-none;
             background: $admin-primary;
@@ -36,7 +37,7 @@ aside {
           border-bottom: 1px dashed $admin-primary;
 
           .profile-wrapper{
-            padding: $p-2;
+            padding: $p-1;
 
             .profile-detail-wrapper{
               @include flex-view;
@@ -76,10 +77,12 @@ aside {
             }
 
             .actions{
-              padding-top: $p-2;
+              padding-top: $p-1;
               color: $admin-primary;
               @include flex-view;
               justify-content: flex-variables(space-around);
+              // Hidden for some applicaions
+              display: none;
 
               mat-icon{
                 cursor: pointer;
@@ -97,18 +100,51 @@ aside {
 
             .items {
               @include flex-view;
-              padding: $p-2;
+              padding: $p-1;
               font-size: 1rem;
-
-              mat-icon{
-                color: $admin-primary;
-              }
+              text-decoration: none;
+              color: $admin-text-color;
 
               span{
                 margin-left: $m-2;
-                color: $admin-text-color;
+              }
+
+              .expand-more-icon {
+                margin-left: auto;
               }
             }
+
+            .sub-navigation-container{
+
+              .sub-navigation-items {
+                font-size: 1rem;
+                background-color: $admin-secondary;
+
+                .sub-navigation-wrapper{
+                  padding: $p-1;
+                  padding-left: $p-2;
+                }
+
+                .sub-active{
+                  
+                  mat-icon, span{
+                    color: $admin-primary;
+                  }
+                }
+              }
+            }
+          }
+
+          .active{
+            background: $admin-primary;
+          
+              mat-icon{
+                color: $admin-secondary;
+              }
+          
+              span{
+                color: $admin-secondary;
+              }
           }
 
           .navigation-items:hover {
@@ -128,6 +164,49 @@ aside {
           }
         }
       }
+    }
+  }
+}
+
+.sub-navigation-container{
+
+  .sub-navigation-items {
+
+    .sub-navigation-wrapper{
+      @include flex-view;
+      text-decoration: none;
+      // padding: $p-2 $p-2 $p-2 $p-4;
+
+      mat-icon {
+        color: $admin-text-color;
+      }
+
+      span {
+        margin-left: $m-2;
+        color: $admin-text-color;
+      }
+
+      .expand-more-icon {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .sub-navigation-items:last-child{
+    margin-bottom: 0;
+  }
+
+  .sub-navigation-items:hover {
+    background: $admin-primary;
+    // border-radius: 0 30px 30px 0;
+    cursor: pointer;
+
+    mat-icon {
+      color: $admin-text-color;
+    }
+
+    span {
+      color: $admin-text-color;
     }
   }
 }

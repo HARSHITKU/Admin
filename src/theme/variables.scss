@@ -1,10 +1,11 @@
 // Color Variables
 
 // $admin-primary: rgba(121,8,234, 1);
-$admin-primary: rgb(67, 66, 68);
+$admin-primary: #0099FF;
 $admin-secondary: #ffffff;
-$admin-text-color: rgba(0,0,0,.87);
-
+$admin-text-color: rgba(0, 0, 0, 0.87);
+$admin-primary-button: #0099FF;
+$admin-danger: #ff0505;
 // Background Variables
 
 // $admin-fallback-bg: rgb(216,112,250);
@@ -19,13 +20,15 @@ $h-50: 50%;
 
 $w-100: 100%;
 $w-50: 50%;
+$w-30: 30%;
+$w-20: 20%;
 
 // Padding Variables
 
 $p-0: 0;
-$p-1: 0.5rem;
-$p-2: 1rem;
-$p-3: 2rem;
+$p-1: 1rem;
+$p-2: 2rem;
+$p-3: 3rem;
 
 // Margin Variables
 
@@ -42,4 +45,3 @@ $border-none: none;
 // Border Radius Varables
 
 $border-radius-circle: 50%;
-

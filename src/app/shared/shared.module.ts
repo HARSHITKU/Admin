@@ -1,4 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+  NgModule,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
@@ -6,13 +10,13 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { DataTableModule } from './components/data-table/data-table.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewComponent } from './components/view/view.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,24 +25,27 @@ import { MatDialogModule } from '@angular/material/dialog';
     SideNavigationComponent,
     DataTableComponent,
     DataTableComponent,
-    ViewComponent
+    ViewComponent,
   ],
-  imports: [CommonModule,
-      MatIconModule,
-      MatSidenavModule,
-      MatListModule,
-      MatDialogModule,
-      DataTableModule,AgGridModule.withComponents([ViewComponent]),
-      HttpClientModule ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDialogModule,
+    DataTableModule,
+    AgGridModule.withComponents([ViewComponent]),
+    HttpClientModule,
+  ],
   exports: [
     TopNavigationComponent,
     SideNavigationComponent,
     DataTableComponent,
     SharedComponent,
-    ViewComponent
+    ViewComponent,
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  entryComponents:[ViewComponent],
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  entryComponents: [ViewComponent],
 })
 export class SharedModule {}

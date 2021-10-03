@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container">
+    <div class="logo-container">
+        <div class="logo-wrapper">
+            <h1>{{brandName}}</h1>
+        </div>
+    </div>
+    <div class="custom-error" *ngIf="isCustomError">
+      {{errorMessage}}
+    </div>
+  <div class="login-container">
+    <div class="login-wrapper">
+      <h3>Admin Signin</h3>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-container">
+        <div class="input-container">
+          <label for="email">Mobile Number</label>
+          <input
+            type="text"
+            placeholder="Enter Mobile number"
+            class="input-field"
+            formControlName="phone" 
+            maxlength="10"
+            required
+          />
+        </div>
+        <div class="input-container">
+          <label for="password">OTP</label>
+          <input type="text" placeholder="Enter OTP" class="input-field" formControlName="otp" maxlength="6" required/>
+        </div>
+        <button type="submit" class="primary-button">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
     <nav class="navigation-container">
       <ul class="navigation-wrapper">
         <li class="navItem" *ngFor="let navItem of navigationItems">
-          <mat-icon>{{navItem.icon}}</mat-icon>
+          <mat-icon (click)="action(navItem.name)">{{navItem.icon}}</mat-icon>
         </li>
       </ul>
     </nav>

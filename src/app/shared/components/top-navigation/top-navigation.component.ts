@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'admin-top-navigation',
@@ -8,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class TopNavigationComponent implements OnInit {
 
   navigationItems: any[] = [];
-  brandNameText: string = "Admin Panel";
+  brandNameText: string = "ChotaPaisa.com";
   imageLogoPath: string = "/assets/logo/logo.PNG";
   isTextLogo: boolean = true;
   isImageLogo: boolean = true;
+  isLoggedIn$: Observable<boolean> | undefined;
 
-  constructor() {}
+  constructor(private authService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.getNavbarContents();
@@ -24,15 +27,31 @@ export class TopNavigationComponent implements OnInit {
       // {
       //   icon: 'search',
       // },
+      // {
+      //   icon: 'g_translate',
+      // },
       {
-        icon: 'g_translate',
-      },
-      {
+        name: 'Notification',
         icon: 'notifications',
       },
       {
+        name: 'Account',
         icon: 'account_circle',
+      },
+      {
+        name: 'Logout',
+        icon: 'power_settings_new'
       }
     );
+  }
+
+  action(selectedAction: string){
+    if(selectedAction === 'Logout'){
+      this.onLogout();
+    }
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
