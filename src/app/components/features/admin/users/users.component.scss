@@ -1,0 +1,14 @@
+@import '../../../../../theme/variables.scss';
+@import '../../../../../theme/mixins.scss';
+
+main{
+
+
+    .content-container{
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 2rem;
+        }
+    }
+}

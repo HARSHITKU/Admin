@@ -30,11 +30,11 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/dashboard',
         isSubItemPresent: false,
       },
-      // {
-      //   icon: 'grid_on',
-      //   name: "Products",
-      //   route: '/admin/users'
-      // },
+      {
+        icon: 'sports_esports',
+        name: "Game Setup",
+        route: '/admin/users'
+      },
       // {
       //   icon: 'sell',
       //   name: "Sales"

@@ -7,4 +7,8 @@ main{
     @include flex-view;
     align-items: flex-start;
   }
+
+  .contents{
+      width: 100%;
+  }
 }
