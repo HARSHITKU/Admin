@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/features/admin/admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AdminComponent } from './components/features/admin/admin.component';
     AuthenticationModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

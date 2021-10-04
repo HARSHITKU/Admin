@@ -2,17 +2,17 @@
 @import "../../../../theme/mixins.scss";
 
 aside {
-  height: $h-100;
-  width: 230px;
-
+  height: 95vh;
+  width: 270px;
+  overflow: scroll;
+  background-color: $admin-primary;
   .container {
-    height: inherit;
+    padding: 0;
 
     .wrapper {
       .sidenav {
-        box-shadow: 0 0 5px lightgrey;
         position: setPosition(relative);
-        background: $admin-secondary;
+        background: $admin-primary;
 
         .toggle-button {
           position: setPosition(absolute);
@@ -57,20 +57,20 @@ aside {
 
               .details-container{
                 margin-left: $m-1;
-                color: $admin-text-color;
-
+                
                 p{
                   margin-bottom: $p-0;
                 }
-
+                
                 .name{
                   font-weight: 500;
                   letter-spacing: 1px;
                   font-size: 0.8rem;
+                  color: $admin-text-color;
                 }
-
+                
                 .designation{
-                  text-align: center;
+                  color: $admin-text-color-secondary;
                   font-size: 0.6rem;
                 }
               }
@@ -103,7 +103,7 @@ aside {
               padding: $p-1;
               font-size: 1rem;
               text-decoration: none;
-              color: $admin-text-color;
+              color: $admin-text-color-secondary;
 
               span{
                 margin-left: $m-2;
@@ -136,29 +136,29 @@ aside {
           }
 
           .active{
-            background: $admin-primary;
+            background: $admin-secondary;
           
               mat-icon{
-                color: $admin-secondary;
+                color: $admin-primary-button;
               }
           
               span{
-                color: $admin-secondary;
+                color: $admin-primary-button;
               }
           }
 
           .navigation-items:hover {
-            background: $admin-primary;
+            background: $admin-secondary;
             cursor: pointer;
 
             .items {
 
               mat-icon{
-                color: $admin-secondary;
+                color: $admin-primary-button;
               }
 
               span{
-                color: $admin-secondary;
+                color: $admin-primary-button;
               }
             }
           }
@@ -178,12 +178,12 @@ aside {
       // padding: $p-2 $p-2 $p-2 $p-4;
 
       mat-icon {
-        color: $admin-text-color;
+        color: $admin-text-color-secondary;
       }
 
       span {
         margin-left: $m-2;
-        color: $admin-text-color;
+        color: $admin-text-color-secondary;
       }
 
       .expand-more-icon {
@@ -202,11 +202,11 @@ aside {
     cursor: pointer;
 
     mat-icon {
-      color: $admin-text-color;
+      color: $admin-text-color-secondary;
     }
 
     span {
-      color: $admin-text-color;
+      color: $admin-text-color-secondary;
     }
   }
 }

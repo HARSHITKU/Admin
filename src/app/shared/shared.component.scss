@@ -4,15 +4,21 @@
 .action-buttons{
   display: flex;
   justify-content: flex-end;
-
+  align-items: center;
+  p{
+    color: $admin-text-color-secondary;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
   button{
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
+    color: $admin-text-color-secondary;
   }
 
   button:hover{
-    color: $admin-primary;
+    color: $admin-text-color;
     cursor: pointer;
   }
 }
@@ -20,15 +26,16 @@
 .quick_filter {
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  padding: 30px 15px;
   height: 46px;
   background-color: $admin-primary;
-  color: $admin-secondary;
-  border: 1px solid $admin-primary;
+  color: $admin-text-color;
+  border: none;
+  border-radius: 12px 12px 0 0;
 
   .fa-filter {
     font-size: 30px;
-    color: $admin-secondary;
+    color: $admin-text-color-secondary;
     padding-right: 15px;
   }
 
@@ -48,7 +55,7 @@
   }
 
   .quick-search-input {
-    background-color: $admin-secondary;
+    background-color: white;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -106,4 +113,7 @@
   .close-icon {
     margin-left: 10px;
   }
+}
+::ng-deep .ag-theme-alpine .ag-row {
+  // background: red;
 }

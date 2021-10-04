@@ -1,0 +1,15 @@
+@import '../../../../../theme/variables.scss';
+@import '../../../../../theme/mixins.scss';
+
+main{
+    background: $admin-secondary;
+    height: 95vh;
+    overflow-y: scroll;
+}
+.card-title{
+    font-size: 25px;
+}
+.card{
+    background: $admin-primary;
+    color: $admin-primary-button;
+}
