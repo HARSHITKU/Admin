@@ -21,6 +21,36 @@ const routes: Routes = [
       },
       { path: 'dashboard', component: DashboardComponent },
       {
+        path: 'application-setup',
+        loadChildren: () =>
+          import('./application-settings/application-settings.module').then((m) => m.ApplicationSettingsModule),
+      },
+      {
+        path: 'game-setup',
+        loadChildren: () =>
+          import('./game-setup/game-setup.module').then((m) => m.GameSetupModule),
+      },
+      {
+        path: 'charity',
+        loadChildren: () =>
+          import('./charity/charity.module').then((m) => m.CharityModule),
+      },
+      {
+        path: 'innovation',
+        loadChildren: () =>
+          import('./innovation/innovation.module').then((m) => m.InnovationModule),
+      },
+      {
+        path: 'redeem',
+        loadChildren: () =>
+          import('./redeem/redeem.module').then((m) => m.RedeemModule),
+      },
+      {
+        path: 'sponsors',
+        loadChildren: () =>
+          import('./sponsors/sponsors.module').then((m) => m.SponsorsModule),
+      },
+      {
         path: 'users',
         loadChildren: () =>
           import('./users/users.module').then((m) => m.UsersModule),

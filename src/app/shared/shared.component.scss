@@ -49,13 +49,13 @@
   }
 
   .row_count {
-    color: $admin-secondary;
+    color: $admin-text-color;
     font-size: 1rem;
     margin-left: auto;
   }
 
   .quick-search-input {
-    background-color: white;
+    background-color: $admin-text-color;
     border-radius: 4px;
     display: flex;
     align-items: center;

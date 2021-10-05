@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         if (response) {
           if (response.user.role === 'admin') {
             localStorage.setItem('token', response.loginToken);
+            localStorage.setItem('user', JSON.stringify(response.user));
             this.router.navigate(['/chotapaisa']);
             this.isCustomError = false;
           }else{

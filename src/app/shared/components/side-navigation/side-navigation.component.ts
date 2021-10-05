@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommonService } from 'src/app/services/common.service';
 import { NavigationItems } from '../../models/navigationItems';
 
 @Component({
@@ -15,11 +16,18 @@ export class SideNavigationComponent implements OnInit {
   parentMenu: string = '';
   navigationItems: NavigationItems[] = [];
   isLoggedIn$: Observable<boolean> | undefined;
+  userDetails: any;
+  user: any;
+  userImage: any;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private commonService: CommonService) {}
 
   ngOnInit(): void {
     this.getNavbarContents();
+    this.user = localStorage.getItem('user');
+    this.userDetails = JSON.parse(this.user);
+    this.userImage =
+      'https://casino-api-088.herokuapp.com/' + this.userDetails.profileImage;
   }
 
   getNavbarContents() {
@@ -32,8 +40,28 @@ export class SideNavigationComponent implements OnInit {
       },
       {
         icon: 'sports_esports',
-        name: "Game Setup",
-        route: '/admin/users'
+        name: 'Game Setup',
+        route: '/chotapaisa/admin/game-setup/all-games',
+      },
+      {
+        icon: 'volunteer_activism',
+        name: 'Charity',
+        route: '/chotapaisa/admin/charity/all-charities',
+      },
+      {
+        icon: 'lightbulb',
+        name: 'Innovation',
+        route: '/chotapaisa/admin/innovation/all-innovations',
+      },
+      {
+        icon: 'redeem',
+        name: 'Redeem',
+        route: '/chotapaisa/admin/redeem/all-redeems',
+      },
+      {
+        icon: 'groups',
+        name: 'Sponsors',
+        route: '/chotapaisa/admin/sponsors/all-sponsors',
       },
       // {
       //   icon: 'sell',
@@ -50,16 +78,34 @@ export class SideNavigationComponent implements OnInit {
             name: 'Add User',
             route: '/chotapaisa/admin/users/new-user',
           },
-          // {
-          //   icon: 'people',
-          //   name: 'Users',
-          //   // route: '/admin/users',
-          // },
-          // {
-          //   icon: 'person_add_alt',
-          //   name: 'Users',
-          //   // route: '/admin/users',
-          // },
+        ],
+      },
+      {
+        icon: 'settings',
+        name: 'App Settings',
+        route: '/chotapaisa/admin/application-setup/all-setup/support',
+        isSubItemPresent: true,
+        submenu: [
+          {
+            icon: 'support_agent',
+            name: 'Support',
+            route: '/chotapaisa/admin/application-setup/all-setup/support'
+          },
+          {
+            icon: 'info',
+            name: 'About',
+            route: '/chotapaisa/admin/application-setup/all-setup/about',
+          },
+          {
+            icon: 'security',
+            name: 'Privacy Policy',
+            route: '/chotapaisa/admin/application-setup/all-setup/privacy-policy',
+          },
+          {
+            icon: 'gavel',
+            name: 'Terms & Conditions',
+            route: '/chotapaisa/admin/application-setup/all-setup/terms-and-conditions',
+          },
         ],
       }
       // {
@@ -101,14 +147,11 @@ export class SideNavigationComponent implements OnInit {
     );
   }
 
-  expandSubMenu(navItem: any){
-    console.log('called')
+  expandSubMenu(navItem: any) {
     this.parentMenu = navItem.name;
-    if(navItem.isSubItemPresent){
+    if (navItem.isSubItemPresent) {
       // this.expandSubNavMenu = !this.expandSubNavMenu;
       this.expandSubNavMenu = true;
     }
   }
-
-  // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }

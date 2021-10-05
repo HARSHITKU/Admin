@@ -12,13 +12,14 @@
             <div class="profile-detail-wrapper">
               <div class="picture-container">
                 <img
-                  src="/assets/bg-images/male-profile-default.png"
+                  src={{userImage}}
                   alt="profile-picture"
                 />
               </div>
               <div class="details-container">
-                <p class="name">Harshit Kumar</p>
-                <p class="designation">Product Owner</p>
+                <p class="name">{{userDetails.firstName}} {{userDetails.lastName}}</p>
+                <p class="designation">{{userDetails.email}}</p>
+                <p class="designation">{{userDetails.phone}}</p>
               </div>
             </div>
             <div class="actions">
