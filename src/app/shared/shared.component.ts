@@ -35,7 +35,7 @@ export class SharedComponent implements OnInit {
   rowData = [
     { make: 'Toyota', model: 'Celica', price: 35000 },
     { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 },
+    { make: 'Porsche', model: 'Boxter', price: 72000},
     { make: 'Ford', model: 'Boxter', price: 72321 },
     { make: 'SUV', model: 'Boxter', price: 723 },
     { make: 'Tata', model: 'Boxter', price: 72000 },
@@ -58,7 +58,7 @@ export class SharedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gridOptions.rowHeight = 30;
+    this.gridOptions.rowHeight = 50;
     if (this.gridOptions.api) {
       this.gridOptions.api.setColumnDefs(this.columnDefs);
       this.gridOptions.api.sizeColumnsToFit();

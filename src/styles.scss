@@ -69,11 +69,25 @@ form {
   }
 }
 
+.card{
+  background: $admin-primary;
+  color: $admin-text-color
+}
+
 .primary-button{
   background-color: $admin-primary-button;
   border: none;
   border-radius: 30px;
   color: #2C2D42;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  width: 60%;
+}
+.secondary-button{
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 1.1rem;
   margin-top: 0.5rem;
