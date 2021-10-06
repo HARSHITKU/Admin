@@ -71,14 +71,14 @@ export class SideNavigationComponent implements OnInit {
         icon: 'people',
         name: 'Users',
         route: '/chotapaisa/admin/users',
-        isSubItemPresent: true,
-        submenu: [
-          {
-            icon: 'person_add_alt',
-            name: 'Add User',
-            route: '/chotapaisa/admin/users/new-user',
-          },
-        ],
+        // isSubItemPresent: true,
+        // submenu: [
+        //   {
+        //     icon: 'person_add_alt',
+        //     name: 'Add User',
+        //     route: '/chotapaisa/admin/users/new-user',
+        //   },
+        // ],
       },
       {
         icon: 'settings',
