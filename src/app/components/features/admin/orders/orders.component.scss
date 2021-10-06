@@ -1,0 +1,16 @@
+@import '../../../../../theme/variables.scss';
+@import '../../../../../theme/mixins.scss';
+
+main{
+
+    background: $admin-secondary;
+    height: 95vh;
+    overflow-y: scroll;
+    .content-container{
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 25px;
+        }
+    }
+}

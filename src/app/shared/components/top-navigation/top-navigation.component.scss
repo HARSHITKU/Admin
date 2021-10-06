@@ -4,6 +4,7 @@
 .navbar{
   background: $admin-primary;
   color: $admin-primary-button;
+  z-index: 9;
 }
 .navbar-brand{
   color: $admin-primary-button;
