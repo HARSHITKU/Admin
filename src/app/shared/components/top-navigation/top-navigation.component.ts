@@ -11,7 +11,7 @@ export class TopNavigationComponent implements OnInit {
 
   navigationItems: any[] = [];
   brandNameText: string = "ChotaPaisa.com";
-  imageLogoPath: string = "/assets/logo/logo.PNG";
+  imageLogoPath: string = "/assets/logo/logo.jpeg";
   isTextLogo: boolean = true;
   isImageLogo: boolean = true;
   isLoggedIn$: Observable<boolean> | undefined;
@@ -30,10 +30,10 @@ export class TopNavigationComponent implements OnInit {
       // {
       //   icon: 'g_translate',
       // },
-      {
-        name: 'Notification',
-        icon: 'notifications',
-      },
+      // {
+      //   name: 'Notification',
+      //   icon: 'notifications',
+      // },
       {
         name: 'Account',
         icon: 'account_circle',

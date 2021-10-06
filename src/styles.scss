@@ -21,7 +21,7 @@ main{
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
   ::-webkit-scrollbar-track {
   background: $admin-primary; 
@@ -43,6 +43,10 @@ main{
   width: 25%;
   top: 10px;
   right: 10px;
+}
+
+.panelStyle .mat-dialog-container {
+  padding: 0
 }
 
 /* Importing Bootstrap SCSS file. */

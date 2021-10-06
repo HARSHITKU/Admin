@@ -1,7 +1,13 @@
 <div>
   <div class="action-buttons">
-    <p>Download CSV</p>
-    <button class="fa fa-download" (click)="onBtnExport()"></button>
+    <button type="button" (click)="openAddPopup()">
+      <span>Add User</span>
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <button type="button" (click)="onBtnExport()">
+      <span>Export CSV</span>
+      <mat-icon>download</mat-icon>
+    </button>
   </div>
 
   <div class="quick_filter shadow">
@@ -29,18 +35,19 @@
     </div>
     <em *ngIf="input.value.length > 0"><b>Filter: </b>{{ input.value }}</em>
     <em *ngIf="input.value.length == 0">No Filter Applied</em>
-    <span class="row_count"> {{ rowCount }} Items</span>
+    <span class="row_count"> {{ rowCount }} Rows</span>
   </div>
   <div>
     <ag-grid-angular
-      style="width: 100%; height: 600px"
+      style="width: 100%; height: 500px"
       class="ag-theme-alpine"
       [gridOptions]="gridOptions"
       [rowData]="rowData"
       [columnDefs]="columnDefs"
-      rowSelection="single"
-      [enableColResize]="true"
       (rowClicked)="onRowClicked($event)"
+      [enableColResize]="true"
+      rowSelection="single"
+      (cellClicked)="openPopUp($event)"
     >
     </ag-grid-angular>
   </div>
