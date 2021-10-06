@@ -1,22 +1,3 @@
-<!-- <header class="main-container">
-  <div class="container">
-    <div class="logo-container">
-      <div class="image-logo-wrapper" *ngIf="isImageLogo">
-        <img [src]="imageLogoPath" class="image-logo" alt="logo"/>
-      </div>
-      <p *ngIf="isTextLogo" class="text-logo">{{brandNameText}}</p>
-    </div>
-    <nav class="navigation-container">
-      <ul class="navigation-wrapper">
-        <li class="navItem" *ngFor="let navItem of navigationItems">
-          <mat-icon (click)="action(navItem.name)">{{navItem.icon}}</mat-icon>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header> -->
-
-
 <nav class="navbar navbar-expand-lg px-2">
   <div class="container-fluid">
     <a *ngIf="isTextLogo" class="navbar-brand" href="/"><img [src]="imageLogoPath"  width="30" height="30" alt="logo"/> {{brandNameText}}</a>
