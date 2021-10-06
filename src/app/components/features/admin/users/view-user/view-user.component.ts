@@ -10,18 +10,26 @@ import { User } from 'src/app/models/user';
 export class ViewUSerComponent implements OnInit {
 
   title: string = "View";
-  userDetails: User | undefined;
+  userDetails: any;
 
   constructor(public dialogRef: MatDialogRef<ViewUSerComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any) {
      }
 
   ngOnInit(): void {
-    console.log("ViewUSerComponent" , this.data)
     this.userDetails = this.data;
+    console.log(this.userDetails)
   }
 
   closeIconClicked(){
     this.dialogRef.close(0);
   }
+  
+  convertDate(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  }
+
 }

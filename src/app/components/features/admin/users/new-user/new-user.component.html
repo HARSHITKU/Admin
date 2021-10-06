@@ -1,6 +1,9 @@
 <main>
     <div class="content-container">
-      <h1 class="main-heading">{{title}}</h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="main-heading">{{title}}</h1>
+        <p class="close-modal" (click)="closeModal()">x</p>
+      </div>
       <div class="card shadow p-5">
         <form [formGroup]="userForm" (ngSubmit)="addUpdateUserDetails(userForm.value)">
           <div class="row">

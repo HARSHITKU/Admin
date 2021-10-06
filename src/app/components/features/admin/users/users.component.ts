@@ -75,7 +75,7 @@ export class UsersComponent implements OnInit {
         cellRenderer: function () {
           return ' <i class="fa fa-edit" aria-hidden="true"></i>';
         },
-        Width: 20,
+        Width: 10,
       },
       {
         field: 'delete',
