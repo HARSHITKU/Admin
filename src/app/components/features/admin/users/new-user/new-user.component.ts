@@ -72,6 +72,9 @@ export class NewUserComponent implements OnInit {
   closeDialog(message: string) {
     this.dialogRef.close(message);
   }
+  closeModal() {
+    this.dialogRef.close();
+  }
 
   addUpdateUserDetails(userDetails: User) {
     let userNewDetails = this.generatePayload(userDetails);

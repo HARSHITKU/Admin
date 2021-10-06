@@ -79,6 +79,12 @@ form {
   color: $admin-text-color
 }
 
+.close-modal{
+  font-size: 25px;
+  cursor: pointer;
+  color: $admin-text-color;
+}
+
 .primary-button{
   background-color: $admin-primary-button;
   border: none;

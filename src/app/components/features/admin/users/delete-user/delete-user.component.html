@@ -1,3 +1,5 @@
 <p>Are you sure you want to delete?</p>
-<button (click)="deleteUser()">Ok</button>
-<button (click)="closeDialog('cancelled')">Cancel</button>
+<div style="float: right">
+    <button class="btn btn-secondary mx-3" (click)="closeDialog('cancelled')">Cancel</button>
+    <button class="btn btn-primary" (click)="deleteUser()">Ok</button>
+</div>
