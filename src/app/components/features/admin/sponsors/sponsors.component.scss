@@ -1,0 +1,40 @@
+@import '../../../../../theme/variables.scss';
+@import '../../../../../theme/mixins.scss';
+
+main{
+
+    background: $admin-secondary;
+    height: 95vh;
+    overflow-y: scroll;
+    .content-container{
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 25px;
+        }
+    }
+}
+.sponsors-list{
+    h2{
+        color: $admin-text-color;
+    }
+    .delete-btn{
+        position: absolute;
+        right: 0;
+        top: 5px;
+        background: none;
+        outline: none;
+        border: none;
+        color: rgb(253, 82, 82);
+        font-size: 20px;
+    }
+    img {
+        border-radius: 20px;
+    }
+    .sponsor-name{
+        margin-top: 8px;
+        text-align: center;
+        margin-bottom: 2px;
+    }
+}
+
