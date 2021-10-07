@@ -44,6 +44,19 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/game-setup/all-games',
       },
       {
+        icon: 'people',
+        name: 'Users',
+        route: '/chotapaisa/admin/users',
+        // isSubItemPresent: true,
+        // submenu: [
+        //   {
+        //     icon: 'person_add_alt',
+        //     name: 'Add User',
+        //     route: '/chotapaisa/admin/users/new-user',
+        //   },
+        // ],
+      },
+      {
         icon: 'volunteer_activism',
         name: 'Charity',
         route: '/chotapaisa/admin/charity/all-charities',
@@ -67,19 +80,7 @@ export class SideNavigationComponent implements OnInit {
       //   icon: 'sell',
       //   name: "Sales"
       // },
-      {
-        icon: 'people',
-        name: 'Users',
-        route: '/chotapaisa/admin/users',
-        // isSubItemPresent: true,
-        // submenu: [
-        //   {
-        //     icon: 'person_add_alt',
-        //     name: 'Add User',
-        //     route: '/chotapaisa/admin/users/new-user',
-        //   },
-        // ],
-      },
+      
       {
         icon: 'settings',
         name: 'App Settings',

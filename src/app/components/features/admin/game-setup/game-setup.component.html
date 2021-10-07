@@ -3,6 +3,33 @@
       <h1 class="main-heading">Game Setup</h1>
       <div>
         <!-- <admin-shared></admin-shared> -->
+        <div class="card shadow p-5">
+          <form [formGroup]="gameForm" (ngSubmit)="gameUpdate(gameForm.value)">
+            <div class="row">
+              <div class="col-lg-4">
+                <label for="numberOfSpinForRound">Number of Spin for Round</label>
+                <input type="number"  formControlName="numberOfSpinForRound" id="numberOfSpinForRound" class="custom-input" placeholder="Enter Number">
+              </div>
+              <div class="col-lg-4">
+                <label for="winPercentage">Win Percentage</label>
+                <input type="number"  formControlName="winPercentage" id="winPercentage"  class="custom-input" placeholder="Enter Number">
+              </div>
+              <div class="col-lg-4">
+                <label for="chipsForRound">Chips for Round</label>
+                <input type="number"  formControlName="chipsForRound" id="chipsForRound" class="custom-input" placeholder="Enter Number">
+              </div>
+              <div class="col-lg-4 mt-3">
+                <label for="minimumNumberOfChipsRewardedToWinner">Minimum Number Of Chips Rewarded To Winners</label>
+                <input type="number"  formControlName="minimumNumberOfChipsRewardedToWinner" id="minimumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number">
+              </div>
+              <div class="col-lg-4 mt-3">
+                <label for="maximumNumberOfChipsRewardedToWinner">Maximum Number Of Chips Rewarded To Winners</label>
+                <input type="number"  formControlName="maximumNumberOfChipsRewardedToWinner" id="maximumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number">
+              </div>
+            </div>
+            <button class="primary-button mt-4" type="submit" style="width: 200px">Update</button>
+          </form>
+        </div>
       </div>
     </div>
   </main>
