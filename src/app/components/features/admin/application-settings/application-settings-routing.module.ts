@@ -5,6 +5,7 @@ import { ApplicationSettingsComponent } from './application-settings.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { SupportComponent } from './support/support.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { VideoComponent } from './video/video.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     path: 'all-setup',
     component: ApplicationSettingsComponent,
     children: [
+      { path: 'video', component: VideoComponent },
       { path: 'about', component: AboutComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'support', component: SupportComponent },

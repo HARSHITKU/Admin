@@ -133,6 +133,7 @@ export class UsersComponent implements OnInit {
 
   getDeletedRowData(event: any){
     const deleteDataDialogue = this.dialog.open(DeleteUserComponent, {
+      width: '30vw',
       data: event
     });
     deleteDataDialogue.afterClosed().subscribe((response) => {
@@ -147,8 +148,6 @@ export class UsersComponent implements OnInit {
 
   getRowsDataToBeEdited(event: any){
     const updateDataDialogue = this.dialog.open(NewUserComponent, {
-      width: '60vw',
-      height: '40vw',
       data: event,
       panelClass: 'panelStyle',
     });
@@ -165,8 +164,6 @@ export class UsersComponent implements OnInit {
   getAddButtonStatus(event: boolean){
     if(event){
       const addDataDialogue = this.dialog.open(NewUserComponent, {
-        width: '60vw',
-        height: '40vw',
         data: event,
         panelClass: 'panelStyle',
       });

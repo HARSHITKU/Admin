@@ -7,10 +7,16 @@ main{
     height: auto;
     overflow-y: scroll;
     .content-container{
+        padding: 1rem;
 
         .main-heading{
             color: $admin-text-color;
-            font-size: 25px;
+            font-size: 20px;
+            margin-bottom: 8.7px;
+        }
+
+        p{
+            margin-bottom: 8.7px;
         }
     }
 }
