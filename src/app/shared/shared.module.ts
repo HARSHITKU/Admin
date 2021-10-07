@@ -15,7 +15,7 @@ import { DataTableModule } from './components/data-table/data-table.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { ViewUSerComponent } from '../components/features/admin/users/view-user/view-user.component';
 import { DeleteUserComponent } from '../components/features/admin/users/delete-user/delete-user.component';
@@ -41,7 +41,7 @@ import { NewUserComponent } from '../components/features/admin/users/new-user/ne
     AgGridModule.withComponents([
       ViewUSerComponent,
       DeleteUserComponent,
-      NewUserComponent
+      NewUserComponent,
     ]),
     HttpClientModule,
   ],
@@ -50,6 +50,7 @@ import { NewUserComponent } from '../components/features/admin/users/new-user/ne
     SideNavigationComponent,
     DataTableComponent,
     SharedComponent,
+    MatIconModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   entryComponents: [ViewUSerComponent],

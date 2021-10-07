@@ -92,6 +92,16 @@ export class SideNavigationComponent implements OnInit {
             route: '/chotapaisa/admin/application-setup/all-setup/support'
           },
           {
+            icon: 'format_quote',
+            name: 'Quotation',
+            route: '/chotapaisa/admin/application-setup/all-setup/about',
+          },
+          {
+            icon: 'play_circle_filled',
+            name: 'Video Setup',
+            route: '/chotapaisa/admin/application-setup/all-setup/video',
+          },
+          {
             icon: 'info',
             name: 'About',
             route: '/chotapaisa/admin/application-setup/all-setup/about',

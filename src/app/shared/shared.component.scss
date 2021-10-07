@@ -17,12 +17,14 @@
     color: $admin-text-color-secondary;
     display: flex;
     align-items: center;
-    font-size: 1rem;
-    padding: 10px;
-    margin: 5px;
+    font-size: 0.8rem;
+    padding: 6px;
+    margin-bottom: 8px;
+    margin-right: 5px;
 
-    span{
-      margin-right: 5px;
+    mat-icon{
+      font-size: 1rem;
+      padding-top: 4px;
     }
   }
 
