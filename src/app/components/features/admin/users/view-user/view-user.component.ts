@@ -18,7 +18,6 @@ export class ViewUSerComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.data;
-    console.log(this.userDetails)
   }
 
   closeIconClicked(){

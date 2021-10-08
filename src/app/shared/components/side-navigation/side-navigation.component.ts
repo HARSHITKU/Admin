@@ -20,14 +20,20 @@ export class SideNavigationComponent implements OnInit {
   user: any;
   userImage: any;
 
-  constructor(private commonService: CommonService) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.getNavbarContents();
-    this.user = localStorage.getItem('user');
-    this.userDetails = JSON.parse(this.user);
-    this.userImage =
-      'https://casino-api-088.herokuapp.com/' + this.userDetails.profileImage;
+    this.getUserProfileData();
+  }
+
+  getUserProfileData() {
+    this.authenticationService.getUserProfile().subscribe((response) => {
+      this.user = response;
+      this.userDetails = this.user.data;
+      this.userImage =
+        'https://casino-api-088.herokuapp.com/' + this.userDetails.profileImage;
+    });
   }
 
   getNavbarContents() {
@@ -80,7 +86,7 @@ export class SideNavigationComponent implements OnInit {
       //   icon: 'sell',
       //   name: "Sales"
       // },
-      
+
       {
         icon: 'settings',
         name: 'App Settings',
@@ -90,7 +96,7 @@ export class SideNavigationComponent implements OnInit {
           {
             icon: 'support_agent',
             name: 'Support',
-            route: '/chotapaisa/admin/application-setup/all-setup/support'
+            route: '/chotapaisa/admin/application-setup/all-setup/support',
           },
           {
             icon: 'format_quote',
@@ -110,12 +116,14 @@ export class SideNavigationComponent implements OnInit {
           {
             icon: 'security',
             name: 'Privacy Policy',
-            route: '/chotapaisa/admin/application-setup/all-setup/privacy-policy',
+            route:
+              '/chotapaisa/admin/application-setup/all-setup/privacy-policy',
           },
           {
             icon: 'gavel',
             name: 'Terms & Conditions',
-            route: '/chotapaisa/admin/application-setup/all-setup/terms-and-conditions',
+            route:
+              '/chotapaisa/admin/application-setup/all-setup/terms-and-conditions',
           },
         ],
       }

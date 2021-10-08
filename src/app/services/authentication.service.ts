@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -26,5 +26,17 @@ export class AuthenticationService {
 
   logout() {
     this.router.navigate(['/login']);
+  }
+
+  getUserProfile(): Observable<any>{
+    let token = localStorage.getItem('token');
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return this.http.get<any>(this.baseURL + 'users/me', httpOptions);
   }
 }
