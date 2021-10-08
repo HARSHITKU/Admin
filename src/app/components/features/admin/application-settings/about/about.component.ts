@@ -30,6 +30,12 @@ export class AboutComponent implements OnInit {
         tooltipField: 'about',
       },
       {
+        headerName: 'Default',
+        field: 'isDefault',
+        minWidth: 50,
+        tooltipField: 'isDefault',
+      },
+      {
         field: 'edit',
         cellRenderer: function () {
           return ' <i class="fa fa-edit" aria-hidden="true"></i>';
