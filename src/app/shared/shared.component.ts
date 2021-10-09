@@ -8,7 +8,6 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -23,6 +22,7 @@ export class SharedComponent implements OnInit, OnChanges {
   @Input() gridOptions: GridOptions;
   @Input() component: Component | undefined;
   @Input() isDeleteUnClicked: boolean = false;
+  @Input() isAddButtonRequired: boolean = false;
   @Output() isRowClickedToViewData = new EventEmitter();
   @Output() isRowClickedToDeleteData = new EventEmitter();
   @Output() isRowClickedToEditData = new EventEmitter();
@@ -45,8 +45,7 @@ export class SharedComponent implements OnInit, OnChanges {
   selectedItemsCount: number = 0;
   rowCount: number | undefined;
 
-  constructor(
-    private dialog: MatDialog) {
+  constructor() {
     this.gridOptions = <GridOptions>{};
   }
 
