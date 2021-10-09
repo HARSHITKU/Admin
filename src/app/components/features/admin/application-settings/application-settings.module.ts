@@ -15,6 +15,7 @@ import { VideoComponent } from './video/video.component';
 import { NewVideoComponent } from './video/new-video/new-video.component';
 import { DeleteVideoComponent } from './video/delete-video/delete-video.component';
 import { ViewVideoComponent } from './video/view-video/view-video.component';
+import { ViewSupportComponent } from './support/view-support/view-support.component';
 
 
 
@@ -31,7 +32,8 @@ import { ViewVideoComponent } from './video/view-video/view-video.component';
     VideoComponent,
     NewVideoComponent,
     DeleteVideoComponent,
-    ViewVideoComponent
+    ViewVideoComponent,
+    ViewSupportComponent
   ],
   imports: [
     CommonModule,
