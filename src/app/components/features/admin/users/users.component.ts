@@ -25,64 +25,71 @@ export class UsersComponent implements OnInit {
       {
         headerName: 'Name',
         field: 'name',
-        minWidth: 50,
+        maxWidth: 200,
         tooltipField: 'name',
       },
       {
         headerName: 'Email Id',
         field: 'email',
-        minWidth: 50,
+        maxWidth: 200,
         tooltipField: 'email',
       },
       {
         headerName: 'Phone',
         field: 'phone',
-        minWidth: 50,
+        maxWidth: 130,
         tooltipField: 'phone',
       },
       {
         headerName: 'Date of Birth',
         field: 'displayDOB',
-        minWidth: 50,
+        maxWidth: 120,
         tooltipField: 'displayDOB',
       },
       {
         headerName: 'Address',
         field: 'address',
-        minWidth: 50,
+        maxWidth: 200,
         tooltipField: 'address',
       },
       {
         headerName: 'City',
         field: 'city',
-        minWidth: 50,
+        maxWidth: 120,
         tooltipField: 'city',
       },
       {
         headerName: 'State',
         field: 'state',
-        minWidth: 50,
+        maxWidth: 120,
         tooltipField: 'state',
       },
       {
         headerName: 'Country',
         field: 'country',
-        minWidth: 50,
+        maxWidth: 100,
         tooltipField: 'country',
+      },
+      {
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
       },
       {
         field: 'edit',
         cellRenderer: function () {
           return ' <i class="fa fa-edit" aria-hidden="true"></i>';
         },
-        Width: 10,
+        maxWidth: 50,
       },
       {
         field: 'delete',
         cellRenderer: function () {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
-        minWidth: 20,
+        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{

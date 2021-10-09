@@ -114,6 +114,10 @@ export class SharedComponent implements OnInit, OnChanges {
       this.isRowClickedToEditData.emit(event.data);
       this.editColumnClicked = true;
     }
+    if (event.type === 'cellClicked' && event.column.colId === 'view') {
+      this.isRowClickedToViewData.emit(event.data);
+      this.editColumnClicked = true;
+    }
   }
 
   openAddPopup() {
