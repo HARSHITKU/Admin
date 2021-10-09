@@ -53,14 +53,6 @@ export class SideNavigationComponent implements OnInit {
         icon: 'people',
         name: 'Users',
         route: '/chotapaisa/admin/users',
-        // isSubItemPresent: true,
-        // submenu: [
-        //   {
-        //     icon: 'person_add_alt',
-        //     name: 'Add User',
-        //     route: '/chotapaisa/admin/users/new-user',
-        //   },
-        // ],
       },
       {
         icon: 'volunteer_activism',
@@ -95,7 +87,7 @@ export class SideNavigationComponent implements OnInit {
         submenu: [
           {
             icon: 'support_agent',
-            name: 'Support',
+            name: 'Enquiry',
             route: '/chotapaisa/admin/application-setup/all-setup/support',
           },
           {
@@ -148,20 +140,8 @@ export class SideNavigationComponent implements OnInit {
       //   name: "Refund"
       // },
       // {
-      //   icon: 'support_agent',
-      //   name: "Support"
-      // },
-      // {
       //   icon: 'reviews',
       //   name: "Reviews"
-      // },
-      // {
-      //   icon: 'security',
-      //   name: "Privacy Policy"
-      // },
-      // {
-      //   icon: 'gavel',
-      //   name: "Terms & Conditions"
       // },
     );
   }
