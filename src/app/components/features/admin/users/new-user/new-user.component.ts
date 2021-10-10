@@ -16,6 +16,7 @@ export class NewUserComponent implements OnInit {
   userForm!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  isLoading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   states: any[] = [
@@ -77,19 +78,22 @@ export class NewUserComponent implements OnInit {
   }
 
   addUpdateUserDetails(userDetails: User) {
+    this.isLoading = true;
     let userNewDetails = this.generatePayload(userDetails);
     if (this.title === 'Update Existing User') {
       this.usersService
-        .updateUser(userNewDetails, this.data.id)
-        .subscribe((response) => {
-          if (response) {
-            this.openSnackBar('User Data Updated Successfully');
-            this.closeDialog(response);
-          }
-        });
+      .updateUser(userNewDetails, this.data.id)
+      .subscribe((response) => {
+        if (response) {
+          this.isLoading = false;
+          this.openSnackBar('User Data Updated Successfully');
+          this.closeDialog(response);
+        }
+      });
     } else {
       this.usersService.addUser(userNewDetails).subscribe((response) => {
         if (response) {
+          this.isLoading = false;
           this.openSnackBar('User Data Added Successfully');
           this.closeDialog(response);
         }

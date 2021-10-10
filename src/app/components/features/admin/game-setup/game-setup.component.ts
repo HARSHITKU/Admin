@@ -14,6 +14,7 @@ export class GameSetupComponent implements OnInit {
   data: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  isLoading: boolean = false;
 
   constructor(private GameSetupService: GameSetupService, private _snackBar: MatSnackBar,) { }
   
@@ -34,10 +35,12 @@ export class GameSetupComponent implements OnInit {
   });
 
   gameUpdate(gameDetails: any) {
-      this.GameSetupService
-        .updateGame(this.data._id, gameDetails)
-        .subscribe((response) => {
-          if (response) {
+    this.isLoading = true;
+    this.GameSetupService
+    .updateGame(this.data._id, gameDetails)
+    .subscribe((response) => {
+      if (response) {
+            this.isLoading = false;
             this.openSnackBar('Game Updated Successfully');
           }
       });

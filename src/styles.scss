@@ -78,13 +78,18 @@ form {
   background: $admin-primary;
   color: $admin-text-color
 }
-
+i.fa{
+  cursor: pointer;
+}
 .close-modal{
   font-size: 25px;
   cursor: pointer;
   color: $admin-text-color;
 }
-
+.spinner-border{
+  width: 19px;
+  height: 19px;
+}
 .primary-button{
   background-color: $admin-primary-button;
   border: none;

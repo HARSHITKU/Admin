@@ -1,22 +1,59 @@
 <main>
     <div class="content-container">
-      <h1 class="main-heading">Sponsors</h1>
-      <div class="card p-3">
-        <form>
-          <div class="row">
-            <div class="col-lg-5">
-              <label for="sp">Sponsor Name</label>
-              <input type="text" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
+        <h1 class="main-heading">Sponsors</h1>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h2>Create New Sponsor</h2>
+            <form>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label for="sp">Sponsor Name</label>
+                  <input type="text" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
+                </div>
+                <div class="col-lg-6">
+                  <label for="sp">Sponsor Image</label>
+                  <input type="file" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <label for="sp">
+                    Category
+                  </label>
+                  <select class="custom-input form-control">
+                    <option value="">Select Category</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="elec">Electronic</option>
+                  </select>
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <label for="sp">City</label>
+                  <select class="custom-input form-control">
+                    <option value="">Select City</option>
+                    <option value="del">Delhi</option>
+                    <option value="gur">Gurgaon</option>
+                  </select>
+                </div>
+                <div class="col-lg-2">
+                  <button style=" margin-top: 30px; width: 180px" class="primary-button" type="submit">Add Sponsor</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card p-3">
+            <h3>Create Sponsor Category</h3>
+            <div class="w-100 d-flex mb-3">
+              <input type="text" class="custom-input" placeholder="Create New Category">
+              <button style="width: 200px" class="btn btn-primary mx-3">Add Category</button>
             </div>
-            <div class="col-lg-5">
-              <label for="sp">Sponsor Name</label>
-              <input type="file" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
-            </div>
-            <div class="col-lg-2">
-              <button style="float: right; margin-top: 30px; width: 180px" class="primary-button" type="submit">Add Sponsor</button>
+            <h3>Create Sponsor City</h3>
+            <div class="w-100 d-flex">
+              <input type="text" class="custom-input" placeholder="Create New City">
+              <button style="width: 200px" class="btn btn-primary mx-3">Add City</button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <div class="mt-3 sponsors-list">
         <h2>List of Sponsors</h2>
@@ -26,101 +63,13 @@
               <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
               <button class="delete-btn"><i class="fa fa-trash"></i></button>
               <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-            </div>
-          </div>
-          <div class="col-lg-2 mt-2 mb-2">
-            <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
+              <em class="sponsor-category">Electronic</em>
+              <em class="sponsor-city">Delhi</em>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
   </main>
   

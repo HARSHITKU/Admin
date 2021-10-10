@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   brandName: string = 'ChotaPaisa.com';
   errorMessage: string = '';
   isCustomError: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(credentials: AdminCredentials) {
     if (this.form!.valid) {
+      this.isLoading = true;
       this.authService.login(credentials).subscribe((response: any) => {
         if (response) {
           if (response.user.role === 'admin') {
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
             this.isCustomError = false;
           }else{
             this.isCustomError = true;
+            this.isLoading = false;
             this.errorMessage = 'Please, make sure you have admin access';
             this.form.reset();
             setTimeout(()=>{

@@ -71,6 +71,7 @@ export class UsersComponent implements OnInit {
         tooltipField: 'country',
       },
       {
+        headerName: '',
         field: 'view',
         cellRenderer: function () {
           return ' <i class="fa fa-eye" aria-hidden="true"></i>';
@@ -78,6 +79,7 @@ export class UsersComponent implements OnInit {
         maxWidth: 50,
       },
       {
+        headerName: '',
         field: 'edit',
         cellRenderer: function () {
           return ' <i class="fa fa-edit" aria-hidden="true"></i>';
@@ -85,6 +87,7 @@ export class UsersComponent implements OnInit {
         maxWidth: 50,
       },
       {
+        headerName: '',
         field: 'delete',
         cellRenderer: function () {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
@@ -105,6 +108,7 @@ export class UsersComponent implements OnInit {
     this.usersService.getUserListData().subscribe((response) => {
       if (response) {
         this.users = response.data;
+        console.log(response.data)
         this.updatedUsers = this.users?.map((user) => {
           return {
             name: `${user.firstName} ${user.lastName}`,

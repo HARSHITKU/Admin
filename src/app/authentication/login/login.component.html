@@ -20,7 +20,12 @@
           <input type="password" class="custom-input" id="floatingPassword" placeholder="Password" formControlName="otp" maxlength="6" required>
         </div>
         <div class="text-center mt-3">
-          <button type="submit" class="primary-button shadow">Sign in</button>
+          <button *ngIf="!isLoading" type="submit" class="primary-button shadow">Sign in</button>
+          <button *ngIf="isLoading" type="submit" class="primary-button shadow">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
         </div>
       </form>
     </div>
