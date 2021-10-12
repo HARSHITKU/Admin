@@ -2,20 +2,20 @@
     <div class="content-container">
         <h1 class="main-heading">Sponsors</h1>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="card p-3">
             <h2>Create New Sponsor</h2>
-            <form>
+            <form [formGroup]="sponsorForm" (ngSubmit)="addSponsor(sponsorForm.value)">
               <div class="row">
                 <div class="col-lg-6">
-                  <label for="sp">Sponsor Name</label>
-                  <input type="text" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
+                  <label for="name">Sponsor Name</label>
+                  <input formControlName="name" type="text" id="name" class="custom-input" placeholder="Enter Sponsors Name" />
                 </div>
                 <div class="col-lg-6">
-                  <label for="sp">Sponsor Image</label>
-                  <input type="file" id="sp" class="custom-input" placeholder="Enter Sponsors Name">
+                  <label for="img">Sponsor Image</label>
+                  <input formControlName="sponsorImage" (change)="readFile($event)" accept="image/*" type="file" id="img" class="custom-input" />
                 </div>
-                <div class="col-lg-6 mt-3">
+                <!-- <div class="col-lg-6 mt-3">
                   <label for="sp">
                     Category
                   </label>
@@ -32,15 +32,20 @@
                     <option value="del">Delhi</option>
                     <option value="gur">Gurgaon</option>
                   </select>
-                </div>
+                </div> -->
                 <div class="col-lg-2">
-                  <button style=" margin-top: 30px; width: 180px" class="primary-button" type="submit">Add Sponsor</button>
+                  <button *ngIf="!isLoading" style=" margin-top: 30px; width: 180px" class="primary-button" type="submit">Add Sponsor</button>
+                  <button *ngIf="isLoading" style=" margin-top: 30px; width: 180px" class="primary-button" type="submit">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
           <div class="card p-3">
             <h3>Create Sponsor Category</h3>
             <div class="w-100 d-flex mb-3">
@@ -53,18 +58,18 @@
               <button style="width: 200px" class="btn btn-primary mx-3">Add City</button>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="mt-3 sponsors-list">
         <h2>List of Sponsors</h2>
         <div class="row">
-          <div class="col-lg-2 mt-2 mb-2">
+          <div *ngFor="let sponsor of sponsors" class="col-lg-2 mt-2 mb-2">
             <div class="card shadow p-4 pb-1">
-              <img src="https://play-lh.googleusercontent.com/kKlgIeEFBgZyBy2miOFLny07HWJkOp9SYVwgKwpjloGc_w2QWOehaKI_jKrYTCHDol0" alt="">
-              <button class="delete-btn"><i class="fa fa-trash"></i></button>
-              <p class="sponsor-name">Doubt Buddy</p>
-              <em class="sponsor-category">Electronic</em>
-              <em class="sponsor-city">Delhi</em>
+              <img [src]="baseURL + sponsor.image" alt="">
+              <button (click)="deleteSponsor(sponsor._id)" class="delete-btn"><i class="fa fa-trash"></i></button>
+              <p class="sponsor-name">{{sponsor.name}}</p>
+              <!-- <em class="sponsor-category">Electronic</em>
+              <em class="sponsor-city">Delhi</em> -->
             </div>
           </div>
         </div>

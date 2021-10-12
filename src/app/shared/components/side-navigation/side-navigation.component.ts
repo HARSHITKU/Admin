@@ -70,14 +70,15 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/redeem/all-redeems',
       },
       {
+        icon: 'product_hunt',
+        name: "Product",
+        route: '/chotapaisa/admin/products',
+      },
+      {
         icon: 'groups',
         name: 'Sponsors',
         route: '/chotapaisa/admin/sponsors/all-sponsors',
       },
-      // {
-      //   icon: 'sell',
-      //   name: "Sales"
-      // },
 
       {
         icon: 'settings',

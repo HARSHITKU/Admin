@@ -46,6 +46,11 @@ const routes: Routes = [
           import('./redeem/redeem.module').then((m) => m.RedeemModule),
       },
       {
+        path: 'products',
+        loadChildren: () =>
+          import('./products/products.module').then((m) => m.ProductsModule),
+      },
+      {
         path: 'sponsors',
         loadChildren: () =>
           import('./sponsors/sponsors.module').then((m) => m.SponsorsModule),
