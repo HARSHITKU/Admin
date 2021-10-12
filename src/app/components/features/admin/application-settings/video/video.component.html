@@ -1,1 +1,19 @@
-<p>video works!</p>
+<main>
+    <div class="content-container">
+      <h1 class="main-heading">Video</h1>
+      <div>
+        <admin-shared
+          [rowData]="videoList"
+          [columnDefs]="columnDefs"
+          [gridOptions]="gridOptions"
+          [isAddButtonRequired]="true"
+          [isDeleteUnClicked]="unclickDelete"
+          (isRowClickedToViewData)="getRowsDataToView($event)"
+          (isRowClickedToDeleteData)="getDeletedRowData($event)"
+          (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
+          (isAddButtonClicked)="getAddButtonStatus($event)"
+        ></admin-shared>
+      </div>
+    </div>
+  </main>
+  
