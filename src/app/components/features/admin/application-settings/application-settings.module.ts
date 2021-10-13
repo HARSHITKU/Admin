@@ -23,7 +23,9 @@ import { NewQuotationComponent } from './quotation/new-quotation/new-quotation.c
 import { ViewQuotationComponent } from './quotation/view-quotation/view-quotation.component';
 import { DeleteQuotationComponent } from './quotation/delete-quotation/delete-quotation.component';
 import { QuotationComponent } from './quotation/quotation.component';
-
+import { NewTermsConditionsComponent } from './terms-conditions/new-terms-conditions/new-terms-conditions.component';
+import { DeleteTermsConditionsComponent } from './terms-conditions/delete-terms-conditions/delete-terms-conditions.component';
+import { ViewTermsConditionsComponent } from './terms-conditions/view-terms-conditions/view-terms-conditions.component';
 
 
 @NgModule({
@@ -47,7 +49,10 @@ import { QuotationComponent } from './quotation/quotation.component';
     NewQuotationComponent,
     ViewQuotationComponent,
     DeleteQuotationComponent,
-    QuotationComponent
+    QuotationComponent,
+    NewTermsConditionsComponent,
+    DeleteTermsConditionsComponent,
+    ViewTermsConditionsComponent
   ],
   imports: [
     CommonModule,

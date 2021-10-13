@@ -1,14 +1,18 @@
 <main>
     <div class="content-container">
-      <h1 class="main-heading">Terms & Conditions</h1>
-      <div class="card p-5 shadow">
-        <form>
-          <label for="tnc">Terms & Conditions</label>
-          <textarea class="custom-input" placeholder="Enter terms and conditions" name="" id="tnc" cols="30" rows="10"></textarea>
-          <div class="d-flex mt-3" style="float: right;">
-            <button class="mx-2 primary-button shadow" type="submit" style="width: 150px">Confirm</button>
-          </div>
-        </form>
+      <h1 class="main-heading">TermsConditions</h1>
+      <div>
+        <admin-shared
+          [rowData]="TermsConditionsList"
+          [columnDefs]="columnDefs"
+          [gridOptions]="gridOptions"
+          [isDeleteUnClicked]="unclickDelete"
+          [isAddButtonRequired]="true"
+          (isRowClickedToViewData)="getRowsDataToView($event)"
+          (isRowClickedToDeleteData)="getDeletedRowData($event)"
+          (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
+          (isAddButtonClicked)="getAddButtonStatus($event)"
+        ></admin-shared>
       </div>
     </div>
   </main>
