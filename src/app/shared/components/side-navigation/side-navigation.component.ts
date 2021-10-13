@@ -94,7 +94,7 @@ export class SideNavigationComponent implements OnInit {
           {
             icon: 'format_quote',
             name: 'Quotation',
-            route: '/chotapaisa/admin/application-setup/all-setup/about',
+            route: '/chotapaisa/admin/application-setup/all-setup/quotation',
           },
           {
             icon: 'play_circle_filled',

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ApplicationSettingsComponent } from './application-settings.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { QuotationComponent } from './quotation/quotation.component';
 import { SupportComponent } from './support/support.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { VideoComponent } from './video/video.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'support', component: SupportComponent },
       { path: 'terms-and-conditions', component: TermsConditionsComponent },
+      { path: 'quotation', component: QuotationComponent}
     ],
   },
 ];

@@ -1,0 +1,19 @@
+<main>
+    <div class="content-container">
+      <h1 class="main-heading">Quotation</h1>
+      <div>
+        <admin-shared
+          [rowData]="quotationList"
+          [columnDefs]="columnDefs"
+          [gridOptions]="gridOptions"
+          [isAddButtonRequired]="true"
+          [isDeleteUnClicked]="unclickDelete"
+          (isRowClickedToViewData)="getRowsDataToView($event)"
+          (isRowClickedToDeleteData)="getDeletedRowData($event)"
+          (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
+          (isAddButtonClicked)="getAddButtonStatus($event)"
+        ></admin-shared>
+      </div>
+    </div>
+  </main>
+  

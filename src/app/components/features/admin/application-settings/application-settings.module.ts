@@ -16,6 +16,13 @@ import { NewVideoComponent } from './video/new-video/new-video.component';
 import { DeleteVideoComponent } from './video/delete-video/delete-video.component';
 import { ViewVideoComponent } from './video/view-video/view-video.component';
 import { ViewSupportComponent } from './support/view-support/view-support.component';
+import { NewPrivacyPolicyComponent } from './privacy-policy/new-privacy-policy/new-privacy-policy.component';
+import { ViewPrivacyPolicyComponent } from './privacy-policy/view-privacy-policy/view-privacy-policy.component';
+import { DeletePrivacyPolicyComponent } from './privacy-policy/delete-privacy-policy/delete-privacy-policy.component';
+import { NewQuotationComponent } from './quotation/new-quotation/new-quotation.component';
+import { ViewQuotationComponent } from './quotation/view-quotation/view-quotation.component';
+import { DeleteQuotationComponent } from './quotation/delete-quotation/delete-quotation.component';
+import { QuotationComponent } from './quotation/quotation.component';
 
 
 
@@ -33,7 +40,14 @@ import { ViewSupportComponent } from './support/view-support/view-support.compon
     NewVideoComponent,
     DeleteVideoComponent,
     ViewVideoComponent,
-    ViewSupportComponent
+    ViewSupportComponent,
+    NewPrivacyPolicyComponent,
+    ViewPrivacyPolicyComponent,
+    DeletePrivacyPolicyComponent,
+    NewQuotationComponent,
+    ViewQuotationComponent,
+    DeleteQuotationComponent,
+    QuotationComponent
   ],
   imports: [
     CommonModule,
