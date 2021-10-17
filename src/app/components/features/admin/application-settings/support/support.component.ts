@@ -23,25 +23,26 @@ export class SupportComponent implements OnInit {
       {
         headerName: 'Name',
         field: 'name',
-        minWidth: 150,
+        maxWidth: 400,
         tooltipField: 'name',
       },
       {
         headerName: 'Phone',
         field: 'phone',
-        minWidth: 150,
+        maxWidth: 150,
         tooltipField: 'phone',
       },
       {
         headerName: 'Email',
         field: 'email',
-        minWidth: 150,
+        maxWidth: 600,
         tooltipField: 'email',
       },
       {
         headerName: 'Enquiry',
         field: 'enquiry',
-        minWidth: 150,
+        minWidth: 700,
+        maxWidth: 700,
         tooltipField: 'enquiry',
       }
     ];

@@ -1,9 +1,70 @@
 <main>
-    <div class="content-container">
-      <h1 class="main-heading">Product</h1>
-      <div>
-        <!-- <admin-shared></admin-shared> -->
+  <div class="content-container">
+    <h1 class="main-heading">Products</h1>
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="card p-3">
+          <h2>Create New Product</h2>
+          <form>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="name">Product Name</label>
+                <input type="text" id="name" class="custom-input" placeholder="Enter Sponsors Name" />
+              </div>
+              <div class="col-lg-6">
+                <label for="img">Product Image</label>
+                <input accept="image/*" type="file" id="img" class="custom-input" />
+              </div>
+              <div class="col-lg-4 mt-3">
+                <label for="sp">
+                  Category
+                </label>
+                <select class="custom-input form-control">
+                  <option value="">Select Category</option>
+                  <option value="kitchen">Kitchen</option>
+                  <option value="elec">Electronic</option>
+                </select>
+              </div>
+              <div class="col-lg-4 mt-3">
+                <label for="sp">Quantity</label>
+                <input type="number" id="name" class="custom-input" placeholder="Enter Quantity" />
+              </div>
+              <div class="col-lg-4 mt-3">
+                <label for="sp">Amount</label>
+                <input type="text" id="name" class="custom-input" placeholder="Enter Chips Amount" />
+              </div>
+              <div class="col-lg-2">
+                <button style=" margin-top: 30px; width: 180px" class="primary-button" type="submit">Add Product</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card p-3">
+          <h3>Create Product Category</h3>
+          <div class="w-100 d-flex mb-3">
+            <input type="text" class="custom-input" placeholder="Create New Category">
+            <button style="width: 200px" class="btn btn-primary mx-3">Add Category</button>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
-  
+    <div class="row product-list mt-4">
+      <h2>List of Product</h2>
+      <div class="col-lg-2 mt-3">
+        <div class="card p-3">
+          <img src="https://m.media-amazon.com/images/I/31na34LxwmL._AC_SY200_.jpg" alt="">
+          <button class="delete-btn"><i class="fa fa-trash"></i></button>
+          <p class="product-name">Product Name</p>
+          <p class="product-category">Product Category</p>
+          <div class="d-flex justify-content-between">
+            <p class="product-chips">Amt: <span>230</span></p>
+            <p class="product-chips">Qty: <span>23</span></p>
+          </div>
+          <button class="btn btn-primary mt-2">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
