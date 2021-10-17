@@ -26,13 +26,14 @@ export class AboutComponent implements OnInit {
       {
         headerName: 'About',
         field: 'about',
-        minWidth: 500,
+        maxWidth: 900,
+        minWidth: 900,
         tooltipField: 'about',
       },
       {
         headerName: 'Default',
         field: 'isDefault',
-        minWidth: 50,
+        maxWidth: 200,
         tooltipField: 'isDefault',
       },
       {

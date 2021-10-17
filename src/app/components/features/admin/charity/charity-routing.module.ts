@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CharityComponent } from './charity.component';
+import { ChairtyComponent } from './charity.component';
+import { NewCharityComponent } from './new-charity/new-charity.component';
 
 const routes: Routes = [
   {
@@ -10,9 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'all-charities',
-    component: CharityComponent,
+    component: ChairtyComponent,
   },
-//   { path: 'new-user', component: NewUserComponent },
+  { path: 'new-charity', component: NewCharityComponent },
 ];
 
 @NgModule({

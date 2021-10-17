@@ -1,0 +1,22 @@
+@import '../../../../../../theme/variables.scss';
+@import '../../../../../../theme/mixins.scss';
+
+main{
+
+    background: $admin-secondary;
+    height: auto;
+    overflow-y: scroll;
+    .content-container{
+        padding: 1rem;
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 20px;
+            margin-bottom: 8.7px;
+        }
+
+        p{
+            margin-bottom: 8.7px;
+        }
+    }
+}

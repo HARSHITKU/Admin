@@ -70,7 +70,7 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/redeem/all-redeems',
       },
       {
-        icon: 'product_hunt',
+        icon: '',
         name: "Product",
         route: '/chotapaisa/admin/products',
       },
