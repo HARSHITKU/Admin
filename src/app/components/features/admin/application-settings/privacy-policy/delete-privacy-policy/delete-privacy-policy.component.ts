@@ -32,6 +32,8 @@ export class DeletePrivacyPolicyComponent implements OnInit {
         this.openSnackBar(response.message);
         this.closeDialog(response);
       }
+    }, error => {
+      this.openSnackBar(error.error.message);
     })
   }
   openSnackBar(message: string) {

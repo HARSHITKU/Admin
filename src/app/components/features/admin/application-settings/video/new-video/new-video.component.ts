@@ -1,17 +1,20 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { Video } from 'src/app/models/video';
 import { VideoService } from '../video.service';
 
 @Component({
   selector: 'app-new-video',
   templateUrl: './new-video.component.html',
-  styleUrls: ['./new-video.component.scss']
+  styleUrls: ['./new-video.component.scss'],
 })
 export class NewVideoComponent implements OnInit {
-
   form!: FormGroup;
   title: string = '';
   buttonText: string = '';
@@ -28,22 +31,22 @@ export class NewVideoComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       videoURL: ['', Validators.required],
-      isDefault: [false, Validators.required]
+      isDefault: [false, Validators.required],
     });
+
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Video';
       this.buttonText = 'Update Video';
       this.setFormValue(this.data);
       this.isUpdate = true;
-    } else {  
+    } else {
       this.title = 'Add New Video';
       this.buttonText = 'Add Video';
       this.isUpdate = false;
     }
-   }
-
-   ngOnInit(): void {
   }
+
+  ngOnInit(): void {}
 
   setFormValue(detailToUpdate: any) {
     this.form.get('videoURL')?.setValue(detailToUpdate.videoURL);
@@ -57,28 +60,36 @@ export class NewVideoComponent implements OnInit {
   addUpdateDetails(data: Video) {
     let newData = this.generatePayload(data);
     if (this.title === 'Update Existing Video') {
-      this.service
-        .updateVideo(newData, this.data._id)
-        .subscribe((response) => {
+      this.service.updateVideo(newData, this.data._id).subscribe(
+        (response) => {
           if (response) {
-            this.openSnackBar('Video Updated Successfully');
+            this.openSnackBar(response.message);
             this.closeDialog(response);
           }
-        });
-    } else {
-      this.service.addVideo(newData).subscribe((response) => {
-        if (response) {
-          this.openSnackBar('Video Added Successfully');
-          this.closeDialog(response);
+        },
+        (error) => {
+          this.openSnackBar(error.error.message);
         }
-      });
+      );
+    } else {
+      this.service.addVideo(newData).subscribe(
+        (response) => {
+          if (response) {
+            this.openSnackBar(response.message);
+            this.closeDialog(response);
+          }
+        },
+        (error) => {
+          this.openSnackBar(error.error.message);
+        }
+      );
     }
   }
 
   generatePayload(newDetail: any) {
     let payload = {
       videoURL: newDetail.videoURL,
-      isDefault: newDetail.isDefault
+      isDefault: newDetail.isDefault,
     };
     return payload;
   }
@@ -87,9 +98,7 @@ export class NewVideoComponent implements OnInit {
     this._snackBar.open(message, '', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: 3000
+      duration: 3000,
     });
   }
-
 }
-

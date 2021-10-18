@@ -18,7 +18,6 @@ export class NewTermsConditionsComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewTermsConditionsComponent>,
@@ -44,6 +43,7 @@ export class NewTermsConditionsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   closeDialog(message: string) {
     this.dialogRef.close(message);
   }
@@ -55,19 +55,24 @@ export class NewTermsConditionsComponent implements OnInit {
         .updateTerms(newData, this.data._id)
         .subscribe((response) => {
           if (response) {
-            this.openSnackBar('Data Updated Successfully');
+            this.openSnackBar(response.message);
             this.closeDialog(response);
           }
+        }, error => {
+          this.openSnackBar(error.error.message);
         });
     } else {
       this.service.addTerms(newData).subscribe((response) => {
         if (response) {
-          this.openSnackBar('Data Added Successfully');
+          this.openSnackBar(response.message);
           this.closeDialog(response);
         }
+      }, error => {
+        this.openSnackBar(error.error.message);
       });
     }
   }
+
   generatePayload(newDetail: any) {
     let payload = {
       termsAndConditions: newDetail.termsAndConditions,
@@ -75,11 +80,13 @@ export class NewTermsConditionsComponent implements OnInit {
     };
     return payload;
   }
+
   setFormValue(detailToUpdate: any) {
     this.form.get('termsAndConditions')?.setValue(detailToUpdate.termsAndConditions);
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
 
   }
+
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
       horizontalPosition: this.horizontalPosition,

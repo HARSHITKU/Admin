@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GridOptions } from 'ag-grid-community';
-import { CommonService } from 'src/app/services/common.service';
-import { privacyPolicy } from 'src/app/models/privacyPolicy';
-import { PrivacypolicyService } from './privacypolicy.service'; 
+import { PrivacypolicyService } from './privacypolicy.service';
 import { NewPrivacyPolicyComponent } from './new-privacy-policy/new-privacy-policy.component';
 import { ViewPrivacyPolicyComponent } from './view-privacy-policy/view-privacy-policy.component';
 import { DeletePrivacyPolicyComponent } from './delete-privacy-policy/delete-privacy-policy.component';
+
 @Component({
   selector: 'app-privacy-policy',
   templateUrl: './privacy-policy.component.html',
-  styleUrls: ['./privacy-policy.component.scss']
+  styleUrls: ['./privacy-policy.component.scss'],
 })
 export class PrivacyPolicyComponent implements OnInit {
-  privacypolicyList:  privacyPolicy[] | undefined;
-  columnDefs : any;
+  privacypolicyList: any[] | undefined;
+  columnDefs: any;
   gridOptions: GridOptions;
   unclickEdit: boolean = false;
   unclickDelete: boolean = false;
- 
-  constructor(private privacyPolicyService:PrivacypolicyService, private dialog: MatDialog) {
+
+  constructor(
+    private privacyPolicyService: PrivacypolicyService,
+    private dialog: MatDialog
+  ) {
     this.columnDefs = [
       {
         headerName: 'privacyPolicy',
@@ -30,7 +29,7 @@ export class PrivacyPolicyComponent implements OnInit {
         maxWidth: 900,
         minWidth: 900,
         tooltipField: 'privacyPolicy',
-        default: 'privacypolicy'
+        default: 'privacypolicy',
       },
       {
         headerName: 'Default',
@@ -66,65 +65,70 @@ export class PrivacyPolicyComponent implements OnInit {
     this.gridOptions = <GridOptions>{
       headerHeight: window.innerWidth <= 1024 ? 88 : 30,
     };
-   }
-   
-    ngOnInit(): void {
+  }
+
+  ngOnInit(): void {
     this.getAllprivacyPolicy();
-    }
-    getAllprivacyPolicy() {
-      this.privacyPolicyService.getAllprivacyPolicy().subscribe((response) => {
-        if (response) {
-          this.privacypolicyList = response.data;
-        }
-      });
-    }
-    getRowsDataToView(event: any){
-      this.dialog.open(ViewPrivacyPolicyComponent, {
-        data: event
-      });
-    }
-    getDeletedRowData(event: any){
-      const deleteDataDialogue = this.dialog.open(DeletePrivacyPolicyComponent, {
-        data: event
-      });
-      deleteDataDialogue.afterClosed().subscribe((response) => {
-        if(response?.status === 'success'){
-          this.getAllprivacyPolicy();
-        }else{
-          return
-        }
-        this.unclickDelete = false;
-      });
-    }
-    getRowsDataToBeEdited(event: any){
-      const updateDataDialogue = this.dialog.open(NewPrivacyPolicyComponent, {
+  }
+
+  getAllprivacyPolicy() {
+    this.privacyPolicyService.getAllprivacyPolicy().subscribe((response) => {
+      if (response) {
+        this.privacypolicyList = response.data;
+      }
+    });
+  }
+
+  getRowsDataToView(event: any) {
+    this.dialog.open(ViewPrivacyPolicyComponent, {
+      data: event,
+    });
+  }
+
+  getDeletedRowData(event: any) {
+    const deleteDataDialogue = this.dialog.open(DeletePrivacyPolicyComponent, {
+      data: event,
+    });
+    deleteDataDialogue.afterClosed().subscribe((response) => {
+      if (response?.status === 'success') {
+        this.getAllprivacyPolicy();
+      } else {
+        return;
+      }
+      this.unclickDelete = false;
+    });
+  }
+
+  getRowsDataToBeEdited(event: any) {
+    const updateDataDialogue = this.dialog.open(NewPrivacyPolicyComponent, {
+      height: 'auto',
+      data: event,
+      panelClass: 'panelStyle',
+    });
+    updateDataDialogue?.afterClosed().subscribe((response) => {
+      if (response?.status === 'success') {
+        this.getAllprivacyPolicy();
+      } else {
+        return;
+      }
+      this.unclickEdit = false;
+    });
+  }
+
+  getAddButtonStatus(event: boolean) {
+    if (event) {
+      const addDataDialogue = this.dialog.open(NewPrivacyPolicyComponent, {
+        height: 'auto',
         data: event,
         panelClass: 'panelStyle',
       });
-      updateDataDialogue?.afterClosed().subscribe((response) => {
-        if(response?.status === 'success'){
+      addDataDialogue.afterClosed().subscribe((response) => {
+        if (response?.status === 'success') {
           this.getAllprivacyPolicy();
-        }else{
-          return
+        } else {
+          return;
         }
-        this.unclickEdit = false;
       });
     }
-    getAddButtonStatus(event: boolean){
-      if(event){
-        const addDataDialogue = this.dialog.open(NewPrivacyPolicyComponent, {
-          height: 'auto',
-          data: event,
-          panelClass: 'panelStyle',
-        });
-        addDataDialogue.afterClosed().subscribe((response) => {
-          if(response?.status === 'success'){
-            this.getAllprivacyPolicy();
-          }else{
-            return
-          }
-        });
-      }
-    }
-
+  }
 }

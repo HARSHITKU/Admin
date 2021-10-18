@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { GridOptions } from 'ag-grid-community';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { NewUserComponent } from './new-user/new-user.component';
@@ -18,8 +19,10 @@ export class UsersComponent implements OnInit {
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private usersService: UsersService, private dialog: MatDialog) {
+  constructor(private usersService: UsersService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.columnDefs = [
       {
         headerName: 'Name',
@@ -128,6 +131,8 @@ export class UsersComponent implements OnInit {
           };
         });
       }
+    }, error => {
+      this.openSnackBar(error.error.message);
     });
   }
 
@@ -184,5 +189,13 @@ export class UsersComponent implements OnInit {
         }
       });
     }
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3000
+    });
   }
 }

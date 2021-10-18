@@ -56,16 +56,20 @@ export class NewAboutComponent implements OnInit {
         .updateAbout(newData, this.data._id)
         .subscribe((response) => {
           if (response) {
-            this.openSnackBar('Data Updated Successfully');
+            this.openSnackBar(response.message);
             this.closeDialog(response);
           }
+        },  error => {
+          this.openSnackBar(error.error.message);
         });
     } else {
       this.service.addAbout(newData).subscribe((response) => {
         if (response) {
-          this.openSnackBar('Data Added Successfully');
+          this.openSnackBar(response.message);
           this.closeDialog(response);
         }
+      }, error => {
+        this.openSnackBar(error.error.message);
       });
     }
   }

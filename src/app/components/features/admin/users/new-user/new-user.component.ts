@@ -84,17 +84,21 @@ export class NewUserComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar('User Data Updated Successfully');
+          this.openSnackBar(response.message);
           this.closeDialog(response);
         }
+      }, error => {
+        this.openSnackBar(error.error.message);
       });
     } else {
       this.usersService.addUser(userNewDetails).subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar('User Data Added Successfully');
+          this.openSnackBar(response.message);
           this.closeDialog(response);
         }
+      }, error => {
+        this.openSnackBar(error.error.message);
       });
     }
   }
