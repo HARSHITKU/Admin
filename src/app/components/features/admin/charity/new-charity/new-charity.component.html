@@ -1,0 +1,36 @@
+
+<main>
+    <div class="content-container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="main-heading">{{title}}</h1>
+        <p class="close-modal" (click)="closeModal()">x</p>
+      </div>
+      <div class="card shadow px-5 py-2">
+        <form [formGroup]="charityForm" (ngSubmit)="addUpdatecharityDetails(charityForm.value)">
+          <div class="row mt-2">
+            <p>Basic Information</p>
+            <hr>
+            <div class="col-lg-4">
+              <label for="name">Title</label>
+              <input type="text" id="name" class="custom-input" required placeholder="Enter title" formControlName="name">
+            </div>
+          </div>
+          <div class="form-check form-switch my-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Block User</label>
+          </div>
+          <div class="d-flex mt-2" style="float: right;">
+            <button class="mx-2 btn-secondary secondary-button" type="reset" style="width: 150px">Clear</button>
+            <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
+            <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+

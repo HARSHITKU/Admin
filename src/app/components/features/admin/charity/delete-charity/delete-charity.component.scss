@@ -1,0 +1,27 @@
+@import '../../../../../../theme/variables.scss';
+
+.popup-container{
+    
+    .delete-icon{
+        color: $admin-danger;
+        display: block;
+        font-size: 4rem;
+        height: 1rem;
+        width: 4rem;
+        margin: 0 auto 50px auto;
+    }
+
+    h1,p{
+        text-align: center;
+    }
+
+    .action-buttons-container{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+
+        button{
+            width: 150px;
+        }
+    }
+}

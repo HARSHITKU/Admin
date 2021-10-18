@@ -1,9 +1,18 @@
 <main>
-    <div class="content-container">
-      <h1 class="main-heading">Charity</h1>
-      <div>
-        <!-- <admin-shared></admin-shared> -->
-      </div>
+  <div class="content-container">
+    <h1 class="main-heading">Charity</h1>
+    <div>
+      <admin-shared
+        [rowData]="updatedcharity"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions"
+        [isDeleteUnClicked]="unclickDelete"
+        [isAddButtonRequired]="true"
+        (isRowClickedToViewData)="getRowsDataToView($event)"
+        (isRowClickedToDeleteData)="getDeletedRowData($event)"
+        (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
+        (isAddButtonClicked)="getAddButtonStatus($event)"
+      ></admin-shared>
     </div>
-  </main>
-  
+  </div>
+</main>

@@ -2,7 +2,6 @@
 @import '../../../../../theme/mixins.scss';
 
 main{
-
     background: $admin-secondary;
     height: 95vh;
     overflow-y: scroll;
@@ -13,4 +12,48 @@ main{
             font-size: 25px;
         }
     }
+}
+.product-list{
+    h2{
+        color: $admin-text-color;
+    }
+    .delete-btn{
+        position: absolute;
+        right: 0;
+        top: 5px;
+        background: none;
+        outline: none;
+        border: none;
+        color: rgb(253, 82, 82);
+        font-size: 20px;
+    }
+    img {
+        border-radius: 20px;
+    }
+    .product-name{
+        margin-top: 8px;
+        text-align: center;
+        margin-bottom: 2px;
+    }
+    .product-category{
+        color: $admin-text-color-secondary;
+        text-align: center;
+    }
+    .product-chips{
+        color: $admin-text-color-secondary;
+        margin: 0;
+        margin-top: -10px;
+        text-align: center;
+        span{
+            color: $admin-primary-button;
+        }
+    }
+}
+
+.create-link{
+    color: $admin-primary-button;
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: 10px;
+    cursor: pointer;
 }

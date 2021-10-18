@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserData } from 'src/app/models/user-data';
 import { CommonService } from 'src/app/services/common.service';
-import { UserDetails } from 'src/app/models/user-details';
-import { NewUser } from 'src/app/models/new-user';
+import { Charity } from 'src/app/models/charity';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
+export class CharityService {
   
   baseURL: string = '';
 
@@ -17,7 +15,7 @@ export class UsersService {
     this.baseURL = this.commonService.base_URL;
   }
 
-  getUserListData(): Observable<UserData> {
+  getCharityListData(): Observable<any> {
     let token = localStorage.getItem('token');
 
     const httpOptions = {
@@ -26,11 +24,11 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users';
-    return this.http.get<UserData>(apiUrl, httpOptions);
+    const apiUrl = this.baseURL + 'admin/charities';
+    return this.http.get<any>(apiUrl, httpOptions);
   }
 
-  getUser(userId: any): Observable<UserDetails> {
+  getCharity(charityId: any): Observable<Charity> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -38,11 +36,11 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
-    return this.http.get<UserDetails>(apiUrl, httpOptions);
+    const apiUrl = this.baseURL + 'admin/charities' + charityId;
+    return this.http.get<Charity>(apiUrl, httpOptions);
   }
 
-  deleteUser(userId: string): Observable<any> {
+  deleteCharity(charityId: string): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -50,11 +48,11 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
+    const apiUrl = this.baseURL + 'admin/charities' + charityId;
     return this.http.delete(apiUrl, httpOptions);
   }
 
-  addUser(userData: NewUser): Observable<any> {
+  addCharity(Charity: Charity): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -62,11 +60,11 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/';
-    return this.http.post(apiUrl, userData, httpOptions);
+    const apiUrl = this.baseURL + 'admin/charities';
+    return this.http.post(apiUrl, Charity, httpOptions);
   }
 
-  updateUser(userData: NewUser, userId: string): Observable<any> {
+  updateCharity(Charity: Charity, userId: string): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -74,7 +72,7 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
-    return this.http.patch(apiUrl, userData, httpOptions);
+    const apiUrl = this.baseURL + 'admin/charities' + userId;
+    return this.http.patch(apiUrl, Charity, httpOptions);
   }
 }
