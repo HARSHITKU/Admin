@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RedeemComponent } from './redeem.component';
+import { NewRedeemComponent } from './new-redeem/new-redeem.component';
 
 const routes: Routes = [
   {

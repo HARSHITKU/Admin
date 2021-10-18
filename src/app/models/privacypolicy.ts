@@ -1,4 +1,4 @@
 export class privacyPolicy {
 
-    video: string | undefined;
+    privacyPolicy: string | undefined;
 }

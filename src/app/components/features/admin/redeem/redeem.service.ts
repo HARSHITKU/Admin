@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
-import { NewUser } from 'src/app/models/new-user';
+import { RedeemDetails } from 'src/app/models/redeem-details';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class UsersService {
-  
+export class RedeemService {
+
   baseURL: string = '';
 
   constructor(private http: HttpClient, private commonService: CommonService) {
     this.baseURL = this.commonService.base_URL;
   }
-
-  getUserListData(): Observable<any> {
+  
+  getAllRedeem(): Observable<any> {
     let token = localStorage.getItem('token');
 
     const httpOptions = {
@@ -24,23 +24,21 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users';
+    const apiUrl = this.baseURL + 'admin/products';
     return this.http.get<any>(apiUrl, httpOptions);
   }
-
-  getUser(userId: any): Observable<any> {
-    let token = localStorage.getItem('token');
+  getRedeemById(userId: any): Observable<any> {
+    let token = localStorage.getItem('products');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
+    const apiUrl = this.baseURL + 'admin/products/' + userId;
     return this.http.get<any>(apiUrl, httpOptions);
   }
-
-  deleteUser(userId: string): Observable<any> {
+  deleteRedeem(userId: string): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -48,11 +46,10 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
+    const apiUrl = this.baseURL + 'admin/products/' + userId;
     return this.http.delete(apiUrl, httpOptions);
   }
-
-  addUser(userData: NewUser): Observable<any> {
+  addRedeem(redeemData: any): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -60,11 +57,11 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/';
-    return this.http.post(apiUrl, userData, httpOptions);
+    const apiUrl = this.baseURL + 'admin/products';
+    return this.http.post(apiUrl, redeemData, httpOptions);
   }
 
-  updateUser(userData: NewUser, userId: string): Observable<any> {
+  updateRedeem(redeemData: any, userId: string): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -72,7 +69,8 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + userId;
-    return this.http.patch(apiUrl, userData, httpOptions);
+    const apiUrl = this.baseURL + 'admin/products/' + userId;
+    return this.http.patch(apiUrl, redeemData, httpOptions);
   }
+
 }

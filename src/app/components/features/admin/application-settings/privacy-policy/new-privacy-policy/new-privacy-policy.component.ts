@@ -15,6 +15,7 @@ export class NewPrivacyPolicyComponent implements OnInit {
   form!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  isUpdate: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   constructor(
@@ -26,14 +27,17 @@ export class NewPrivacyPolicyComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       privacyPolicy: ['', Validators.required],
+      isDefault: [false, Validators.required]
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing PrivacyPolicy';
       this.buttonText = 'Update PrivacyPolicy';
       this.setFormValue(this.data);
+      this.isUpdate = true;
     } else {  
       this.title = 'Add New PrivacyPolicy';
       this.buttonText = 'Add PrivacyPolicy';
+      this.isUpdate = false;
     }
    }
 
@@ -65,11 +69,13 @@ export class NewPrivacyPolicyComponent implements OnInit {
   generatePayload(newDetail: any) {
     let payload = {
       privacyPolicy: newDetail.privacyPolicy,
+      isDefault: newDetail.isDefault
     };
     return payload;
   }
   setFormValue(detailToUpdate: any) {
     this.form.get('privacyPolicy')?.setValue(detailToUpdate.privacyPolicy);
+    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {

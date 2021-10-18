@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridOptions } from 'ag-grid-community';
-import { User } from 'src/app/models/user-data';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UsersService } from './users.service';
@@ -13,7 +12,7 @@ import { ViewUSerComponent } from './view-user/view-user.component';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users: User[] | undefined;
+  users: any[] | undefined;
   updatedUsers: any[] | undefined;
   columnDefs: any;
   gridOptions: GridOptions;
@@ -129,12 +128,12 @@ export class UsersComponent implements OnInit {
               user.dateOfBirth
             ).getMonth()}-${new Date(user.dateOfBirth).getFullYear()}`,
             dateOfBirth: `${user.dateOfBirth}`,
-            address: `${user.address?.landmark} ${user.address?.address}`,
-            landmark: user.address?.landmark,
-            pinCode: user.address?.pinCode,
-            city: `${user.address?.city}`,
-            state: `${user.address?.state}`,
-            country: `${user.address?.country}`,
+            address: `${user.addresses[0]?.landmark} ${user.addresses[0]?.address}`,
+            landmark: user.addresses[0]?.landmark,
+            pinCode: user.addresses[0]?.pinCode,
+            city: `${user.addresses[0]?.city}`,
+            state: `${user.addresses[0]?.state}`,
+            country: `${user.addresses[0]?.country}`,
             id: `${user._id}`,
             profileImage : `${user.profileImage}`
             };
@@ -148,13 +147,13 @@ export class UsersComponent implements OnInit {
       data: event
     });
     viewDataDialogue.afterClosed().subscribe((response) => {
-      console.log('virw compo pop up closed');
+      
     });
   }
 
   getDeletedRowData(event: any){
     const deleteDataDialogue = this.dialog.open(DeleteUserComponent, {
-      width: '30vw',
+      width: '400px',
       data: event
     });
     deleteDataDialogue.afterClosed().subscribe((response) => {
