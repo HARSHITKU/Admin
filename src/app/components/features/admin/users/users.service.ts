@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserData } from 'src/app/models/user-data';
 import { CommonService } from 'src/app/services/common.service';
-import { UserDetails } from 'src/app/models/user-details';
 import { NewUser } from 'src/app/models/new-user';
 
 @Injectable({
@@ -17,7 +15,7 @@ export class UsersService {
     this.baseURL = this.commonService.base_URL;
   }
 
-  getUserListData(): Observable<UserData> {
+  getUserListData(): Observable<any> {
     let token = localStorage.getItem('token');
 
     const httpOptions = {
@@ -27,10 +25,10 @@ export class UsersService {
       }),
     };
     const apiUrl = this.baseURL + 'admin/users';
-    return this.http.get<UserData>(apiUrl, httpOptions);
+    return this.http.get<any>(apiUrl, httpOptions);
   }
 
-  getUser(userId: any): Observable<UserDetails> {
+  getUser(userId: any): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -39,7 +37,7 @@ export class UsersService {
       }),
     };
     const apiUrl = this.baseURL + 'admin/users/' + userId;
-    return this.http.get<UserDetails>(apiUrl, httpOptions);
+    return this.http.get<any>(apiUrl, httpOptions);
   }
 
   deleteUser(userId: string): Observable<any> {

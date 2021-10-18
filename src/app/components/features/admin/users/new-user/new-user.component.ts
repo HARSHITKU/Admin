@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { User } from 'src/app/models/user';
-import { UserDetails } from 'src/app/models/user-details';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -77,9 +75,9 @@ export class NewUserComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addUpdateUserDetails(userDetails: User) {
+  addUpdateUserDetails(userDetails: any) {
     this.isLoading = true;
-    let userNewDetails = this.generatePayload(userDetails);
+    let userNewDetails: any = this.generatePayload(userDetails);
     if (this.title === 'Update Existing User') {
       this.usersService
       .updateUser(userNewDetails, this.data.id)
@@ -102,21 +100,32 @@ export class NewUserComponent implements OnInit {
   }
 
   generatePayload(userDetails: any) {
+    let allAddresses: any[] = [];
+    let allAddress: any[] = [];
+
+    let address = {
+      landmark: userDetails.landmark,
+      address: userDetails.address,
+      city: userDetails.city,
+      state: userDetails.state,
+      pinCode: userDetails.pinCode,
+      country: userDetails.country,
+    }
+
+    allAddresses.push(address);
+    allAddress = allAddresses.map(address => {
+      return address;
+    });
+
     let user = {
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       phone: userDetails.phone,
       email: userDetails.email,
       dateOfBirth: userDetails.dateOfBirth,
-      address: {
-        landmark: userDetails.landmark,
-        address: userDetails.address,
-        city: userDetails.city,
-        state: userDetails.state,
-        pinCode: userDetails.pinCode,
-        country: userDetails.country,
-      },
+      addresses: allAddress,
     };
+
     return user;
   }
 
