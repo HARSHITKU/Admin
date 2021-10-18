@@ -38,7 +38,7 @@ export class UsersService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/users/' + 'userId';
+    const apiUrl = this.baseURL + 'admin/users/' + userId;
     return this.http.get<UserDetails>(apiUrl, httpOptions);
   }
 

@@ -41,12 +41,13 @@ export class NewCharityComponent implements OnInit {
       this.title = 'Update Existing charity';
       this.buttonText = 'Update charity';
       this.setFormValue(this.data);
+      console.log(this.data)
     } else {  
       this.title = 'Add New charity';
       this.buttonText = 'Add charity';
     }
   }
-
+  
   ngOnInit(): void {
   }
 
@@ -88,7 +89,7 @@ export class NewCharityComponent implements OnInit {
       description: charityDetails.description,
       status: charityDetails.status,
       isVerified: charityDetails.isVerified,
-      image: charityDetails.image,
+      coverImage: charityDetails.coverImage,
       earnedChips: charityDetails.earnedChips,
     };
     return charity;
@@ -100,7 +101,7 @@ export class NewCharityComponent implements OnInit {
     this.charityForm.get('isVerified')?.setValue(charityDetails.isVerified);
     this.charityForm.get('status')?.setValue(charityDetails.status);
     this.charityForm.get('description')?.setValue(charityDetails.description);
-    this.charityForm.get('image')?.setValue(charityDetails.image);
+    this.charityForm.get('coverImage')?.setValue(charityDetails.coverImage);
     this.charityForm.get('userId')?.setValue(charityDetails.userId);
   }
 

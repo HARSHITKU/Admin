@@ -20,7 +20,7 @@ export class DeleteChairtyComponent implements OnInit {
     private ChairtyService: CharityService) { }
 
   ngOnInit(): void {
-    this.charityId = this.data.id;
+    this.charityId = this.data.userId;
   }
 
   closeDialog(message: string){

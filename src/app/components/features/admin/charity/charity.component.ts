@@ -6,6 +6,7 @@ import { DeleteChairtyComponent } from './delete-charity/delete-charity.componen
 import { NewCharityComponent } from './new-charity/new-charity.component';
 import { CharityService } from './charity.service';
 import { ViewCharityComponent } from './view-charity/view-charity.component';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-charity',
@@ -19,8 +20,9 @@ export class ChairtyComponent implements OnInit {
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
+  userDetail: any;
 
-  constructor(private charityService: CharityService, private dialog: MatDialog) {
+  constructor(private charityService: CharityService, private dialog: MatDialog, private usersService: UsersService) {
     this.columnDefs = [
       {
         headerName: 'Name',
@@ -91,13 +93,14 @@ export class ChairtyComponent implements OnInit {
     this.charityService.getCharityListData().subscribe((response) => {
       if (response) {
         this.charities = response.data;
+        console.log(this.charities)
         this.updatedcharity = this.charities?.map((charity) => {
           return {
             name: `${charity.name}`,
             earnedChips: `${charity.earnedChips}`,
             isVerified: `${charity.isVerified}`,
             userId: `${charity.userId}`,
-            image: `${charity.image}`,
+            coverImage: `${charity.coverImage}`,
             description: `${charity.description}`,
             status: `${charity.status}`,
           };
@@ -108,11 +111,13 @@ export class ChairtyComponent implements OnInit {
 
   getRowsDataToView(event: any){
     const viewDataDialogue = this.dialog.open(ViewCharityComponent, {
-      data: event
+      data: event,
+      width: '70vw'
     });
     viewDataDialogue.afterClosed().subscribe((response) => {
       console.log('virw compo pop up closed');
     });
+    console.log(event)
   }
 
   getDeletedRowData(event: any){

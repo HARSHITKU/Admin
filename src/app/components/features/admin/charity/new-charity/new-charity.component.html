@@ -1,72 +1,18 @@
-<p>new charity works!</p>
-<!-- <main>
+
+<main>
     <div class="content-container">
       <div class="d-flex justify-content-between align-items-center">
         <h1 class="main-heading">{{title}}</h1>
         <p class="close-modal" (click)="closeModal()">x</p>
       </div>
       <div class="card shadow px-5 py-2">
-        <form [formGroup]="userForm" (ngSubmit)="addUpdateUserDetails(userForm.value)">
+        <form [formGroup]="charityForm" (ngSubmit)="addUpdatecharityDetails(charityForm.value)">
           <div class="row mt-2">
             <p>Basic Information</p>
             <hr>
             <div class="col-lg-4">
-              <label for="fName">First Name</label>
-              <input type="text" id="fName" class="custom-input" required placeholder="Enter first name" formControlName="firstName">
-            </div>
-            <div class="col-lg-4">
-              <label for="lName">Last Name</label>
-              <input type="text" id="lName" class="custom-input" required placeholder="Enter last name" formControlName="lastName">
-            </div>
-            <div class="col-lg-4">
-              <label for="dob">Date of Birth</label>
-              <input type="date" id="dob" class="custom-input" required placeholder="Enter email address" formControlName="dateOfBirth">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <p>Contact Information</p>
-            <hr>
-            <div class="col-lg-4">
-              <label for="mobile">Mobile Number</label>
-              <input type="text" id="mobile" class="custom-input" required placeholder="Enter mobile number" formControlName="phone">
-            </div>
-            <div class="col-lg-4">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="custom-input" required placeholder="Enter email address" formControlName="email">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <p>Address Information</p>
-            <hr>
-            <div class="col-lg-4">
-              <label for="address">Address #1</label>
-              <input type="text" id="address" class="custom-input" required placeholder="Enter address" formControlName="address">
-            </div>
-            <div class="col-lg-4">
-              <label for="landmark">Landmark</label>
-              <input type="text" id="landmark" class="custom-input" required placeholder="Enter Landmark" formControlName="landmark">
-            </div>
-            <div class="col-lg-4">
-              <label for="pincode">Pincode</label>
-              <input type="text" id="pincode" class="custom-input" required placeholder="Enter Pincode" formControlName="pinCode">
-            </div>
-            <div class="col-lg-4 mt-1">
-              <label for="city">City</label>
-              <input type="text" id="city" class="custom-input" required placeholder="Enter city" formControlName="city">
-            </div>
-            <div class="col-lg-4 mt-1">
-              <label for="state">State</label>
-              <select name="" id="state" class="form-control custom-input" required placeholder="Enter State" formControlName="state">
-                <option selected disabled hidden value="">Select State</option>
-                <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
-              </select>
-            </div>
-            <div class="col-lg-4 mt-1">
-              <label for="country">Country</label>
-              <select name="" id="country" class="form-control custom-input" required placeholder="Enter country" formControlName="country">
-                <option selected disabled hidden value="">Select Country</option>
-                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
-              </select>
+              <label for="name">Title</label>
+              <input type="text" id="name" class="custom-input" required placeholder="Enter title" formControlName="name">
             </div>
           </div>
           <div class="form-check form-switch my-3">
@@ -86,4 +32,5 @@
       </div>
     </div>
   </main>
-   -->
+
+
