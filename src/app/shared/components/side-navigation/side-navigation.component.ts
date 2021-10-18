@@ -65,12 +65,12 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/innovation/all-innovations',
       },
       {
-        icon: 'redeem',
-        name: 'Redeem',
+        icon: 'receipt_long',
+        name: 'Orders',
         route: '/chotapaisa/admin/redeem/all-redeems',
       },
       {
-        icon: '',
+        icon: 'inventory_2',
         name: "Product",
         route: '/chotapaisa/admin/products',
       },
