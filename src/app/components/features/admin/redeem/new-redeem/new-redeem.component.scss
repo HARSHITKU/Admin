@@ -1,0 +1,15 @@
+ @import '../../../../../../../../Admin/src/theme/variables.scss';
+ @import '../../../../../../../../Admin/src/theme/mixins.scss';
+ 
+main{
+
+    background: $admin-secondary;
+
+    .content-container{
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 25px;
+        }
+    }
+}
