@@ -18,9 +18,18 @@ export class UsersComponent implements OnInit {
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
+  rowCount: number | undefined = 0;
 
   constructor(private usersService: UsersService, private dialog: MatDialog) {
     this.columnDefs = [
+      {
+        headerName: 'Img',
+        field: 'profileImage',
+        maxWidth: 100,
+        cellRenderer :function(param: any){
+          return `<img src="${param.value}" alt="Default.img" width="20">`
+        }
+      },
       {
         headerName: 'Name',
         field: 'name',
@@ -107,6 +116,7 @@ export class UsersComponent implements OnInit {
     this.usersService.getUserListData().subscribe((response) => {
       if (response) {
         this.users = response.data;
+        this.rowCount = this.users?.length;
         this.updatedUsers = this.users?.map((user) => {
           return {
             name: `${user.firstName} ${user.lastName}`,
@@ -125,7 +135,8 @@ export class UsersComponent implements OnInit {
             state: `${user.addresses[0]?.state}`,
             country: `${user.addresses[0]?.country}`,
             id: `${user._id}`,
-          };
+            profileImage : `${user.profileImage}`
+            };
         });
       }
     });
