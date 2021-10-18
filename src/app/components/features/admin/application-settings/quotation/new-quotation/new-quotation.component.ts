@@ -29,6 +29,7 @@ export class NewQuotationComponent implements OnInit {
     this.form = this.fb.group({
       quotation: ['', Validators.required],
       isDefault: [false, Validators.required]
+     
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Quotation';
@@ -40,6 +41,9 @@ export class NewQuotationComponent implements OnInit {
       this.buttonText = 'Add Quotation';
       this.isUpdate = false;
     }
+  }
+  get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {
