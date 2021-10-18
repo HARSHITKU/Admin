@@ -14,6 +14,7 @@ export class NewTermsConditionsComponent implements OnInit {
   form!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  isUpdate: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -27,14 +28,17 @@ export class NewTermsConditionsComponent implements OnInit {
   ) { 
     this.form = this.fb.group({
       termsAndConditions: ['', Validators.required],
+      isDefault: [false, Validators.required]
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Terms & Conditions';
       this.buttonText = 'Update Terms & Conditions';
       this.setFormValue(this.data);
+      this.isUpdate = true;
     } else {  
       this.title = 'Add New Terms & Conditions';
       this.buttonText = 'Add Terms & Conditions';
+      this.isUpdate = false;
     }
   }
 
@@ -67,11 +71,14 @@ export class NewTermsConditionsComponent implements OnInit {
   generatePayload(newDetail: any) {
     let payload = {
       termsAndConditions: newDetail.termsAndConditions,
+      isDefault: newDetail.isDefault
     };
     return payload;
   }
   setFormValue(detailToUpdate: any) {
     this.form.get('termsAndConditions')?.setValue(detailToUpdate.termsAndConditions);
+    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
+
   }
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {

@@ -14,6 +14,7 @@ export class NewQuotationComponent implements OnInit {
   form!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  isUpdate: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -27,14 +28,17 @@ export class NewQuotationComponent implements OnInit {
   {
     this.form = this.fb.group({
       quotation: ['', Validators.required],
+      isDefault: [false, Validators.required]
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Quotation';
       this.buttonText = 'Update Quotation';
       this.setFormValue(this.data);
+      this.isUpdate = true;
     } else {  
       this.title = 'Add New Quotation';
       this.buttonText = 'Add Quotation';
+      this.isUpdate = false;
     }
   }
 
@@ -44,6 +48,7 @@ export class NewQuotationComponent implements OnInit {
     this.dialogRef.close(message);
   }
   addUpdateDetails(data: Quotation) {
+    console.log('form', data)
     let newData = this.generatePayload(data);
     if (this.title === 'Update Existing Quotation') {
       this.service
@@ -55,6 +60,9 @@ export class NewQuotationComponent implements OnInit {
           }
         });
     } else {
+      // Write the logic to enable isDefault property based on the toggle button status
+       
+ 
       this.service.addQuotation(newData).subscribe((response) => {
         if (response) {
           this.openSnackBar('Data Added Successfully');
@@ -66,11 +74,13 @@ export class NewQuotationComponent implements OnInit {
   generatePayload(newDetail: any) {
     let payload = {
       quotation: newDetail.quotation,
+      isDefault: newDetail.isDefault
     };
     return payload;
   }
   setFormValue(detailToUpdate: any) {
     this.form.get('quotation')?.setValue(detailToUpdate.quotation);
+    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
   openSnackBar(message: string) {
     this._snackBar.open(message, '', {
@@ -79,4 +89,5 @@ export class NewQuotationComponent implements OnInit {
       duration: 3000
     });
   }
+ 
 }
