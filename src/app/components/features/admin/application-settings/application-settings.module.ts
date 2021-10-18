@@ -26,7 +26,11 @@ import { QuotationComponent } from './quotation/quotation.component';
 import { NewTermsConditionsComponent } from './terms-conditions/new-terms-conditions/new-terms-conditions.component';
 import { DeleteTermsConditionsComponent } from './terms-conditions/delete-terms-conditions/delete-terms-conditions.component';
 import { ViewTermsConditionsComponent } from './terms-conditions/view-terms-conditions/view-terms-conditions.component';
-
+import { RedeemComponent } from '../redeem/redeem.component';
+import { NewRedeemComponent } from '../redeem/new-redeem/new-redeem.component';
+import { ViewRedeemComponent } from '../redeem/view-redeem/view-redeem.component';
+import { DeleteRedeemComponent } from '../redeem/delete-redeem/delete-redeem.component';
+ 
 
 @NgModule({
   declarations: [
@@ -52,7 +56,11 @@ import { ViewTermsConditionsComponent } from './terms-conditions/view-terms-cond
     QuotationComponent,
     NewTermsConditionsComponent,
     DeleteTermsConditionsComponent,
-    ViewTermsConditionsComponent
+    ViewTermsConditionsComponent,
+    RedeemComponent,
+    NewRedeemComponent,
+    ViewRedeemComponent,
+    DeleteRedeemComponent
   ],
   imports: [
     CommonModule,

@@ -15,6 +15,7 @@ export class NewVideoComponent implements OnInit {
   form!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  isUpdate: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -27,14 +28,17 @@ export class NewVideoComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       videoURL: ['', Validators.required],
+      isDefault: [false, Validators.required]
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Video';
       this.buttonText = 'Update Video';
       this.setFormValue(this.data);
+      this.isUpdate = true;
     } else {  
       this.title = 'Add New Video';
       this.buttonText = 'Add Video';
+      this.isUpdate = false;
     }
    }
 
@@ -43,6 +47,7 @@ export class NewVideoComponent implements OnInit {
 
   setFormValue(detailToUpdate: any) {
     this.form.get('videoURL')?.setValue(detailToUpdate.videoURL);
+    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 
   closeDialog(message: string) {
@@ -73,6 +78,7 @@ export class NewVideoComponent implements OnInit {
   generatePayload(newDetail: any) {
     let payload = {
       videoURL: newDetail.videoURL,
+      isDefault: newDetail.isDefault
     };
     return payload;
   }
