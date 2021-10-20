@@ -33,6 +33,8 @@ export class DeleteUserComponent implements OnInit {
         this.openSnackBar(response.message);
         this.closeDialog(response);
       }
+    }, error => {
+      this.openSnackBar(error.error.message);
     })
   }
 

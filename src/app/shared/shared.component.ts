@@ -43,7 +43,7 @@ export class SharedComponent implements OnInit, OnChanges {
   searchText: any = '';
   showSelectedNoOfRows: boolean = false;
   selectedItemsCount: number = 0;
-  rowCount: number | undefined;
+  @Input() rowCount: number | undefined;
 
   constructor() {
     this.gridOptions = <GridOptions>{};

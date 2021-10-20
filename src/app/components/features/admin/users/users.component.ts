@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { GridOptions } from 'ag-grid-community';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { NewUserComponent } from './new-user/new-user.component';
@@ -18,9 +19,20 @@ export class UsersComponent implements OnInit {
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  rowCount: number | undefined = 0;
 
-  constructor(private usersService: UsersService, private dialog: MatDialog) {
+  constructor(private usersService: UsersService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.columnDefs = [
+      {
+        headerName: 'Img',
+        field: 'profileImage',
+        maxWidth: 100,
+        cellRenderer :function(param: any){
+          return `<img src="${param.value}" alt="Default.img" width="20">`
+        }
+      },
       {
         headerName: 'Name',
         field: 'name',
@@ -107,6 +119,7 @@ export class UsersComponent implements OnInit {
     this.usersService.getUserListData().subscribe((response) => {
       if (response) {
         this.users = response.data;
+        this.rowCount = this.users?.length;
         this.updatedUsers = this.users?.map((user) => {
           return {
             name: `${user.firstName} ${user.lastName}`,
@@ -125,9 +138,12 @@ export class UsersComponent implements OnInit {
             state: `${user.addresses[0]?.state}`,
             country: `${user.addresses[0]?.country}`,
             id: `${user._id}`,
-          };
+            profileImage : `${user.profileImage}`
+            };
         });
       }
+    }, error => {
+      this.openSnackBar(error.error.message);
     });
   }
 
@@ -184,5 +200,13 @@ export class UsersComponent implements OnInit {
         }
       });
     }
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3000
+    });
   }
 }
