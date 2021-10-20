@@ -44,6 +44,9 @@ export class NewVideoComponent implements OnInit {
       this.buttonText = 'Add Video';
       this.isUpdate = false;
     }
+   }
+   get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {}

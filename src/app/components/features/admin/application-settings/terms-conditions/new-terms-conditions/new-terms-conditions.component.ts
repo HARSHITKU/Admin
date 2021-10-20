@@ -40,6 +40,9 @@ export class NewTermsConditionsComponent implements OnInit {
       this.isUpdate = false;
     }
   }
+  get f(){
+    return this.form.controls;
+  }
 
   ngOnInit(): void {
   }

@@ -44,6 +44,9 @@ export class NewPrivacyPolicyComponent implements OnInit {
       this.buttonText = 'Add Privacy Policy';
       this.isUpdate = false;
     }
+   }
+   get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {}
