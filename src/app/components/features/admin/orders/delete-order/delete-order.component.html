@@ -1,1 +1,15 @@
-<p>delete-order works!</p>
+<div class="popup-container">
+    <mat-icon class="delete-icon">highlight_off</mat-icon>
+    <h1>Are you sure?</h1>
+    <p>
+      Do you really want to delete these records? This process cannot be undone.
+    </p>
+  
+    <div class="action-buttons-container">
+      <button class="btn btn-secondary mx-2" (click)="closeDialog('cancelled')">
+        Cancel
+      </button>
+      <button class="btn btn-danger" (click)="deleteOrder()">Delete</button>
+    </div>
+  </div>
+  

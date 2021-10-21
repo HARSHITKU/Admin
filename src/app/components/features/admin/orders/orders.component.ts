@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridOptions } from 'ag-grid-community';
+import { CategoryService } from '../category/category.service';
 import { DeleteOrderComponent } from './delete-order/delete-order.component';
 import { OrdersService } from './orders.service';
 import { UpdateOrderStatusComponent } from './update-order-status/update-order-status.component';
@@ -9,27 +10,32 @@ import { ViewOrderComponent } from './view-order/view-order.component';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-
   ordersList: any[] | undefined;
   updatedOrders: any[] | undefined;
+  categories: any[] | undefined;
+  category: any;
   columnDefs: any;
   gridOptions: GridOptions;
+  rowCount: number | undefined = 0;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
 
-  constructor(private orderService: OrdersService, private dialog: MatDialog) {
-
+  constructor(
+    private orderService: OrdersService,
+    private categoryService: CategoryService,
+    private dialog: MatDialog
+  ) {
     this.columnDefs = [
       {
         headerName: 'Product Image',
         field: 'productImage',
         maxWidth: 130,
-        cellRenderer :function(param: any){
-          return `<img src="${param.value}" alt="Default.img" width="20">`
-        }
+        cellRenderer: function (param: any) {
+          return `<img src="${param.value}" alt="Default.img" width="20">`;
+        },
       },
       {
         headerName: 'Product Name',
@@ -68,16 +74,22 @@ export class OrdersComponent implements OnInit {
         tooltipField: 'status',
       },
       {
+        headerName: 'Order Date',
+        field: 'time',
+        minWidth: 20,
+        tooltipField: 'time',
+      },
+      {
         headerName: 'Customer Name',
         field: 'userName',
         minWidth: 120,
-        tooltipField: 'userName'
+        tooltipField: 'userName',
       },
       {
         headerName: 'Customer Email',
         field: 'userEmail',
         minWidth: 150,
-        tooltipField: 'userEmail'
+        tooltipField: 'userEmail',
       },
       {
         headerName: 'Customer Contact No.',
@@ -87,15 +99,9 @@ export class OrdersComponent implements OnInit {
       },
       {
         headerName: 'Customer Address',
-        field: 'address',
+        field: 'fullAddress',
         minWidth: 150,
-        tooltipField: 'address',
-      },
-      {
-        headerName: 'Time',
-        field: 'time',
-        minWidth: 20,
-        tooltipField: 'time',
+        tooltipField: 'fullAddress',
       },
       {
         headerName: '',
@@ -128,16 +134,22 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllOrders();
+    this.categoryService.getAllCategories().subscribe((response) => {
+      this.categories = response.data;
+      this.getAllOrders();
+    });
   }
 
   getAllOrders() {
     this.orderService.getAllOrders().subscribe((response) => {
       if (response) {
         this.ordersList = response.data;
-        this.updatedOrders = this.ordersList?.map((order)=>{
-          // let user = this.users.filter((user: any) => user._id === order.userId);
-
+        this.rowCount = this.ordersList?.length;
+        this.updatedOrders = this.ordersList?.map((order) => {
+          this.category = this.categories?.filter(
+            (category) => category._id === order.productId.categoryId
+          );
+       
           return {
             id: `${order._id}`,
             amount: `${order.amount}`,
@@ -145,69 +157,74 @@ export class OrdersComponent implements OnInit {
             productImage: `${order.productId?.imageCover}`,
             productName: `${order.productId?.name}`,
             productDescription: `${order.productId.description}`,
-            productCategory: `${order.productId.categoryId}`,
+            productCategory: this.category[0]?.title,
             quantity: `${order.quantity}`,
             status: `${order.status}`,
-            time: `${order.createdAt}`,
+            time: `${new Date(order.createdAt).getDate()}/${new Date(order.createdAt).getMonth()}/${new Date(order.createdAt).getFullYear()}`,
             userName: `${order.userId.firstName} ${order.userId.lastName}`,
             userEmail: `${order.userId.email}`,
-            address: `${order.address?.address} ${order.address?.landmark}, ${order.address?.city} - ${order.address?.pinCode}, ${order.address?.state}, ${order.address?.country}`
-          }
+            fullAddress: `${order.address?.address} ${order.address?.landmark}, ${order.address?.city} - ${order.address?.pinCode}, ${order.address?.state}, ${order.address?.country}`,
+            address: `${order.address?.address}`,
+            landmark: `${order.address?.landmark}`,
+            city: `${order.address?.city}`,
+            pinCode: `${order.address?.pinCode}`,
+            state: `${order.address?.state}`,
+            country: `${order.address?.country}`
+          };
         });
       }
     });
   }
 
-  getRowsDataToView(event: any){
+  getRowsDataToView(event: any) {
     this.dialog.open(ViewOrderComponent, {
-      data: event
+      data: event,
     });
   }
 
-  getDeletedRowData(event: any){
+  getDeletedRowData(event: any) {
     const deleteDataDialogue = this.dialog.open(DeleteOrderComponent, {
-      data: event
+      data: event,
     });
     deleteDataDialogue.afterClosed().subscribe((response) => {
-      if(response?.status === 'success'){
+      if (response?.status === 'success') {
         this.getAllOrders();
-      }else{
-        return
+      } else {
+        return;
       }
       this.unclickDelete = false;
     });
   }
 
-  getRowsDataToBeEdited(event: any){
+  getRowsDataToBeEdited(event: any) {
     const updateDataDialogue = this.dialog.open(UpdateOrderStatusComponent, {
       data: event,
       panelClass: 'panelStyle',
     });
     updateDataDialogue?.afterClosed().subscribe((response) => {
-      if(response?.status === 'success'){
+      if (response?.status === 'success') {
         this.getAllOrders();
-      }else{
-        return
+      } else {
+        return;
       }
       this.unclickEdit = false;
     });
   }
 
-  getAddButtonStatus(event: boolean){
-    if(event){
+  getAddButtonStatus(event: boolean) {
+    if (event) {
       const addDataDialogue = this.dialog.open(UpdateOrderStatusComponent, {
         height: 'products',
         data: event,
         panelClass: 'panelStyle',
       });
       addDataDialogue.afterClosed().subscribe((response) => {
-        if(response?.status === 'success'){
+        if (response?.status === 'success') {
           this.getAllOrders();
-        }else{
-          return
+        } else {
+          return;
         }
       });
     }
   }
-
 }

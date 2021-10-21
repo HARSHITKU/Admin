@@ -1,0 +1,14 @@
+@import '../../../../../../theme/variables.scss';
+
+main{
+
+    background: $admin-secondary;
+
+    .content-container{
+
+        .main-heading{
+            color: $admin-text-color;
+            font-size: 25px;
+        }
+    }
+}

@@ -31,8 +31,7 @@ export class SideNavigationComponent implements OnInit {
     this.authenticationService.getUserProfile().subscribe((response) => {
       this.user = response;
       this.userDetails = this.user.data;
-      this.userImage =
-        'https://casino-api-088.herokuapp.com/' + this.userDetails.profileImage;
+      this.userImage = this.userDetails.profileImage;
     });
   }
 

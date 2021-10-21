@@ -6,6 +6,8 @@ import { UpdateOrderStatusComponent } from './update-order-status/update-order-s
 import { DeleteOrderComponent } from './delete-order/delete-order.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
     OrderRoutingModule
   ]
 })

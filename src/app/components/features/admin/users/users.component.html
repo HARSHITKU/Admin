@@ -8,11 +8,11 @@
         [gridOptions]="gridOptions"
         [isDeleteUnClicked]="unclickDelete"
         [isAddButtonRequired]="true"
+        [rowCount]="rowCount"
         (isRowClickedToViewData)="getRowsDataToView($event)"
         (isRowClickedToDeleteData)="getDeletedRowData($event)"
         (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
         (isAddButtonClicked)="getAddButtonStatus($event)"
-        [rowCount]="rowCount"
       ></admin-shared>
     </div>
   </div>
