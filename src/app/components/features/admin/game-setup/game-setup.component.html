@@ -20,11 +20,11 @@
               </div>
               <div class="col-lg-4 mt-3">
                 <label for="minimumNumberOfChipsRewardedToWinner">Minimum Number Of Chips Rewarded To Winners</label>
-                <input type="number" formControlName="minimumNumberOfChipsRewardedToWinner" id="minimumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number">
+                <input  readonly="readonly" type="number" formControlName="minimumNumberOfChipsRewardedToWinner" id="minimumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number" aria-disabled="true" />
               </div>
               <div class="col-lg-4 mt-3">
                 <label for="maximumNumberOfChipsRewardedToWinner">Maximum Number Of Chips Rewarded To Winners</label>
-                <input type="number" formControlName="maximumNumberOfChipsRewardedToWinner" id="maximumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number">
+                <input  readonly="readonly" type="number" formControlName="maximumNumberOfChipsRewardedToWinner" id="maximumNumberOfChipsRewardedToWinner" class="custom-input" placeholder="Enter Number">
               </div>
             </div>
             <button *ngIf="!isLoading" class="primary-button mt-4" type="submit" style="width: 200px">Update</button>

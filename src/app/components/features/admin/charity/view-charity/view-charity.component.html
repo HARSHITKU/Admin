@@ -1,71 +1,96 @@
 <main>
   <form>
     <div class="row">
-      <div class="charity-clm col-lg-6">
+      <div class="charity-clm col-lg-12">
         <h2>Charity Details</h2>
         <hr>
-        <img [src]="charityDetails.coverImage" alt="">
-        <div class="mt-2">
-          <label for="name">Title</label>
-          <input id="name" type="text" [value]="charityDetails.name" disabled class="form-control">
-        </div>
-        <div class="mt-2">
-          <label for="desc">Description</label>
-          <textarea id="desc" rows="5" type="text" [value]="charityDetails.name" disabled class="form-control"></textarea>
-        </div>
-        <div class="row mt-2 justify-content-between">
-          <div class="col-lg-4">
-            <h4>Earned Chips: <span>{{charityDetails.earnedChips}}</span></h4>
+        <div class="row">
+          <div class="col-lg-6">
+            <img [src]="charityDetails.coverImage" alt="">
           </div>
-          <div class="col-lg-4">
-            <h4>Status: <span>{{charityDetails.status}}</span></h4>
-          </div>
-          <div class="col-lg-4">
-            <h4>isVerified: <span>{{charityDetails.isVerified}}</span></h4>
+          <div class="col-lg-6">
+            <div class="mt-2">
+              <label for="name">Title</label>
+              <input id="name" type="text" [value]="charityDetails.name" disabled class="form-control">
+            </div>
+            <div class="mt-2">
+              <label for="desc">Description</label>
+              <textarea id="desc" rows="5" type="text" [value]="charityDetails.name" disabled class="form-control"></textarea>
+            </div>
+            <div class="row mt-2 justify-content-between">
+              <div class="col-lg-4">
+                <h4>Earned Chips: <span>{{charityDetails.earnedChips}}</span></h4>
+              </div>
+              <div class="col-lg-4">
+                <h4>Status: <span>{{charityDetails.status}}</span></h4>
+              </div>
+              <div class="col-lg-4">
+                <h4>isVerified: <span>{{charityDetails.isVerified}}</span></h4>
+              </div>
+            </div>
           </div>
         </div>
-        <button class="btn btn-primary mb-2" (click)="closeIconClicked()">Close</button>
       </div>
-      <div *ngIf="userDetails" class="user-clm col-lg-6">
+      <div *ngIf="userDetails" class="user-clm col-lg-12">
         <h2>User Details</h2>
         <hr>
-        <div class="mt-2">
-          <label for="uname">Name</label>
-          <input id="uname" type="text" [value]="userDetails.firstName + ' ' + userDetails.lastName" disabled class="form-control">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="uname">Name</label>
+              <input id="uname" type="text" [value]="userDetails.firstName + ' ' + userDetails.lastName" disabled class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="email">Email</label>
+              <input id="email" type="text" [value]="userDetails.email" disabled class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="phone">Mobile</label>
+              <input id="phone" type="text" [value]="userDetails.phone" disabled class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="address">Address #1</label>
+              <input type="text" id="address" [value]="userDetails.address.address" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="landmark">Landmark</label>
+              <input type="text" id="landmark" [value]="userDetails.address.landmark" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" [value]="userDetails.address.pinCode" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class=" mt-2">
+              <label for="city">City</label>
+              <input type="text" id="city" [value]="userDetails.address.city" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="state">State</label>
+              <input type="text" id="city" [value]="userDetails.address.state" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="country">Country</label>
+              <input type="text" id="city" [value]="userDetails.address.country" class="form-control" disabled>
+            </div>
+          </div>
         </div>
-        <div class="mt-2">
-          <label for="email">Email</label>
-          <input id="email" type="text" [value]="userDetails.email" disabled class="form-control">
-        </div>
-        <div class="mt-2">
-          <label for="phone">Mobile</label>
-          <input id="phone" type="text" [value]="userDetails.phone" disabled class="form-control">
-        </div>
-        <div class="mt-2">
-          <label for="address">Address #1</label>
-          <input type="text" id="address" [value]="userDetails.address.address" class="form-control" disabled>
-        </div>
-        <div class="mt-2">
-          <label for="landmark">Landmark</label>
-          <input type="text" id="landmark" [value]="userDetails.address.landmark" class="form-control" disabled>
-        </div>
-        <div class="mt-2">
-          <label for="pincode">Pincode</label>
-          <input type="text" id="pincode" [value]="userDetails.address.pinCode" class="form-control" disabled>
-        </div>
-        <div class=" mt-2">
-          <label for="city">City</label>
-          <input type="text" id="city" [value]="userDetails.address.city" class="form-control" disabled>
-        </div>
-        <div class="mt-2">
-          <label for="state">State</label>
-          <input type="text" id="city" [value]="userDetails.address.state" class="form-control" disabled>
-          
-        </div>
-        <div class="mt-2">
-          <label for="country">Country</label>
-          <input type="text" id="city" [value]="userDetails.address.country" class="form-control" disabled>
-        </div>
+        <button class="btn btn-primary mt-2" (click)="closeIconClicked()">Close</button>
       </div>
     </div>
   </form>
