@@ -80,7 +80,7 @@ export class PrivacyPolicyComponent implements OnInit {
           return {
             id: `${privacyPolicy._id}`,
             privacyPolicy : `${privacyPolicy.privacyPolicy}`,
-            isDefault:privacyPolicy.isDefault? 'yes' : 'No'
+            isDefault:privacyPolicy.isDefault? 'Yes' : 'No'
           }
         })
       }
