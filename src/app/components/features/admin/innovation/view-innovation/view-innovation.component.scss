@@ -1,6 +1,3 @@
-@import '../../../../../../theme/variables.scss';
-@import '../../../../../../theme/mixins.scss';
-
 .charity-clm {
     img{
         width: 100%;
@@ -10,4 +7,8 @@
     h4 {
         span { font-weight: 900;}
     }
+}
+
+::ng-deep .cdk-overlay-pane{
+    overflow: auto;
 }
