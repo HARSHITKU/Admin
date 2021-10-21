@@ -20,7 +20,7 @@ export class DeleteVideoComponent implements OnInit {
     private service: VideoService) { }
 
     ngOnInit(): void {
-    this.id = this.data._id;
+    this.id = this.data.id;
     }
 
     closeDialog(message: string){

@@ -1,11 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import { PrivacypolicyService } from '../privacypolicy.service';
 
 @Component({
@@ -34,7 +30,7 @@ export class NewPrivacyPolicyComponent implements OnInit {
       isDefault: [false, Validators.required],
     });
 
-    if (this.data.hasOwnProperty('_id')) {
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Existing Privacy Policy';
       this.buttonText = 'Update Privacy Policy';
       this.setFormValue(this.data);
@@ -58,7 +54,7 @@ export class NewPrivacyPolicyComponent implements OnInit {
   addUpdateDetails(data: any) {
     let newData = this.generatePayload(data);
     if (this.title === 'Update Existing Privacy Policy') {
-      this.service.updateprivacyPolicy(newData, this.data._id).subscribe(
+      this.service.updateprivacyPolicy(newData, this.data.id).subscribe(
         (response) => {
           if (response) {
             this.openSnackBar(response.message);
@@ -94,6 +90,11 @@ export class NewPrivacyPolicyComponent implements OnInit {
 
   setFormValue(detailToUpdate: any) {
     this.form.get('privacyPolicy')?.setValue(detailToUpdate.privacyPolicy);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 

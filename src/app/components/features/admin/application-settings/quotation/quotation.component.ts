@@ -13,7 +13,7 @@ import { ViewQuotationComponent } from './view-quotation/view-quotation.componen
   styleUrls: ['./quotation.component.scss']
 })
 export class QuotationComponent implements OnInit {
-  quotationList: Quotation[] | undefined;
+  quotationList: any[] | undefined;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -71,6 +71,13 @@ export class QuotationComponent implements OnInit {
     this.quotationService.getAllQuotation().subscribe((response) => {
       if (response) {
         this.quotationList = response.data;
+        this.quotationList = this.quotationList?.map(quotation => {
+          return {
+            id: `${quotation._id}`,
+            quotation: `${quotation.quotation}`,
+            isDefault: quotation.isDefault ? 'Yes' : 'No'
+          }
+        })
       }
     });
   }

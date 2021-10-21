@@ -31,7 +31,7 @@ export class NewQuotationComponent implements OnInit {
       isDefault: [false, Validators.required]
      
     });
-    if (this.data.hasOwnProperty('_id')) {
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Existing Quotation';
       this.buttonText = 'Update Quotation';
       this.setFormValue(this.data);
@@ -52,11 +52,10 @@ export class NewQuotationComponent implements OnInit {
     this.dialogRef.close(message);
   }
   addUpdateDetails(data: Quotation) {
-    console.log('form', data)
     let newData = this.generatePayload(data);
     if (this.title === 'Update Existing Quotation') {
       this.service
-        .updateQuotation(newData, this.data._id)
+        .updateQuotation(newData, this.data.id)
         .subscribe((response) => {
           if (response) {
             this.openSnackBar(response.message);
@@ -85,6 +84,11 @@ export class NewQuotationComponent implements OnInit {
   }
   setFormValue(detailToUpdate: any) {
     this.form.get('quotation')?.setValue(detailToUpdate.quotation);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
   openSnackBar(message: string) {

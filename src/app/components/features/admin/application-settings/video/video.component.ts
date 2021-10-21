@@ -13,7 +13,7 @@ import { DeleteVideoComponent } from './delete-video/delete-video.component';
 })
 export class VideoComponent implements OnInit {
 
-  videoList: Video[] | undefined;
+  videoList: any[] | undefined;
   columnDefs : any;
   gridOptions: GridOptions;
   unclickEdit: boolean = false;
@@ -72,6 +72,13 @@ export class VideoComponent implements OnInit {
     this.videoService.getAllVideo().subscribe((response)=> {
       if (response) {
         this.videoList = response.data;
+        this.videoList = this.videoList?.map(videoURL => {
+          return {
+            id: `${videoURL._id}`,
+            videoURL: `${videoURL.videoURL}`,
+            isDefault: videoURL.isDefault ? 'Yes' : 'No'
+          }
+        });
     }
     })
   }

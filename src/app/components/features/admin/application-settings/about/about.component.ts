@@ -14,7 +14,7 @@ import { ViewAboutComponent } from './view-about/view-about.component';
 })
 export class AboutComponent implements OnInit {
 
-  aboutList: About[] | undefined;
+  aboutList: any[] | undefined;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -74,6 +74,13 @@ export class AboutComponent implements OnInit {
     this.aboutService.getAllAbout().subscribe((response) => {
       if (response) {
         this.aboutList = response.data;
+        this.aboutList = this.aboutList?.map(about => {
+          return {
+            id: `${about._id}`,
+            about: `${about.about}`,
+            isDefault: about.isDefault ? 'Yes' : 'No'
+          }
+        })
       }
     });
   }

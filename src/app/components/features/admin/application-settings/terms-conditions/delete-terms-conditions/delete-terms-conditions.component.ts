@@ -19,7 +19,7 @@ export class DeleteTermsConditionsComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private service: TermsCoditionService) { }
   ngOnInit(): void {
-    this.id = this.data._id;
+    this.id = this.data.id;
   }
   closeDialog(message: string){
     this.dialogRef.close(message);

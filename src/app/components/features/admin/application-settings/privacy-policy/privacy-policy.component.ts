@@ -5,6 +5,7 @@ import { PrivacypolicyService } from './privacypolicy.service';
 import { NewPrivacyPolicyComponent } from './new-privacy-policy/new-privacy-policy.component';
 import { ViewPrivacyPolicyComponent } from './view-privacy-policy/view-privacy-policy.component';
 import { DeletePrivacyPolicyComponent } from './delete-privacy-policy/delete-privacy-policy.component';
+import { privacyPolicy } from 'src/app/models/privacypolicy';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -75,6 +76,13 @@ export class PrivacyPolicyComponent implements OnInit {
     this.privacyPolicyService.getAllprivacyPolicy().subscribe((response) => {
       if (response) {
         this.privacypolicyList = response.data;
+        this.privacypolicyList = this.privacypolicyList?.map(privacyPolicy=>{
+          return {
+            id: `${privacyPolicy._id}`,
+            privacyPolicy : `${privacyPolicy.privacyPolicy}`,
+            isDefault:privacyPolicy.isDefault? 'yes' : 'No'
+          }
+        })
       }
     });
   }

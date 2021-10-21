@@ -19,7 +19,7 @@ export class DeleteQuotationComponent implements OnInit {
     private service: QuotationService) { }
 
   ngOnInit(): void {
-    this.id = this.data._id;
+    this.id = this.data.id;
   }
   closeDialog(message: string){
     this.dialogRef.close(message);

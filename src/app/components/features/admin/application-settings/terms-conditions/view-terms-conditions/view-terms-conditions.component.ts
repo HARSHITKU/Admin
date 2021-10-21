@@ -21,10 +21,12 @@ export class ViewTermsConditionsComponent implements OnInit {
     private fb: FormBuilder,public dialogRef: MatDialogRef<ViewTermsConditionsComponent> ,
     @Inject(MAT_DIALOG_DATA) public data: any,
     ){
-      this.form = this.fb.group({
-         
+      this.form = this.fb.group({         
         isDefault: [false, Validators.required]
       });
+      if(this.data.hasOwnProperty('_id')) {
+        this.setFormValue(this.data);
+      };
    }
    ngOnInit(): void {
     this.userDetails = this.data;
@@ -32,8 +34,16 @@ export class ViewTermsConditionsComponent implements OnInit {
   closeDialog(message: string) {
     this.dialogRef.close(message);
   }
+  generatePayload(newDetail: any) {
+    let payload = {
+      termsAndConditions: newDetail.termsAndConditions,
+      isDefault: newDetail.isDefault
+    };
+    return payload;
+  }
   
   setFormValue(detailToUpdate: any) {
+    this.form.get('termsAndConditions')?.setValue(detailToUpdate.termsAndConditions);
      this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 
