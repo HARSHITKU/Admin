@@ -23,6 +23,8 @@ export class GameSetupComponent implements OnInit {
     this.GameSetupService.getGamesId().subscribe(res => {
       this.data = res.data[0]
       this.setFormValue(this.data)
+    }, error => {
+      this.openSnackBar(error.error.message);
     })
   }
 
@@ -43,6 +45,8 @@ export class GameSetupComponent implements OnInit {
             this.isLoading = false;
             this.openSnackBar('Game Updated Successfully');
           }
+      }, error => {
+        this.openSnackBar(error.error.message);
       });
   }
 

@@ -9,32 +9,35 @@ import { VideoService } from '../video.service';
   styleUrls: ['./delete-video.component.scss']
 })
 export class DeleteVideoComponent implements OnInit {
+
   id: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
 
   constructor(public dialogRef: MatDialogRef<DeleteVideoComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private _snackBar: MatSnackBar,
     private service: VideoService) { }
 
-    
-
     ngOnInit(): void {
     this.id = this.data._id;
     }
+
     closeDialog(message: string){
       this.dialogRef.close(message);
     }
-    deleteUser(){
+
+    deleteVideo(){
       this.service.deleteAbout(this.id).subscribe(response =>{
         if(response){
           this.openSnackBar(response.message);
           this.closeDialog(response);
         }
+      }, error => {
+        this.openSnackBar(error.error.message);
       })
     }
+
     openSnackBar(message: string) {
       this._snackBar.open(message, '', {
         horizontalPosition: this.horizontalPosition,
