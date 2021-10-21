@@ -35,7 +35,7 @@ export class NewPrivacyPolicyComponent implements OnInit {
     });
 
     if (this.data.hasOwnProperty('_id')) {
-      this.title = 'Update Existing Privacy Policy';
+      this.title = 'Update Privacy Policy';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
@@ -57,11 +57,11 @@ export class NewPrivacyPolicyComponent implements OnInit {
 
   addUpdateDetails(data: any) {
     let newData = this.generatePayload(data);
-    if (this.title === 'Update Existing Privacy Policy') {
+    if (this.title === 'Update Privacy Policy') {
       this.service.updateprivacyPolicy(newData, this.data._id).subscribe(
         (response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Privacy Policy Updated Successfully");
             this.closeDialog(response);
           }
         },
@@ -73,7 +73,7 @@ export class NewPrivacyPolicyComponent implements OnInit {
       this.service.addprivacyPolicy(newData).subscribe(
         (response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Privacy Policy Added Successfully");
             this.closeDialog(response);
           }
         },

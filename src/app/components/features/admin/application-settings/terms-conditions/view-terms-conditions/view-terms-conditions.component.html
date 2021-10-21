@@ -1,1 +1,28 @@
-<p>view-terms-conditions works!</p>
+<main class="view-user">
+    <div class="content-container">
+      <div class="d-flex justify-content-between align-items-center">
+      </div>
+      <div>
+          <h1>{{userDetails.name}}</h1>
+          <form action="">
+              <div class="row">
+                  <h1>Baic Information</h1>
+                  <hr>
+                    <div class="col-lg-12">
+                        <label for="about">Terms & Conditions</label>
+                        
+                        <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.termsAndConditions}}">
+</textarea>
+                        </div>
+                    <div class="form-check form-switch" *ngIf="isUpdate">
+                        <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="termsAndConditions">
+                        <label class="form-check-label" for="termsAndConditions">User</label>
+                    </div>
+                    <div class="d-flex mt-3" style="float: right;">
+                        <button class="mx-2 secondary-button shadow" type="button" style="width: 150px" (click)="closeDialog('')">Cancel</button>
+                     </div>
+              </div>
+          </form>
+      </div>
+    </div>
+</main>

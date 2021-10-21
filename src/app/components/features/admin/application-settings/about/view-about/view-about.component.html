@@ -1,1 +1,30 @@
-<p>view-about works!</p>
+<main class="view-user">
+    <div class="content-container">
+      <div class="d-flex justify-content-between align-items-center">
+      </div>
+      <div>
+          <h1>{{title}}</h1>          
+          <form [formGroup]="form">
+              <div class="row">
+                   <hr>
+                    <div class="col-lg-12">
+                        <label for="about">About</label>    
+                         <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.about}}">
+                   </textarea>
+                        </div>
+                    <div class="form-check" *ngIf="isUpdate">
+                        <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="about">
+                        <label class="form-check-label" for="about">User</label>
+                    </div>
+                    <!-- <div class="form-check form-switch my-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Block User</label>
+                      </div> -->
+                    <div class="d-flex mt-3" style="float: right;">
+                        <button class="mx-2 secondary-button shadow" type="button" style="width: 150px" (click)="closeDialog('')">Cancel</button>
+                     </div>
+              </div>
+          </form>
+      </div>
+    </div>
+</main>

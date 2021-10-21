@@ -29,14 +29,15 @@ export class NewTermsConditionsComponent implements OnInit {
       termsAndConditions: ['', Validators.required],
       isDefault: [false, Validators.required]
     });
+
     if (this.data.hasOwnProperty('_id')) {
-      this.title = 'Update Existing Terms & Conditions';
+      this.title = 'Update Terms & Conditions';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {  
       this.title = 'Add New Terms & Conditions';
-      this.buttonText = 'Add' ;
+      this.buttonText = 'Add';
       this.isUpdate = false;
     }
   }
@@ -53,12 +54,12 @@ export class NewTermsConditionsComponent implements OnInit {
 
   addUpdateDetails(data: TermsConditions) {
     let newData = this.generatePayload(data);
-    if (this.title === 'Update Existing Terms & Conditions') {
+    if (this.title === 'Update Terms & Conditions') {
       this.service
         .updateTerms(newData, this.data._id)
         .subscribe((response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Terms & Conditions Updated Successfully");
             this.closeDialog(response);
           }
         }, error => {
@@ -67,7 +68,7 @@ export class NewTermsConditionsComponent implements OnInit {
     } else {
       this.service.addTerms(newData).subscribe((response) => {
         if (response) {
-          this.openSnackBar(response.message);
+          this.openSnackBar("Terms & Conditions Added Successfully");
           this.closeDialog(response);
         }
       }, error => {
