@@ -11,8 +11,9 @@
                     <div class="col-lg-12">
                         <label for="about">Terms & Conditions</label>
                         
-                        <input type="text" id="about" disabled class="form-control" value="{{userDetails.termsAndConditions}}">
-                    </div>
+                        <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.termsAndConditions}}">
+</textarea>
+                        </div>
                     <div class="form-check form-switch" *ngIf="isUpdate">
                         <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="termsAndConditions">
                         <label class="form-check-label" for="termsAndConditions">User</label>

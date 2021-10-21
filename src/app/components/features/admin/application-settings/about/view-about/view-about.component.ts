@@ -24,14 +24,14 @@ export class ViewAboutComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private service: AboutService
     ){
-      this.form = this.fb.group({
-         
-        isDefault: [false, Validators.required]
+      this.form = this.fb.group({         
+      isDefault: [false, Validators.required]
       });
       if(this.data.hasOwnProperty('_id')) {
         this.setFormValue(this.data);
       };
-   }
+    
+    }
    ngOnInit(): void {
     this.userDetails = this.data;
   }
