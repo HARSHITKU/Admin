@@ -31,7 +31,8 @@ export class NewQuotationComponent implements OnInit {
       isDefault: [false, Validators.required]
      
     });
-    if (this.data.hasOwnProperty('_id')) {
+    
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Quotation';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
@@ -57,7 +58,7 @@ export class NewQuotationComponent implements OnInit {
     let newData = this.generatePayload(data);
     if (this.title === 'Update Quotation') {
       this.service
-        .updateQuotation(newData, this.data._id)
+        .updateQuotation(newData, this.data.id)
         .subscribe((response) => {
           if (response) {
             this.openSnackBar("Quotation Updated Successfully");
@@ -86,6 +87,11 @@ export class NewQuotationComponent implements OnInit {
   }
   setFormValue(detailToUpdate: any) {
     this.form.get('quotation')?.setValue(detailToUpdate.quotation);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
   openSnackBar(message: string) {

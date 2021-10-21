@@ -22,8 +22,8 @@ export class ViewAboutComponent implements OnInit {
   constructor(
     private fb: FormBuilder,public dialogRef: MatDialogRef<ViewAboutComponent> ,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: AboutService
-    ){
+    private service: AboutService,
+     ){
       this.form = this.fb.group({         
       isDefault: [false, Validators.required]
       });

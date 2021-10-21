@@ -20,7 +20,7 @@ export class DeletePrivacyPolicyComponent implements OnInit {
     private service: PrivacypolicyService) { }
 
   ngOnInit(): void {
-    this.id = this.data._id;
+    this.id = this.data.id;
   }
   closeDialog (message: string) {
     this.dialogRef.close(message);

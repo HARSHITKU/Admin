@@ -12,7 +12,7 @@ import { NewTermsConditionsComponent } from './new-terms-conditions/new-terms-co
   styleUrls: ['./terms-conditions.component.scss']
 })
 export class TermsConditionsComponent implements OnInit {
-  TermsConditionsList: TermsConditions[] | undefined;
+  TermsConditionsList: any[] | undefined;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -70,6 +70,13 @@ export class TermsConditionsComponent implements OnInit {
     this.termsCoditionService.getAllTerms().subscribe((response) => {
       if (response) {
         this.TermsConditionsList = response.data;
+        this.TermsConditionsList = this.TermsConditionsList?.map(termsAndConditions=>{
+          return {
+            id: `${termsAndConditions._id}`,
+            termsAndConditions: `${termsAndConditions.termsAndConditions}`,
+            isDefault: termsAndConditions.isDefault ? 'Yes' : 'No'
+          }
+        })
       }
     });
   }

@@ -31,8 +31,16 @@ export class ViewPrivacyPolicyComponent implements OnInit {
   closeDialog(message: string) {
     this.dialogRef.close(message);
   }
+  generatePayload(newDetail: any) {
+    let payload = {
+      privacyPolicy: newDetail.privacyPolicy,
+      isDefault: newDetail.isDefault
+    };
+    return payload;
+  }
   
   setFormValue(detailToUpdate: any) {
+    this.form.get('privacyPolicy')?.setValue(detailToUpdate.privacyPolicy);
      this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 

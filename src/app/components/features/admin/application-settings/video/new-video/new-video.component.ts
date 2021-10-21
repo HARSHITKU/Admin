@@ -1,11 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 import { Video } from 'src/app/models/video';
 import { VideoService } from '../video.service';
 
@@ -34,7 +31,7 @@ export class NewVideoComponent implements OnInit {
       isDefault: [false, Validators.required],
     });
 
-    if (this.data.hasOwnProperty('_id')) {
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Video';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
@@ -49,12 +46,7 @@ export class NewVideoComponent implements OnInit {
     return this.form.controls;
   }
 
-  ngOnInit(): void {}
-
-  setFormValue(detailToUpdate: any) {
-    this.form.get('videoURL')?.setValue(detailToUpdate.videoURL);
-    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
-  }
+  ngOnInit(): void {}  
 
   closeDialog(message: string) {
     this.dialogRef.close(message);
@@ -63,7 +55,7 @@ export class NewVideoComponent implements OnInit {
   addUpdateDetails(data: Video) {
     let newData = this.generatePayload(data);
     if (this.title === 'Update Video') {
-      this.service.updateVideo(newData, this.data._id).subscribe(
+      this.service.updateVideo(newData, this.data.id).subscribe(
         (response) => {
           if (response) {
             this.openSnackBar("Video URL Updated Successfully");
@@ -95,6 +87,15 @@ export class NewVideoComponent implements OnInit {
       isDefault: newDetail.isDefault,
     };
     return payload;
+  }
+  setFormValue(detailToUpdate: any) {
+    this.form.get('videoURL')?.setValue(detailToUpdate.videoURL);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
+    this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 
   openSnackBar(message: string) {

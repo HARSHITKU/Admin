@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 import { TermsConditions } from 'src/app/models/terms-conditions';
 import { TermsCoditionService } from '../terms-codition.service';
 
@@ -29,8 +30,8 @@ export class NewTermsConditionsComponent implements OnInit {
       termsAndConditions: ['', Validators.required],
       isDefault: [false, Validators.required]
     });
-
-    if (this.data.hasOwnProperty('_id')) {
+    
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Terms & Conditions';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
@@ -56,7 +57,7 @@ export class NewTermsConditionsComponent implements OnInit {
     let newData = this.generatePayload(data);
     if (this.title === 'Update Terms & Conditions') {
       this.service
-        .updateTerms(newData, this.data._id)
+        .updateTerms(newData, this.data.id)
         .subscribe((response) => {
           if (response) {
             this.openSnackBar("Terms & Conditions Updated Successfully");
@@ -87,6 +88,11 @@ export class NewTermsConditionsComponent implements OnInit {
 
   setFormValue(detailToUpdate: any) {
     this.form.get('termsAndConditions')?.setValue(detailToUpdate.termsAndConditions);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
 
   }

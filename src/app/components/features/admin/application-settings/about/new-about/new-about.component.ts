@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 import { About } from 'src/app/models/about';
 import { AboutService } from '../about.service';
 
@@ -16,31 +17,35 @@ export class NewAboutComponent implements OnInit {
   title: string = '';
   buttonText: string = '';
   isUpdate: boolean = false;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewAboutComponent>,
     private _snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: AboutService
+     @Inject(MAT_DIALOG_DATA) public data: any,
+    private service: AboutService,
   ) {
+   
     this.form = this.fb.group({
       about: ['', Validators.required],
-      isDefault: [false, Validators.required]
+      isDefault: [false, Validators.required],
     });
-    if (this.data.hasOwnProperty('_id')) {
+
+    if (this.data.hasOwnProperty('id')) {
       this.title = 'Update About';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
-    } else {  
+      } else {  
       this.title = 'Add New About';
       this.buttonText = 'Add';
       this.isUpdate = false;
-    }
+     }
+ 
   }
+  
   get f(){
     return this.form.controls;
   }
@@ -55,7 +60,7 @@ export class NewAboutComponent implements OnInit {
     let newData = this.generatePayload(data);
     if (this.title === 'Update About') {
       this.service
-        .updateAbout(newData, this.data._id)
+        .updateAbout(newData, this.data.id)
         .subscribe((response) => {
           if (response) {
             this.openSnackBar("About Updated Successfully");
@@ -86,6 +91,11 @@ export class NewAboutComponent implements OnInit {
 
   setFormValue(detailToUpdate: any) {
     this.form.get('about')?.setValue(detailToUpdate.about);
+    if(detailToUpdate.isDefault === 'Yes'){
+      detailToUpdate.isDefault = true;
+    }else{
+      detailToUpdate.isDefault = false;
+    }
     this.form.get('isDefault')?.setValue(detailToUpdate.isDefault);
   }
 

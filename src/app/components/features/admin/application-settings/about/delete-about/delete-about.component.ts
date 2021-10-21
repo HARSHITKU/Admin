@@ -15,21 +15,21 @@ export class DeleteAboutComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(public dialogRef: MatDialogRef<DeleteAboutComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBar: MatSnackBar,
     private service: AboutService) { }
 
   ngOnInit(): void {
-    this.id = this.data._id;
+    this.id = this.data.id;
   }
 
-  closeDialog(message: string){
+  closeDialog(message: string) {
     this.dialogRef.close(message);
   }
 
-  deleteUser(){
-    this.service.deleteAbout(this.id).subscribe(response =>{
-      if(response){
+  deleteUser() {
+    this.service.deleteAbout(this.id).subscribe(response => {
+      if (response) {
         this.openSnackBar(response.message);
         this.closeDialog(response);
       }
