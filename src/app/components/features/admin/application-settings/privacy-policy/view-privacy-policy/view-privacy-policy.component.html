@@ -11,8 +11,9 @@
                     <div class="col-lg-12">
                         <label for="about">Privacy Policy</label>
                         
-                        <input type="text" id="about" disabled class="form-control" value="{{userDetails.privacyPolicy}}">
-                    </div>
+                        <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.privacyPolicy}}">
+                    </textarea>
+                        </div>
                     <div class="form-check form-switch" *ngIf="isUpdate">
                         <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="privacyPolicy">
                         <label class="form-check-label" for="about">User</label>
