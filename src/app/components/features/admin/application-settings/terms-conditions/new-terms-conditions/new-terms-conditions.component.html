@@ -4,10 +4,14 @@
       <div class="card p-5 shadow">
         <form [formGroup]="form" (ngSubmit)="addUpdateDetails(form.value)">
           <label for="termsAndConditions">Terms & Conditons</label>
-          <textarea class="custom-input" placeholder="Enter termsAndConditions" name="" id="termsAndConditions" cols="30" rows="10" formControlName="termsAndConditions"></textarea>
-          <div class="form-check form-switch" style="float: left" *ngIf="isUpdate">
+          <textarea class="custom-input form-control" placeholder="Enter termsAndConditions" name="termsAndConditions" id="termsAndConditions" cols="30" rows="10" formControlName="termsAndConditions"></textarea>
+          &nbsp;&nbsp;
+          <div *ngIf="f.termsAndConditions.touched && f.termsAndConditions.invalid" class="alert alert-danger">
+            <div *ngIf="f.termsAndConditions.errors && f.termsAndConditions.errors.required">TermsAndConditions is Required.</div>
+         </div>  
+          <div class="form-check form-switch mt-2" style="float: left" *ngIf="isUpdate">
             <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="termsAndConditions">
-            <label class="form-check-label" for="quotation">Set as Default Terms & Conditons</label>
+            <label class="form-check-label" for="termsAndConditions"> User</label>
           </div>
           <div class="d-flex mt-3" style="float: right;">
             <button class="mx-2 secondary-button shadow" type="button" style="width: 150px" (click)="closeDialog('')">Cancel</button>

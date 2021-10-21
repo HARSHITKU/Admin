@@ -36,14 +36,17 @@ export class NewVideoComponent implements OnInit {
 
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Video';
-      this.buttonText = 'Update Video';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {
       this.title = 'Add New Video';
-      this.buttonText = 'Add Video';
+      this.buttonText = 'Add';
       this.isUpdate = false;
     }
+   }
+   get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {}

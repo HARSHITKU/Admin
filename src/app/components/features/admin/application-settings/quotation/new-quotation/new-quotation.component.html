@@ -4,8 +4,12 @@
       <div class="card p-5 shadow">
         <form [formGroup]="form" (ngSubmit)="addUpdateDetails(form.value)">
           <label for="quotation">Quotation</label>
-          <textarea class="custom-input" placeholder="Enter quotation" name="" id="quotation" cols="30" rows="10" formControlName="quotation"></textarea>
-          <div class="form-check form-switch" style="float: left" *ngIf="isUpdate">
+          <textarea class="custom-input form-control" placeholder="Enter quotation" name="quotation" id="quotation" cols="30" rows="10" formControlName="quotation"></textarea>
+          &nbsp;&nbsp;
+          <div *ngIf="f.quotation.touched && f.quotation.invalid" class="alert alert-danger">
+            <div *ngIf="f.quotation.errors && f.quotation.errors.required">Quotation is Required.</div>
+         </div>    
+          <div class="form-check form-switch mt-2" style="float: left" *ngIf="isUpdate">
             <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="quotation">
             <label class="form-check-label" for="quotation">Set as Default Quotation</label>
           </div>

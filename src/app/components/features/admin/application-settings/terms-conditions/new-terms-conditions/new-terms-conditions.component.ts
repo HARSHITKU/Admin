@@ -31,14 +31,17 @@ export class NewTermsConditionsComponent implements OnInit {
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Terms & Conditions';
-      this.buttonText = 'Update Terms & Conditions';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {  
       this.title = 'Add New Terms & Conditions';
-      this.buttonText = 'Add Terms & Conditions';
+      this.buttonText = 'Add' ;
       this.isUpdate = false;
     }
+  }
+  get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {

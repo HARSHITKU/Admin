@@ -36,14 +36,17 @@ export class NewPrivacyPolicyComponent implements OnInit {
 
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing Privacy Policy';
-      this.buttonText = 'Update Privacy Policy';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {
       this.title = 'Add New Privacy Policy';
-      this.buttonText = 'Add Privacy Policy';
+      this.buttonText = 'Add';
       this.isUpdate = false;
     }
+   }
+   get f(){
+    return this.form.controls;
   }
 
   ngOnInit(): void {}

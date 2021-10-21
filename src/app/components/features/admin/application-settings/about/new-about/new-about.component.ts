@@ -32,16 +32,18 @@ export class NewAboutComponent implements OnInit {
     });
     if (this.data.hasOwnProperty('_id')) {
       this.title = 'Update Existing About';
-      this.buttonText = 'Update About';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {  
       this.title = 'Add New About';
-      this.buttonText = 'Add About';
+      this.buttonText = 'Add';
       this.isUpdate = false;
     }
   }
-
+  get f(){
+    return this.form.controls;
+  }
   ngOnInit(): void {
   }
 
