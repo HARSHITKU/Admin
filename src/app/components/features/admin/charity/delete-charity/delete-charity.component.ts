@@ -28,7 +28,7 @@ export class DeleteChairtyComponent implements OnInit {
   }
 
   deleteCharity(){
-    this.ChairtyService.deleteCharity(this.charityId).subscribe(response =>{
+    this.ChairtyService.deleteCharity(this.data.id).subscribe(response =>{
       if(response){
         this.openSnackBar(response.message);
         this.closeDialog(response);

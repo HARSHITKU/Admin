@@ -13,7 +13,6 @@ const routes: Routes = [
     path: 'all-redeems',
     component: RedeemComponent,
   },
-//   { path: 'new-user', component: NewUserComponent },
 ];
 
 @NgModule({

@@ -2,40 +2,83 @@
   <div class="content-container">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <div class="card shadow">
+        <div class="card shadow" routerLink="/chotapaisa/admin/users/list">
           <div class="card-body text-center">
-            <h4 class="card-title">2332</h4>
+            <h4 class="card-title">{{totalUser}}</h4>
             <h2 class="card-text">Total Users</h2>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <div style="color: skyblue" class="card shadow">
+        <div style="color: skyblue" class="card shadow" routerLink="/chotapaisa/admin/redeem/all-redeems">
           <div class="card-body text-center">
-            <h4 class="card-title">232</h4>
+            <h4 class="card-title">{{totalRedeems}}</h4>
             <h2 class="card-text">Total Redeems</h2>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <div style="color: blueviolet" class="card shadow">
+        <div style="color: blueviolet" class="card shadow" routerLink="/chotapaisa/admin/charity/all-charities">
           <div class="card-body text-center">
-            <h4 class="card-title">3453</h4>
+            <h4 class="card-title">{{totalCharity}}</h4>
             <h2 class="card-text">Total Charity</h2>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <div style="color: pink" class="card shadow">
+        <div style="color: pink" class="card shadow" routerLink="/chotapaisa/admin/innovation/all-innovations">
           <div class="card-body text-center">
-            <h4 class="card-title">8975</h4>
+            <h4 class="card-title">{{totalInnovation}}</h4>
             <h2 class="card-text">Total Innovation</h2>
           </div>
         </div>
       </div>
     </div>
-    <div>
-      <!-- <admin-shared></admin-shared> -->
+  </div>
+  <div class="recent-container">
+    <div class="row w-100 px-4">
+      <div class="col-lg-6">
+        <h1>Recent Users</h1>
+        <hr>
+        <admin-shared
+          [rowData]="updatedUsers"
+          [columnDefs]="columnDefsUser"
+          [gridOptions]="gridOptions"
+          [isShowExportCSVButton]="false"
+          [isShowHeader]="false"
+        ></admin-shared>
+      </div>
+      <div class="col-lg-6">
+        <h1>Recent Redeems</h1>
+        <hr>
+        <admin-shared
+          [rowData]="updatedUsers"
+          [gridOptions]="gridOptions"
+          [isShowExportCSVButton]="false"
+          [isShowHeader]="false"
+        ></admin-shared>
+      </div>
+      <div class="col-lg-6 mt-5">
+        <h1>Recent Charities</h1>
+        <hr>
+        <admin-shared
+          [rowData]="updatedCharities"
+          [gridOptions]="gridOptions"
+          [columnDefs]="columnDefsCharity"
+          [isShowExportCSVButton]="false"
+          [isShowHeader]="false"
+        ></admin-shared>
+      </div>
+      <div class="col-lg-6 mt-5">
+        <h1>Recent Innovations</h1>
+        <hr>
+        <admin-shared
+          [rowData]="updatedUsers"
+          [gridOptions]="gridOptions"
+          [isShowExportCSVButton]="false"
+          [isShowHeader]="false"
+        ></admin-shared>
+      </div>
     </div>
   </div>
 </main>

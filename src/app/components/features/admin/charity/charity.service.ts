@@ -40,7 +40,7 @@ export class CharityService {
     return this.http.get<Charity>(apiUrl, httpOptions);
   }
 
-  deleteCharity(charityId: string): Observable<any> {
+  deleteCharity(id: any): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -48,7 +48,7 @@ export class CharityService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/charities' + charityId;
+    const apiUrl = this.baseURL + 'admin/charities/' + id;
     return this.http.delete(apiUrl, httpOptions);
   }
 
@@ -64,7 +64,7 @@ export class CharityService {
     return this.http.post(apiUrl, Charity, httpOptions);
   }
 
-  updateCharity(Charity: Charity, userId: string): Observable<any> {
+  updateCharity(Charity: any, id: any): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -72,7 +72,7 @@ export class CharityService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/charities' + userId;
+    const apiUrl = this.baseURL + 'admin/charities/' + id;
     return this.http.patch(apiUrl, Charity, httpOptions);
   }
 }

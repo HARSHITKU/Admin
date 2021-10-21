@@ -54,6 +54,13 @@ export class ChairtyComponent implements OnInit {
         field: 'isVerified',
         maxWidth: 120,
         tooltipField: 'isVerified',
+        cellRenderer: function (e: any) {
+          if(e.value === 'true'){
+            return 'Yes'
+          }else {
+            return 'No'
+          }
+        }
       },
       {
         headerName: '',
@@ -93,7 +100,6 @@ export class ChairtyComponent implements OnInit {
     this.charityService.getCharityListData().subscribe((response) => {
       if (response) {
         this.charities = response.data;
-        console.log(this.charities)
         this.updatedcharity = this.charities?.map((charity) => {
           return {
             name: `${charity.name}`,
@@ -103,6 +109,7 @@ export class ChairtyComponent implements OnInit {
             coverImage: `${charity.coverImage}`,
             description: `${charity.description}`,
             status: `${charity.status}`,
+            id: `${charity._id}`,
           };
         });
       }
@@ -117,7 +124,6 @@ export class ChairtyComponent implements OnInit {
     viewDataDialogue.afterClosed().subscribe((response) => {
       console.log('virw compo pop up closed');
     });
-    console.log(event)
   }
 
   getDeletedRowData(event: any){

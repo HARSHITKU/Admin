@@ -4,13 +4,13 @@
       <span>Add New</span>
       <mat-icon>add_circle_outline</mat-icon>
     </button>
-    <button type="button" (click)="onBtnExport()">
+    <button type="button" (click)="onBtnExport()" *ngIf="isShowExportCSVButton" >
       <span>Export CSV</span>
       <mat-icon>download</mat-icon>
     </button>
   </div>
 
-  <div class="quick_filter shadow">
+  <div *ngIf="isShowHeader" class="quick_filter shadow">
     <i class="fa fa-filter" aria-hidden="true"></i>
     <div class="quick-search-input">
       <input

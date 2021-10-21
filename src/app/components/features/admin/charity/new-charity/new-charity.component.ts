@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Charity } from 'src/app/models/charity';
+import { UsersService } from '../../users/users.service';
 // import { CharityDetails } from 'src/app/models/charity-details';
 import { CharityService } from '../charity.service';
 
@@ -17,15 +18,24 @@ export class NewCharityComponent implements OnInit {
   title: string = '';
   buttonText: string = '';
   isLoading: boolean = false;
+  isAddNewCharityLoading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  userDetails: any;
+  userId: any;
+  charityImage: any;
+  newUserMobileNumber: any;
+  newUserData: any;
+  imageInput: any;
+  imageFile: any;
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewCharityComponent>,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private charityService: CharityService
+    private charityService: CharityService,
+    private usersService: UsersService,
   ) {
     this.charityForm = this.fb.group({
       userId: ['', Validators.required],
@@ -34,21 +44,27 @@ export class NewCharityComponent implements OnInit {
       status: ['', Validators.required],
       isVerified: ['', Validators.required],
       earnedChips: ['', Validators.required],
-      image: ['', Validators.required],
+      coverImage: ['', Validators.required],
     });
 
-    if (this.data.hasOwnProperty('id')) {
+    if (this.data.hasOwnProperty('userId')) {
       this.title = 'Update Existing charity';
       this.buttonText = 'Update charity';
       this.setFormValue(this.data);
-      console.log(this.data)
+      this.userId = this.data.userId
+      this.charityImage = this.data.coverImage
     } else {  
-      this.title = 'Add New charity';
-      this.buttonText = 'Add charity';
+      this.title = 'Add New Charity';
+      this.buttonText = 'Add';
     }
   }
   
   ngOnInit(): void {
+    if(this.data.userId) {
+      this.usersService.getUser(this.data.userId).subscribe(user => {
+        this.userDetails = user.data;
+      })
+    }
   }
 
   closeDialog(message: string) {
@@ -57,6 +73,23 @@ export class NewCharityComponent implements OnInit {
   closeModal() {
     this.dialogRef.close();
   }
+
+  onSubmit(data:any) {
+    this.isAddNewCharityLoading = true;
+    this.newUserMobileNumber = data.value.num
+    this.usersService.getUserListData().subscribe( res => {
+      res.data.map( (user:any) => {
+        if(this.newUserMobileNumber === user.phone){
+          this.newUserData = user;
+          this.isAddNewCharityLoading = false;
+        }
+      })
+    })
+  }
+
+  readFile(fileEvent: any) {
+    this.imageFile =  fileEvent.target.files[0].name;
+ }
 
   addUpdatecharityDetails(charityDetails: Charity) {
     this.isLoading = true;
@@ -72,7 +105,7 @@ export class NewCharityComponent implements OnInit {
         }
       });
     } else {
-      this.charityService.addCharity(charityNewDetails).subscribe((response) => {
+      this.charityService.addCharity(charityDetails).subscribe((response) => {
         if (response) {
           this.isLoading = false;
           this.openSnackBar('charity Data Added Successfully');

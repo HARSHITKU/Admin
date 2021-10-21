@@ -19,7 +19,10 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule), 
+      },
       {
         path: 'application-setup',
         loadChildren: () =>
@@ -44,6 +47,11 @@ const routes: Routes = [
         path: 'redeem',
         loadChildren: () =>
           import('./redeem/redeem.module').then((m) => m.RedeemModule),
+      },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./orders/orders.module').then((m) => m.OrdersModule),
       },
       {
         path: 'products',

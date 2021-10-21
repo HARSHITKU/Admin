@@ -4,18 +4,21 @@ import { DashboardComponent } from './dashboard.component';
 import { Routes } from '@angular/router';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
-  exports: [
-    DashboardComponent
-  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    DashboardComponent
+  ],
 })
 export class DashboardModule { }

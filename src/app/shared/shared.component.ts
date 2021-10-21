@@ -23,6 +23,9 @@ export class SharedComponent implements OnInit, OnChanges {
   @Input() component: Component | undefined;
   @Input() isDeleteUnClicked: boolean = false;
   @Input() isAddButtonRequired: boolean = false;
+  @Input() isExportButtonRequired: boolean = false;
+  @Input() isShowExportCSVButton: boolean = true;
+  @Input() isShowHeader: boolean = true;
   @Output() isRowClickedToViewData = new EventEmitter();
   @Output() isRowClickedToDeleteData = new EventEmitter();
   @Output() isRowClickedToEditData = new EventEmitter();

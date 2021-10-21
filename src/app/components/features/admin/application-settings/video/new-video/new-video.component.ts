@@ -32,13 +32,13 @@ export class NewVideoComponent implements OnInit {
     });
 
     if (this.data.hasOwnProperty('id')) {
-      this.title = 'Update Existing Video';
-      this.buttonText = 'Update Video';
+      this.title = 'Update Video';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
     } else {
       this.title = 'Add New Video';
-      this.buttonText = 'Add Video';
+      this.buttonText = 'Add';
       this.isUpdate = false;
     }
    }
@@ -54,11 +54,11 @@ export class NewVideoComponent implements OnInit {
 
   addUpdateDetails(data: Video) {
     let newData = this.generatePayload(data);
-    if (this.title === 'Update Existing Video') {
+    if (this.title === 'Update Video') {
       this.service.updateVideo(newData, this.data.id).subscribe(
         (response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Video URL Updated Successfully");
             this.closeDialog(response);
           }
         },
@@ -70,7 +70,7 @@ export class NewVideoComponent implements OnInit {
       this.service.addVideo(newData).subscribe(
         (response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Video URL Added Successfully");
             this.closeDialog(response);
           }
         },

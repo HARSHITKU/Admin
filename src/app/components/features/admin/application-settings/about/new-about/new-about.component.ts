@@ -32,14 +32,15 @@ export class NewAboutComponent implements OnInit {
       about: ['', Validators.required],
       isDefault: [false, Validators.required],
     });
+
     if (this.data.hasOwnProperty('id')) {
-      this.title = 'Update Existing About';
-      this.buttonText = 'Update About';
+      this.title = 'Update About';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
       } else {  
       this.title = 'Add New About';
-      this.buttonText = 'Add About';
+      this.buttonText = 'Add';
       this.isUpdate = false;
      }
  
@@ -57,12 +58,12 @@ export class NewAboutComponent implements OnInit {
 
   addUpdateDetails(data: About) {
     let newData = this.generatePayload(data);
-    if (this.title === 'Update Existing About') {
+    if (this.title === 'Update About') {
       this.service
         .updateAbout(newData, this.data.id)
         .subscribe((response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("About Updated Successfully");
             this.closeDialog(response);
           }
         },  error => {
@@ -71,7 +72,7 @@ export class NewAboutComponent implements OnInit {
     } else {
       this.service.addAbout(newData).subscribe((response) => {
         if (response) {
-          this.openSnackBar(response.message);
+          this.openSnackBar("About Added Successfully");
           this.closeDialog(response);
         }
       }, error => {

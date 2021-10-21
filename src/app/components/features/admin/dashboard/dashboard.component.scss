@@ -12,4 +12,13 @@ main{
 .card{
     background: $admin-primary;
     color: $admin-primary-button;
+    cursor: pointer;
+}
+.recent-container {
+    h1 {
+        color: $admin-text-color;
+    }
+    hr {
+        color: $admin-text-color-secondary;
+    }
 }

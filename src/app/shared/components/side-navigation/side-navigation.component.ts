@@ -31,8 +31,7 @@ export class SideNavigationComponent implements OnInit {
     this.authenticationService.getUserProfile().subscribe((response) => {
       this.user = response;
       this.userDetails = this.user.data;
-      this.userImage =
-        'https://casino-api-088.herokuapp.com/' + this.userDetails.profileImage;
+      this.userImage = this.userDetails.profileImage;
     });
   }
 
@@ -65,9 +64,14 @@ export class SideNavigationComponent implements OnInit {
         route: '/chotapaisa/admin/innovation/all-innovations',
       },
       {
+        icon: 'local_mall',
+        name: 'Redeem',
+        route: '/chotapaisa/admin/redeem/all-redeems',
+      },
+      {
         icon: 'receipt_long',
         name: 'Orders',
-        route: '/chotapaisa/admin/redeem/all-redeems',
+        route: '/chotapaisa/admin/orders/all-orders',
       },
       {
         icon: 'inventory_2',
