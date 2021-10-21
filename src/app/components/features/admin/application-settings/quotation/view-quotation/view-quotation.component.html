@@ -11,8 +11,9 @@
                     <div class="col-lg-12">
                         <label for="about">Quotation</label>
                         
-                        <input type="text" id="about" disabled class="form-control" value="{{userDetails.quotation}}">
-                    </div>
+                        <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.quotation}}">
+                    </textarea>
+                        </div>
                     <div class="form-check form-switch" *ngIf="isUpdate">
                         <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="quotation">
                         <label class="form-check-label" for="quotation">User</label>
