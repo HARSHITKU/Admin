@@ -131,30 +131,6 @@ export class DashboardComponent implements OnInit {
         maxWidth: 120,
         tooltipField: 'isVerified',
       },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'edit',
-        cellRenderer: function () {
-          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'delete',
-        cellRenderer: function () {
-          return '<i class="fa fa-trash" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
     ];
     this.gridOptions = <GridOptions>{
       headerHeight: window.innerWidth <= 1024 ? 88 : 30,

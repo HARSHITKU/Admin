@@ -5,31 +5,198 @@
         <h1 class="main-heading">{{title}}</h1>
         <p class="close-modal" (click)="closeModal()">x</p>
       </div>
-      <div class="card shadow px-5 py-2">
         <form [formGroup]="charityForm" (ngSubmit)="addUpdatecharityDetails(charityForm.value)">
-          <div class="row mt-2">
-            <p>Basic Information</p>
-            <hr>
-            <div class="col-lg-4">
+          <div class="row">
+      <div class="charity-clm col-lg-12">
+        <h2>Charity Details</h2>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <img *ngIf="userId" [src]="charityImage" accept="image/*" (change)="readFile($event)" alt="">
+            <input *ngIf="!userId" type="file" formControlName="coverImage" />
+          </div>
+          <div class="col-lg-6">
+            <div class="mt-2">
               <label for="name">Title</label>
-              <input type="text" id="name" class="custom-input" required placeholder="Enter title" formControlName="name">
+              <input id="name" type="text" formControlName="name" *ngIf="userId" readonly="readonly" class="form-control">
+              <input id="name" type="text" formControlName="name" *ngIf="!userId" class="form-control">
+            </div>
+            <div class="mt-2">
+              <label for="desc">Description</label>
+              <textarea id="desc" rows="5" type="text" formControlName="description" *ngIf="userId" readonly="readonly" class="form-control"></textarea>
+              <textarea id="desc" rows="5" type="text" formControlName="description" *ngIf="!userId" class="form-control"></textarea>
+            </div>
+            <div class="row mt-2 justify-content-between">
+              <div class="col-lg-4">
+                <label for="earnedChips">Earned Chips</label>
+                <input id="earnedChips" type="number" formControlName="earnedChips" class="form-control">
+              </div>
+              <div class="col-lg-4">
+                <label for="isVerified">Status</label>
+                <select class="form-control" placeholder="Select" formControlName="status" id="status">
+                  <option value="pending">Pending</option>
+                  <option value="picked">Picked</option>
+                  <option value="delivered">Delivered</option>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <label for="isVerified">Verified?</label>
+                <select class="form-control" placeholder="Select" formControlName="isVerified" id="isVerified">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div class="form-check form-switch my-3">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Block User</label>
-          </div>
-          <div class="d-flex mt-2" style="float: right;">
-            <button class="mx-2 btn-secondary secondary-button" type="reset" style="width: 150px">Clear</button>
-            <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
-            <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
-              <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
+      <!-- if the popup for editing the charity -->
+      <div *ngIf="userDetails" class="user-clm col-lg-12">
+        <h2>User Details</h2>
+        <hr>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="uname">Name</label>
+              <input id="uname" type="text" [value]="userDetails.firstName + ' ' + userDetails.lastName" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="email">Email</label>
+              <input id="email" type="text" [value]="userDetails.email" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="phone">Mobile</label>
+              <input id="phone" type="text" [value]="userDetails.phone" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="address">Address #1</label>
+              <input type="text" id="address" [value]="userDetails.address.address" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="landmark">Landmark</label>
+              <input type="text" id="landmark" [value]="userDetails.address.landmark" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" [value]="userDetails.address.pinCode" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class=" mt-2">
+              <label for="city">City</label>
+              <input type="text" id="city" [value]="userDetails.address.city" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="state">State</label>
+              <input type="text" id="city" [value]="userDetails.address.state" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="country">Country</label>
+              <input type="text" id="city" [value]="userDetails.address.country" class="form-control" readonly="readonly">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- if the popup for adding new charity -->
+      <div *ngIf="title === 'Add New Charity'">
+        <h2>Add User Detail</h2>
+        <hr>
+        <form *ngIf="!newUserData" #numForm="ngForm" (ngSubmit)="onSubmit(numForm)" class="mb-5 d-flex" style=" width: 600px; align-items: flex-end;">
+          <div>
+            <label for="num">Enter User's Mobile Number</label>
+          <input type="text" name="num" id="num" maxlength="10" class="form-control" ngModel placeholder="Enter 10 digit Number"> 
+          </div>
+          <button *ngIf="!isAddNewCharityLoading" style="height: 40px;" type="submit" class="btn btn-primary mx-3">Find User</button>
+          <button *ngIf="isAddNewCharityLoading" style="height: 40px;" type="submit" class="btn btn-primary mx-3">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+        </form>
+        
+        <div *ngIf="newUserData" class="row">
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="uname">Name</label>
+              <input id="uname" type="text" [value]="newUserData.firstName + ' ' + newUserData.lastName" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="email">Email</label>
+              <input id="email" type="text" [value]="newUserData.email" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="phone">Mobile</label>
+              <input id="phone" type="text" [value]="newUserData.phone" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="address">Address #1</label>
+              <input type="text" id="address" [value]="newUserData.address.address" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="landmark">Landmark</label>
+              <input type="text" id="landmark" [value]="newUserData.address.landmark" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" [value]="newUserData.address.pinCode" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class=" mt-2">
+              <label for="city">City</label>
+              <input type="text" id="city" [value]="newUserData.address.city" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="state">State</label>
+              <input type="text" id="city" [value]="newUserData.address.state" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="country">Country</label>
+              <input type="text" id="city" [value]="newUserData.address.country" class="form-control" readonly="readonly">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="d-flex mt-2">
+        <button class="mx-2 btn-secondary secondary-button" (click)="closeModal()" style="width: 150px">Cancle</button>
+        <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
+        <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </div>
+        </form>
     </div>
   </main>
 

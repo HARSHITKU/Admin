@@ -2,28 +2,27 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { Charity } from 'src/app/models/charity';
 import { UsersService } from '../../users/users.service';
 // import { CharityDetails } from 'src/app/models/charity-details';
-import { CharityService } from '../charity.service';
+import { InnovationService } from '../innovation.service';
 
 @Component({
-  selector: 'app-new-charity',
-  templateUrl: './new-charity.component.html',
-  styleUrls: ['./new-charity.component.scss'],
+  selector: 'app-new-innovation',
+  templateUrl: './new-innovation.component.html',
+  styleUrls: ['./new-innovation.component.scss'],
 })
-export class NewCharityComponent implements OnInit {
+export class NewInnovationComponent implements OnInit {
 
-  charityForm!: FormGroup;
+  innovationForm!: FormGroup;
   title: string = '';
   buttonText: string = '';
   isLoading: boolean = false;
-  isAddNewCharityLoading: boolean = false;
+  isAddNewInnovationLoading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   userDetails: any;
   userId: any;
-  charityImage: any;
+  innovationImage: any;
   newUserMobileNumber: any;
   newUserData: any;
   imageInput: any;
@@ -31,13 +30,13 @@ export class NewCharityComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<NewCharityComponent>,
+    public dialogRef: MatDialogRef<NewInnovationComponent>,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private charityService: CharityService,
+    private InnovationService: InnovationService,
     private usersService: UsersService,
   ) {
-    this.charityForm = this.fb.group({
+    this.innovationForm = this.fb.group({
       userId: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -48,13 +47,13 @@ export class NewCharityComponent implements OnInit {
     });
 
     if (this.data.hasOwnProperty('userId')) {
-      this.title = 'Update Existing charity';
-      this.buttonText = 'Update charity';
+      this.title = 'Update Existing Innovation';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.userId = this.data.userId
-      this.charityImage = this.data.coverImage
+      this.innovationImage = this.data.coverImage
     } else {  
-      this.title = 'Add New Charity';
+      this.title = 'Add New Innovation';
       this.buttonText = 'Add';
     }
   }
@@ -75,13 +74,13 @@ export class NewCharityComponent implements OnInit {
   }
 
   onSubmit(data:any) {
-    this.isAddNewCharityLoading = true;
+    this.isAddNewInnovationLoading = true;
     this.newUserMobileNumber = data.value.num
     this.usersService.getUserListData().subscribe( res => {
       res.data.map( (user:any) => {
         if(this.newUserMobileNumber === user.phone){
           this.newUserData = user;
-          this.isAddNewCharityLoading = false;
+          this.isAddNewInnovationLoading = false;
         }
       })
     })
@@ -91,51 +90,51 @@ export class NewCharityComponent implements OnInit {
     this.imageFile =  fileEvent.target.files[0].name;
  }
 
-  addUpdatecharityDetails(charityDetails: Charity) {
+  addUpdateinnovationDetails(innovationDetails: any) {
     this.isLoading = true;
-    let charityNewDetails = this.generatePayload(charityDetails);
-    if (this.title === 'Update Existing charity') {
-      this.charityService
-      .updateCharity(charityNewDetails, this.data.id)
+    let innovationNewDetails = this.generatePayload(innovationDetails);
+    if (this.title === 'Update Existing Innovation') {
+      this.InnovationService
+      .updateInnovation(innovationNewDetails, this.data.id)
       .subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar('charity Data Updated Successfully');
+          this.openSnackBar('Innovation Data Updated Successfully');
           this.closeDialog(response);
         }
       });
     } else {
-      this.charityService.addCharity(charityDetails).subscribe((response) => {
+      this.InnovationService.addInnovation(innovationDetails).subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar('charity Data Added Successfully');
+          this.openSnackBar('Innovation Data Added Successfully');
           this.closeDialog(response);
         }
       });
     }
   }
 
-  generatePayload(charityDetails: any) {
+  generatePayload(innovationDetails: any) {
     let charity = {
-      userId: charityDetails.userId,
-      name: charityDetails.name,
-      description: charityDetails.description,
-      status: charityDetails.status,
-      isVerified: charityDetails.isVerified,
-      coverImage: charityDetails.coverImage,
-      earnedChips: charityDetails.earnedChips,
+      userId: innovationDetails.userId,
+      name: innovationDetails.name,
+      description: innovationDetails.description,
+      status: innovationDetails.status,
+      isVerified: innovationDetails.isVerified,
+      coverImage: innovationDetails.coverImage,
+      earnedChips: innovationDetails.earnedChips,
     };
     return charity;
   }
 
-  setFormValue(charityDetails: Charity) {
-    this.charityForm.get('earnedChips')?.setValue(charityDetails.earnedChips);
-    this.charityForm.get('name')?.setValue(charityDetails.name);
-    this.charityForm.get('isVerified')?.setValue(charityDetails.isVerified);
-    this.charityForm.get('status')?.setValue(charityDetails.status);
-    this.charityForm.get('description')?.setValue(charityDetails.description);
-    this.charityForm.get('coverImage')?.setValue(charityDetails.coverImage);
-    this.charityForm.get('userId')?.setValue(charityDetails.userId);
+  setFormValue(innovationDetails: any) {
+    this.innovationForm.get('earnedChips')?.setValue(innovationDetails.earnedChips);
+    this.innovationForm.get('name')?.setValue(innovationDetails.name);
+    this.innovationForm.get('isVerified')?.setValue(innovationDetails.isVerified);
+    this.innovationForm.get('status')?.setValue(innovationDetails.status);
+    this.innovationForm.get('description')?.setValue(innovationDetails.description);
+    this.innovationForm.get('coverImage')?.setValue(innovationDetails.coverImage);
+    this.innovationForm.get('userId')?.setValue(innovationDetails.userId);
   }
 
   openSnackBar(message: string) {
