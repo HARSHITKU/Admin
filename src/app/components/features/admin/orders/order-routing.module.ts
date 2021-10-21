@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RedeemComponent } from './redeem.component';
-import { NewRedeemComponent } from './new-redeem/new-redeem.component';
+import { OrdersComponent } from './orders.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'all-redeems',
+    redirectTo: 'all-orders',
     pathMatch: 'full',
   },
   {
-    path: 'all-redeems',
-    component: RedeemComponent,
+    path: 'all-orders',
+    component: OrdersComponent,
   },
 ];
 
@@ -19,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RedeemRoutingModule {}
+export class OrderRoutingModule {}

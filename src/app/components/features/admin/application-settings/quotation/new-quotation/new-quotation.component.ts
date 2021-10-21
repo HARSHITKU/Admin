@@ -32,7 +32,7 @@ export class NewQuotationComponent implements OnInit {
      
     });
     if (this.data.hasOwnProperty('_id')) {
-      this.title = 'Update Existing Quotation';
+      this.title = 'Update Quotation';
       this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.isUpdate = true;
@@ -48,18 +48,19 @@ export class NewQuotationComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   closeDialog(message: string) {
     this.dialogRef.close(message);
   }
+
   addUpdateDetails(data: Quotation) {
-    console.log('form', data)
     let newData = this.generatePayload(data);
-    if (this.title === 'Update Existing Quotation') {
+    if (this.title === 'Update Quotation') {
       this.service
         .updateQuotation(newData, this.data._id)
         .subscribe((response) => {
           if (response) {
-            this.openSnackBar(response.message);
+            this.openSnackBar("Quotation Updated Successfully");
             this.closeDialog(response);
           }
         }, error => {
@@ -68,7 +69,7 @@ export class NewQuotationComponent implements OnInit {
     } else {
       this.service.addQuotation(newData).subscribe((response) => {
         if (response) {
-          this.openSnackBar(response.message);
+          this.openSnackBar("Quotation Added Successfully");
           this.closeDialog(response);
         }
       }, error => {
