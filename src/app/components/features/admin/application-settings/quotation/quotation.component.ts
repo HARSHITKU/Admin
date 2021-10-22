@@ -15,6 +15,7 @@ import { ViewQuotationComponent } from './view-quotation/view-quotation.componen
 export class QuotationComponent implements OnInit {
   quotationList: any[] | undefined;
   columnDefs: any;
+  rowCount: number | undefined;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
@@ -71,6 +72,7 @@ export class QuotationComponent implements OnInit {
     this.quotationService.getAllQuotation().subscribe((response) => {
       if (response) {
         this.quotationList = response.data;
+        this.rowCount = this.quotationList?.length;
         this.quotationList = this.quotationList?.map(quotation => {
           return {
             id: `${quotation._id}`,

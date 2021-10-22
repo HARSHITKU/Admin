@@ -15,6 +15,7 @@ export class VideoComponent implements OnInit {
 
   videoList: any[] | undefined;
   columnDefs : any;
+  rowCount: number | undefined;
   gridOptions: GridOptions;
   unclickEdit: boolean = false;
   unclickDelete: boolean = false;
@@ -72,6 +73,7 @@ export class VideoComponent implements OnInit {
     this.videoService.getAllVideo().subscribe((response)=> {
       if (response) {
         this.videoList = response.data;
+        this.rowCount = this.videoList?.length;
         this.videoList = this.videoList?.map(videoURL => {
           return {
             id: `${videoURL._id}`,
