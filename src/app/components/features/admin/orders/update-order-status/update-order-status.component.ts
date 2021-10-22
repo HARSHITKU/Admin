@@ -62,6 +62,7 @@ export class UpdateOrderStatusComponent implements OnInit {
       this.buttonText = 'Update';
       this.orderDetails = this.data;
       this.setFormValue(this.data);
+      console.log(this.data)
     }
   }
 
