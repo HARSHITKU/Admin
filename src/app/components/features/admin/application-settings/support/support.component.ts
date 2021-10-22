@@ -15,6 +15,7 @@ export class SupportComponent implements OnInit {
   supportsList: Support[] | undefined;
   updatedSupportsList: any;
   columnDefs: any;
+  rowCount: number | undefined;
   gridOptions: GridOptions;
 
   constructor(private service: SupportService, private dialog: MatDialog) {
@@ -41,8 +42,7 @@ export class SupportComponent implements OnInit {
       {
         headerName: 'Enquiry',
         field: 'enquiry',
-        minWidth: 700,
-        maxWidth: 700,
+        minWidth: 640,
         tooltipField: 'enquiry',
       }
     ];
@@ -59,6 +59,7 @@ export class SupportComponent implements OnInit {
     this.service.getAllSupportRequest().subscribe((response) => {
       if (response) {
         this.supportsList = response.data;
+        this.rowCount = this.supportsList?.length;
         this.updatedSupportsList = this.supportsList?.map(enquiry => {
           return {
             name: `${enquiry.firstName} ${enquiry.lastName}`,

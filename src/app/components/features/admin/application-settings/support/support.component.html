@@ -6,6 +6,8 @@
         [rowData]="updatedSupportsList"
         [columnDefs]="columnDefs"
         [gridOptions]="gridOptions"
+        [isPaginationRequired]="true"
+        [rowCount]="rowCount"
         (isRowClickedToViewData)="getRowsDataToView($event)"
       ></admin-shared>
     </div>

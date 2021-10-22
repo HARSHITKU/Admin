@@ -26,6 +26,7 @@ export class SharedComponent implements OnInit, OnChanges {
   @Input() isExportButtonRequired: boolean = false;
   @Input() isShowExportCSVButton: boolean = true;
   @Input() isShowHeader: boolean = true;
+  @Input() isPaginationRequired: boolean = false;
   @Output() isRowClickedToViewData = new EventEmitter();
   @Output() isRowClickedToDeleteData = new EventEmitter();
   @Output() isRowClickedToEditData = new EventEmitter();
@@ -71,7 +72,7 @@ export class SharedComponent implements OnInit, OnChanges {
     this.gridOptions.suppressCellSelection = true;
     this.isAsync = this.rowData instanceof Observable;
     this.gridOptions.paginationPageSize = 50;
-    this.gridOptions.pagination = true;
+    this.gridOptions.pagination = this.isPaginationRequired;
   }
 
   onRowClicked(event: any) {

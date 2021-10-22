@@ -21,10 +21,10 @@ main{
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
   ::-webkit-scrollbar-track {
-  background: $admin-primary; 
+  // background: $admin-primary; 
 }
   ::-webkit-scrollbar-thumb {
   background: #888; 
@@ -113,7 +113,6 @@ i.fa{
 
 input[type=file]::file-selector-button {
   border: none;
-  // padding: 20px;
   background-color: inherit;
   margin-right: 20px;
   color: $admin-text-color-secondary;
@@ -121,4 +120,20 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
   color: $admin-text-color;
+}
+
+.ag-center-cols-viewport{
+  height: calc(100% + 18px) !important;
+}
+
+.ag-body-horizontal-scroll .ag-invisible-scrollbar{
+  height: 3px !important;
+  min-height: unset;
+  max-height: unset;
+}
+
+.ag-body-horizontal-scroll-viewport{
+  height: 3px !important;
+  min-height: unset;
+  max-height: unset;
 }
