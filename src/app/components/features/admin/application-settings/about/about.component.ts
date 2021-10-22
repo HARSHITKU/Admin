@@ -19,6 +19,7 @@ export class AboutComponent implements OnInit {
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
+  rowCount: number | undefined;
 
   constructor(private aboutService: AboutService, private dialog: MatDialog) {
 
@@ -74,6 +75,7 @@ export class AboutComponent implements OnInit {
     this.aboutService.getAllAbout().subscribe((response) => {
       if (response) {
         this.aboutList = response.data;
+        this.rowCount = this.aboutList?.length;
         this.aboutList = this.aboutList?.map(about => {
           return {
             id: `${about._id}`,

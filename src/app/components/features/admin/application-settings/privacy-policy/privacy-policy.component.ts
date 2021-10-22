@@ -15,6 +15,7 @@ import { privacyPolicy } from 'src/app/models/privacypolicy';
 export class PrivacyPolicyComponent implements OnInit {
   privacypolicyList: any[] | undefined;
   columnDefs: any;
+  rowCount: number | undefined;
   gridOptions: GridOptions;
   unclickEdit: boolean = false;
   unclickDelete: boolean = false;
@@ -76,6 +77,7 @@ export class PrivacyPolicyComponent implements OnInit {
     this.privacyPolicyService.getAllprivacyPolicy().subscribe((response) => {
       if (response) {
         this.privacypolicyList = response.data;
+        this.rowCount = this.privacypolicyList?.length;
         this.privacypolicyList = this.privacypolicyList?.map(privacyPolicy=>{
           return {
             id: `${privacyPolicy._id}`,

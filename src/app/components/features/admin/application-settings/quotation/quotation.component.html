@@ -9,6 +9,7 @@
           [isAddButtonRequired]="true"
           [isDeleteUnClicked]="unclickDelete"
           [isPaginationRequired]="true"
+          [rowCount]="rowCount"
           (isRowClickedToViewData)="getRowsDataToView($event)"
           (isRowClickedToDeleteData)="getDeletedRowData($event)"
           (isRowClickedToEditData)="getRowsDataToBeEdited($event)"

@@ -14,6 +14,7 @@ import { NewTermsConditionsComponent } from './new-terms-conditions/new-terms-co
 export class TermsConditionsComponent implements OnInit {
   TermsConditionsList: any[] | undefined;
   columnDefs: any;
+  rowCount: number | undefined;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
   unclickEdit: boolean = false;
@@ -70,6 +71,7 @@ export class TermsConditionsComponent implements OnInit {
     this.termsCoditionService.getAllTerms().subscribe((response) => {
       if (response) {
         this.TermsConditionsList = response.data;
+        this.rowCount = this.TermsConditionsList?.length;
         this.TermsConditionsList = this.TermsConditionsList?.map(termsAndConditions=>{
           return {
             id: `${termsAndConditions._id}`,
