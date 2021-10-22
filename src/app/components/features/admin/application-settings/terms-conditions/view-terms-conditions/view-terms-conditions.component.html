@@ -7,17 +7,20 @@
           <form action="">
               <div class="row">
                   <h1>Baic Information</h1>
-                  <hr>
-                    <div class="col-lg-12">
-                        <label for="about">Terms & Conditions</label>
+                  <hr>                       
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="enq">TermsAndConditions Details</label>
+                                <textarea  id="enq" rows="10" class="form-control" value="{{userDetails.termsAndConditions}}" disabled></textarea>
+                            </div>
+                        </div> 
                         
-                        <textarea type="text" id="about" disabled class="form-control" value="{{userDetails.termsAndConditions}}">
-</textarea>
-                        </div>
                     <div class="form-check form-switch" *ngIf="isUpdate">
                         <input class="form-check-input" type="checkbox" role="switch" formControlName="isDefault" id="termsAndConditions">
                         <label class="form-check-label" for="termsAndConditions">User</label>
                     </div>
+                    <p style=" font-size: 20px; font-weight: bold;float: left;  "> {{data.isDefault}} </p>
+
                     <div class="d-flex mt-3" style="float: right;">
                         <button class="mx-2 secondary-button shadow" type="button" style="width: 150px" (click)="closeDialog('')">Cancel</button>
                      </div>
