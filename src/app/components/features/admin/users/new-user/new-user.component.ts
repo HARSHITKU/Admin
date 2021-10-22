@@ -14,7 +14,9 @@ export class NewUserComponent implements OnInit {
   userForm!: FormGroup;
   title: string = '';
   buttonText: string = '';
+  blockStatusText: string = '';
   isLoading: boolean = false;
+  isUpdateMode: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   states: any[] = [
@@ -53,15 +55,18 @@ export class NewUserComponent implements OnInit {
       state: ['', Validators.required],
       pinCode: ['', Validators.required],
       country: ['', Validators.required],
+      isBlocked: [false]
     });
 
     if (this.data.hasOwnProperty('id')) {
       this.title = 'Update Existing User';
       this.buttonText = 'Update User';
       this.setFormValue(this.data);
+      this.isUpdateMode = true;
     } else {  
       this.title = 'Add New User';
       this.buttonText = 'Add User';
+      this.isUpdateMode = false;
     }
   }
 
@@ -84,7 +89,7 @@ export class NewUserComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar(response.message);
+          this.openSnackBar("User Updated Successfully");
           this.closeDialog(response);
         }
       }, error => {
@@ -94,7 +99,7 @@ export class NewUserComponent implements OnInit {
       this.usersService.addUser(userNewDetails).subscribe((response) => {
         if (response) {
           this.isLoading = false;
-          this.openSnackBar(response.message);
+          this.openSnackBar("User Added Successfully");
           this.closeDialog(response);
         }
       }, error => {
@@ -128,12 +133,18 @@ export class NewUserComponent implements OnInit {
       email: userDetails.email,
       dateOfBirth: userDetails.dateOfBirth,
       addresses: allAddress,
+      isBlocked: userDetails.isBlocked
     };
 
     return user;
   }
 
   setFormValue(userDetails: any) {
+    if(userDetails.blocked == "Yes"){
+      this.blockStatusText = "Unblock User";
+    }else{
+      this.blockStatusText = "Block User";
+    }
     this.userForm.get('firstName')?.setValue(userDetails.firstName);
     this.userForm.get('lastName')?.setValue(userDetails.lastName);
     this.userForm.get('dateOfBirth')?.setValue(userDetails.dateOfBirth);
@@ -145,6 +156,7 @@ export class NewUserComponent implements OnInit {
     this.userForm.get('city')?.setValue(userDetails.city);
     this.userForm.get('state')?.setValue(userDetails.state);
     this.userForm.get('country')?.setValue(userDetails.country);
+    this.userForm.get('isBlocked')?.setValue(userDetails.blocked == "Yes" ? true : false);  
   }
 
   openSnackBar(message: string) {

@@ -82,6 +82,12 @@ export class UsersComponent implements OnInit {
         tooltipField: 'country',
       },
       {
+        headerName: 'Blocked',
+        field: 'blocked',
+        maxWidth: 100,
+        tooltipField: 'blocked',
+      },
+      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -138,7 +144,8 @@ export class UsersComponent implements OnInit {
             state: `${user.addresses[0]?.state}`,
             country: `${user.addresses[0]?.country}`,
             id: `${user._id}`,
-            profileImage : `${user.profileImage}`
+            profileImage : `${user.profileImage}`,
+            blocked: user.isBlocked ? 'Yes' : 'No'
             };
         });
       }
