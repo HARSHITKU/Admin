@@ -42,9 +42,17 @@ export class SupportComponent implements OnInit {
       {
         headerName: 'Enquiry',
         field: 'enquiry',
-        minWidth: 640,
+        minWidth: 550,
         tooltipField: 'enquiry',
-      }
+      },
+      {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
     ];
     this.gridOptions = <GridOptions>{
       headerHeight: window.innerWidth <= 1024 ? 88 : 30,

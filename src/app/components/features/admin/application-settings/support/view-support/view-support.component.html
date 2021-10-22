@@ -1,29 +1,60 @@
 <form>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" [value]="allData.name" id="name" disabled>
-            </div>
-        </div>
-        <div class="col-lg-4 mt-2">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" [value]="allData.email" id="email" disabled>
-            </div>
-        </div>
-        <div class="col-lg-4 mt-2">
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" class="form-control" [value]="allData.phone" id="phone" disabled>
-            </div>
-        </div>
-        <div class="col-lg-12 mt-1">
-            <div class="form-group">
-                <label for="enq">Enquiry</label>
-                <textarea  id="enq" rows="10" class="form-control" [value]="allData.enquiry" disabled></textarea>
-            </div>
-        </div>
-        <button class="btn btn-primary mt-3 mx-3" (click)="closeIconClicked()" style="width: 100px">Close</button>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [value]="allData.name"
+          id="name"
+          disabled
+        />
+      </div>
     </div>
+    <div class="col-lg-4 mt-2">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          [value]="allData.email"
+          id="email"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col-lg-4 mt-2">
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          [value]="allData.phone"
+          id="phone"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col-lg-12 mt-1">
+      <div class="form-group">
+        <label for="enq">Enquiry</label>
+        <textarea
+          id="enq"
+          rows="10"
+          class="form-control"
+          [value]="allData.enquiry"
+          disabled
+        ></textarea>
+      </div>
+    </div>
+    <button
+      class="secondary-button"
+      type="button"
+      style="width: 150px; margin-left: auto"
+      (click)="closeIconClicked()"
+    >
+      Close
+    </button>
+  </div>
 </form>
