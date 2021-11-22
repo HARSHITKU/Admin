@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { UsersService } from '../users.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-new-user',
@@ -19,6 +20,7 @@ export class NewUserComponent implements OnInit {
   isUpdateMode: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  dateString: any;
   states: any[] = [
     {
       id: 1,
@@ -35,13 +37,38 @@ export class NewUserComponent implements OnInit {
       name: 'India',
     },
   ];
-
+  
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewUserComponent>,
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private usersService: UsersService
+<<<<<<< HEAD
+    ) {
+      this.userForm = this.fb.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        phone: ['', Validators.required],
+        email: ['', Validators.required],
+        dateOfBirth: ['', Validators.required],
+        landmark: [''],
+        address: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        pinCode: ['', Validators.required],
+        country: ['', Validators.required],
+      });
+      
+      if (this.data.hasOwnProperty('id')) {
+        this.title = 'Update Existing User';
+        this.buttonText = 'Update User';
+        this.dateString = this.data.dateOfBirth
+        console.log(this.dateString)
+        this.setFormValue(this.data);
+      } else {  
+        this.title = 'Add New User';
+=======
   ) {
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -65,6 +92,7 @@ export class NewUserComponent implements OnInit {
       this.isUpdateMode = true;
     } else {  
       this.title = 'Add New User';
+>>>>>>> e12e2fe33a15fbddefed6a2f453f10a7a7b4b56a
       this.buttonText = 'Add User';
       this.isUpdateMode = false;
     }
@@ -78,6 +106,10 @@ export class NewUserComponent implements OnInit {
   }
   closeModal() {
     this.dialogRef.close();
+  }
+
+  get f(){
+    return this.userForm.controls;
   }
 
   addUpdateUserDetails(userDetails: any) {
@@ -165,5 +197,12 @@ export class NewUserComponent implements OnInit {
       verticalPosition: this.verticalPosition,
       duration: 3000
     });
+  }
+
+  convertDate(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
 }
