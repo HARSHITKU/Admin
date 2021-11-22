@@ -52,18 +52,28 @@ export class RedeemComponent implements OnInit {
         tooltipField: 'categoryId',
       },
       {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
         field: 'edit',
         cellRenderer: function () {
           return ' <i class="fa fa-edit" aria-hidden="true"></i>';
         },
-        minWidth: 10,
+        maxWidth: 50,
       },
       {
+        headerName: '',
         field: 'delete',
         cellRenderer: function () {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
-        minWidth: 10,
+        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{

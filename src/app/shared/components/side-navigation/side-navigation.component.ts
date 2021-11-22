@@ -65,7 +65,7 @@ export class SideNavigationComponent implements OnInit {
       },
       {
         icon: 'local_mall',
-        name: 'Redeem',
+        name: 'Product',
         route: '/chotapaisa/admin/redeem/all-redeems',
       },
       {
@@ -73,11 +73,11 @@ export class SideNavigationComponent implements OnInit {
         name: 'Orders',
         route: '/chotapaisa/admin/orders/all-orders',
       },
-      {
-        icon: 'inventory_2',
-        name: "Product",
-        route: '/chotapaisa/admin/products',
-      },
+      // {
+      //   icon: 'inventory_2',
+      //   name: "Product",
+      //   route: '/chotapaisa/admin/products',
+      // },
       {
         icon: 'groups',
         name: 'Sponsors',

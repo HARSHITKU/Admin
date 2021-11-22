@@ -45,10 +45,9 @@ export class SponsorsComponent implements OnInit {
 
   addSponsor(sponsorDetails: any) {
     this.isLoading = true;
-    const formData = new FormData();  
-    formData.append('image', this.file);  
+    const formData = new FormData(); 
+    formData.append('sponsorImage', this.file);  
     formData.append('name', sponsorDetails.name);
-    // console.log(sponsorDetails)
     this.sponsorService.createSponsors(formData).subscribe((response) => {
       if (response) {
         this.isLoading = false;

@@ -30,7 +30,7 @@ export class SponsorsService {
         let token = localStorage.getItem('token');
         const httpOptions = {
           headers: new HttpHeaders({
-            'Content-Type': 'application/json',
+            'Accept': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
           }),
         };
