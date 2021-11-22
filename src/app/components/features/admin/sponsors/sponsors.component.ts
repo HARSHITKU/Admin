@@ -28,9 +28,7 @@ export class SponsorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.baseURL = this.CommonService.base_URL;
-    this.sponsorService.getSponsors().subscribe((res => {
-      this.sponsors = res.data;
-    }))
+    this.getAllSponsors();
   }
 
   sponsorForm = new FormGroup({
@@ -38,14 +36,24 @@ export class SponsorsComponent implements OnInit {
     sponsorImage: new FormControl(''),
   });
 
+  getAllSponsors(){
+    this.sponsorService.getSponsors().subscribe((res => {
+      this.sponsors = res.data;
+      console.log('sponsors', this.sponsors)
+    }))
+  }
 
   addSponsor(sponsorDetails: any) {
     this.isLoading = true;
-    console.log(sponsorDetails)
-    this.sponsorService.createSponsors(sponsorDetails).subscribe((response) => {
+    const formData = new FormData();  
+    formData.append('image', this.file);  
+    formData.append('name', sponsorDetails.name);
+    // console.log(sponsorDetails)
+    this.sponsorService.createSponsors(formData).subscribe((response) => {
       if (response) {
         this.isLoading = false;
         this.openSnackBar('Sponsor Created Successfully');
+        this.getAllSponsors();
       }
     },err => {
       this.isLoading = false;
@@ -54,7 +62,7 @@ export class SponsorsComponent implements OnInit {
   }
 
   readFile(fileEvent: any) {
-    this.file =  fileEvent.target.files[0].name;
+    this.file =  fileEvent.target.files[0];
     console.log(this.file)
  }
 
@@ -62,6 +70,7 @@ export class SponsorsComponent implements OnInit {
     this.sponsorService.deleteSponsor(e).subscribe(response =>{
       if(response){
         this.openSnackBar('Successfully deleted!');
+        this.getAllSponsors();
       }
     })
   }
