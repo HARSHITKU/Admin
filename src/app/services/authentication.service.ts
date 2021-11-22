@@ -25,7 +25,12 @@ export class AuthenticationService {
   }
 
   logout() {
+    localStorage.removeItem("token");
     this.router.navigate(['/login']);
+  }
+
+  getToken(){
+    return !!localStorage.getItem("token");
   }
 
   getUserProfile(): Observable<any>{

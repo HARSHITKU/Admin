@@ -97,8 +97,6 @@ export class DashboardComponent implements OnInit {
       headerHeight: window.innerWidth <= 1024 ? 88 : 30,
     };
 
-
-
     this.columnDefsCharity = [
       {
         headerName: 'Name',
@@ -157,9 +155,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  
-
-  
   getCharities() {
     this.dashboardService.getRecentUsers().subscribe((response) => {
       if (response) {
@@ -191,7 +186,6 @@ export class DashboardComponent implements OnInit {
 
   getRedeems() {
     this.dashboardService.getRecentRedeems().subscribe((redeems) => {
-      console.log(redeems)
       if(redeems) {
         this.redeems = redeems.data;
         this.updatedRedeems = this.redeems?.map((redeem) => {
@@ -207,7 +201,6 @@ export class DashboardComponent implements OnInit {
     this.charityService.getCharityListData().subscribe((response) => {
       if (response) {
         this.charities = response.data;
-        console.log(this.charities)
         this.updatedCharities = this.charities?.map((charity) => {
           return {
             name: `${charity.name}`,
