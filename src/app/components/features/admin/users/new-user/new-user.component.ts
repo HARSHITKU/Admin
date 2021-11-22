@@ -44,37 +44,12 @@ export class NewUserComponent implements OnInit {
     private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private usersService: UsersService
-<<<<<<< HEAD
-    ) {
-      this.userForm = this.fb.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        phone: ['', Validators.required],
-        email: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        landmark: [''],
-        address: ['', Validators.required],
-        city: ['', Validators.required],
-        state: ['', Validators.required],
-        pinCode: ['', Validators.required],
-        country: ['', Validators.required],
-      });
-      
-      if (this.data.hasOwnProperty('id')) {
-        this.title = 'Update Existing User';
-        this.buttonText = 'Update User';
-        this.dateString = this.data.dateOfBirth
-        console.log(this.dateString)
-        this.setFormValue(this.data);
-      } else {  
-        this.title = 'Add New User';
-=======
   ) {
     this.userForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
+      firstName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      lastName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern( "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])],
       dateOfBirth: ['', Validators.required],
       landmark: [''],
       address: ['', Validators.required],
@@ -92,7 +67,6 @@ export class NewUserComponent implements OnInit {
       this.isUpdateMode = true;
     } else {  
       this.title = 'Add New User';
->>>>>>> e12e2fe33a15fbddefed6a2f453f10a7a7b4b56a
       this.buttonText = 'Add User';
       this.isUpdateMode = false;
     }
@@ -125,6 +99,7 @@ export class NewUserComponent implements OnInit {
           this.closeDialog(response);
         }
       }, error => {
+        this.isLoading = false;
         this.openSnackBar(error.error.message);
       });
     } else {
@@ -135,6 +110,7 @@ export class NewUserComponent implements OnInit {
           this.closeDialog(response);
         }
       }, error => {
+        this.isLoading = false;
         this.openSnackBar(error.error.message);
       });
     }

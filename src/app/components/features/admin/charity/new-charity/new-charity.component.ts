@@ -28,6 +28,7 @@ export class NewCharityComponent implements OnInit {
   newUserData: any;
   imageInput: any;
   imageFile: any;
+  noUserFound: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -58,11 +59,14 @@ export class NewCharityComponent implements OnInit {
       this.buttonText = 'Add';
     }
   }
-  
+  get f(){
+    return this.charityForm.controls;
+  }
   ngOnInit(): void {
     if(this.data.userId) {
       this.usersService.getUser(this.data.userId).subscribe(user => {
         this.userDetails = user.data;
+        console.log(user.data);
       })
     }
   }
@@ -82,13 +86,23 @@ export class NewCharityComponent implements OnInit {
         if(this.newUserMobileNumber === user.phone){
           this.newUserData = user;
           this.isAddNewCharityLoading = false;
+          this.noUserFound = false;
+        }else {
+          this.isAddNewCharityLoading = false;
+          this.noUserFound = true;
         }
       })
     })
   }
 
-  readFile(fileEvent: any) {
-    this.imageFile =  fileEvent.target.files[0].name;
+  onSelectFile(e:any) {
+    if(e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (e:any) => {
+        this.imageFile = e.target.result;
+      }
+    }
  }
 
   addUpdatecharityDetails(charityDetails: Charity) {
@@ -103,14 +117,22 @@ export class NewCharityComponent implements OnInit {
           this.openSnackBar('charity Data Updated Successfully');
           this.closeDialog(response);
         }
-      });
+      }, error => {
+        this.isLoading = false
+        this.openSnackBar(error.error.message);
+      })
     } else {
       this.charityService.addCharity(charityDetails).subscribe((response) => {
         if (response) {
           this.isLoading = false;
           this.openSnackBar('charity Data Added Successfully');
           this.closeDialog(response);
+        }else {
+          this.isLoading = false;
         }
+      },  error => {
+        this.isLoading = false
+        this.openSnackBar(error.error.message);
       });
     }
   }

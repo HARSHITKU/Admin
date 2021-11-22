@@ -45,7 +45,8 @@ export class GameSetupComponent implements OnInit {
             this.isLoading = false;
             this.openSnackBar('Game Updated Successfully');
           }
-      }, error => {
+        }, error => {
+        this.isLoading = false;
         this.openSnackBar(error.error.message);
       });
   }

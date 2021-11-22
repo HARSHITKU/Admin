@@ -12,24 +12,39 @@
         <hr>
         <div class="row">
           <div class="col-lg-6">
-            <img *ngIf="userId" [src]="charityImage" accept="image/*" (change)="readFile($event)" alt="">
-            <input *ngIf="!userId" type="file" formControlName="coverImage" />
+            <img *ngIf="userId" [src]="charityImage"  alt="">
+            <input *ngIf="!userId" type="file" accept="image/*" (change)="onSelectFile($event)" formControlName="coverImage" />
+            <div *ngIf="f.coverImage.touched && f.coverImage.invalid" class="text-danger mt-1">
+              <div *ngIf="f.coverImage.errors && f.coverImage.errors.required">Cover Image is Required.</div>
+           </div> 
+            <div *ngIf="imageFile">
+              <img *ngIf="!userId" [src]="imageFile" alt="">
+            </div>
           </div>
           <div class="col-lg-6">
             <div class="mt-2">
               <label for="name">Title</label>
               <input id="name" type="text" formControlName="name" *ngIf="userId" readonly="readonly" class="form-control">
               <input id="name" type="text" formControlName="name" *ngIf="!userId" class="form-control">
+              <div *ngIf="f.name.touched && f.name.invalid" class="text-danger mt-1">
+                <div *ngIf="f.name.errors && f.name.errors.required">Name is Required.</div>
+             </div> 
             </div>
             <div class="mt-2">
               <label for="desc">Description</label>
               <textarea id="desc" rows="5" type="text" formControlName="description" *ngIf="userId" readonly="readonly" class="form-control"></textarea>
               <textarea id="desc" rows="5" type="text" formControlName="description" *ngIf="!userId" class="form-control"></textarea>
+              <div *ngIf="f.description.touched && f.description.invalid" class="text-danger mt-1">
+                <div *ngIf="f.description.errors && f.description.errors.required">Description is Required.</div>
+             </div> 
             </div>
             <div class="row mt-2 justify-content-between">
               <div class="col-lg-4">
                 <label for="earnedChips">Earned Chips</label>
                 <input id="earnedChips" type="number" formControlName="earnedChips" class="form-control">
+                <div *ngIf="f.earnedChips.touched && f.earnedChips.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.earnedChips.errors && f.earnedChips.errors.required">Earned Chips is Required.</div>
+               </div> 
               </div>
               <div class="col-lg-4">
                 <label for="isVerified">Status</label>
@@ -38,6 +53,9 @@
                   <option value="picked">Picked</option>
                   <option value="delivered">Delivered</option>
                 </select>
+                <div *ngIf="f.status.touched && f.status.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.status.errors && f.status.errors.required">Status is Required.</div>
+               </div> 
               </div>
               <div class="col-lg-4">
                 <label for="isVerified">Verified?</label>
@@ -45,6 +63,9 @@
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
+                <div *ngIf="f.isVerified.touched && f.isVerified.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.isVerified.errors && f.isVerified.errors.required">Verification is Required.</div>
+               </div> 
               </div>
             </div>
           </div>
@@ -126,6 +147,7 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </button>
+          <p class="not-found" *ngIf="noUserFound">No User Found!</p>
         </form>
         
         <div *ngIf="newUserData" class="row">
@@ -150,44 +172,44 @@
           <div class="col-lg-3">
             <div class="mt-2">
               <label for="address">Address #1</label>
-              <input type="text" id="address" [value]="newUserData.address.address" class="form-control" readonly="readonly">
+              <input type="text" id="address" [value]="newUserData.addresses[0].address" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="landmark">Landmark</label>
-              <input type="text" id="landmark" [value]="newUserData.address.landmark" class="form-control" readonly="readonly">
+              <input type="text" id="landmark" [value]="newUserData.addresses[0].landmark" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="pincode">Pincode</label>
-              <input type="text" id="pincode" [value]="newUserData.address.pinCode" class="form-control" readonly="readonly">
+              <input type="text" id="pincode" [value]="newUserData.addresses[0].pinCode" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class=" mt-2">
               <label for="city">City</label>
-              <input type="text" id="city" [value]="newUserData.address.city" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="newUserData.addresses[0].city" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="state">State</label>
-              <input type="text" id="city" [value]="newUserData.address.state" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="newUserData.addresses[0].state" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="country">Country</label>
-              <input type="text" id="city" [value]="newUserData.address.country" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="newUserData.addresses[0].country" class="form-control" readonly="readonly">
             </div>
           </div>
         </div>
         
       </div>
       <div class="d-flex mt-2">
-        <button class="mx-2 btn-secondary secondary-button" (click)="closeModal()" style="width: 150px">Cancle</button>
+        <button class="mx-2 btn-secondary secondary-button" type="reset" (click)="closeModal()" style="width: 150px">Cancle</button>
         <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
         <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
           <div class="spinner-border" role="status">
