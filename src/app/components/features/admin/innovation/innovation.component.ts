@@ -106,7 +106,6 @@ export class InnovationComponent implements OnInit {
     this.innovationService.getInnovationListData().subscribe((response) => {
       if (response) {
         this.innovations = response.data;
-        console.log(this.innovations);
         this.updatedInnovation = this.innovations?.map((innovation: any) => {
           return {
             name: `${innovation.name}`,
