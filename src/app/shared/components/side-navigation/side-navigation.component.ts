@@ -31,7 +31,7 @@ export class SideNavigationComponent implements OnInit {
     this.authenticationService.getUserProfile().subscribe((response) => {
       this.user = response;
       this.userDetails = this.user.data;
-      this.userImage = !this.userDetails.profileImage == undefined || null? this.userDetails.profileImage : "https://www.w3schools.com/howto/img_avatar.png";
+      this.userImage = this.userDetails.profileImage !== (undefined || null)? this.userDetails.profileImage : "https://www.w3schools.com/howto/img_avatar.png";
     });
   }
 
@@ -72,6 +72,11 @@ export class SideNavigationComponent implements OnInit {
         icon: 'receipt_long',
         name: 'Orders',
         route: '/chotapaisa/admin/orders/all-orders',
+      },
+      {
+        icon: 'category',
+        name: 'Categories',
+        route: '/chotapaisa/admin/categories/all-categories',
       },
       // {
       //   icon: 'inventory_2',
