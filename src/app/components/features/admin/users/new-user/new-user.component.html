@@ -9,7 +9,7 @@
           <div class="row mt-2">
             <p>Basic Information</p>
             <hr>
-            <div class="col-lg-4">
+            <div class="col-lg-4"> 
               <label for="fName">First Name</label>
               <input type="text" id="fName" class="custom-input" required placeholder="Enter first name" formControlName="firstName">
               <div *ngIf="f.firstName.touched && f.firstName.invalid" class="text-warning mt-1">
@@ -27,8 +27,7 @@
             </div>
             <div class="col-lg-4">
               <label for="dob">Date of Birth</label>
-              <input *ngIf="!dateString" type="date" id="dob" class="custom-input" required formControlName="dateOfBirth">
-              <input *ngIf="dateString" type="date" id="dob"  disabled value="{{convertDate(dateString)}}" class="custom-input" required >
+              <input type="date" id="dob" class="custom-input" required formControlName="dateOfBirth">
             </div>
           </div>
           <div class="row mt-3">
@@ -109,7 +108,7 @@
             <label class="form-check-label" for="flexSwitchCheckDefault">{{blockStatusText}}</label>
           </div>
           <div class="d-flex mt-2" style="float: right;">
-            <button class="mx-2 btn-secondary secondary-button" type="reset" style="width: 150px">Clear</button>
+            <button class="mx-2 btn-secondary secondary-button" (click)="closeIconClicked()" type="button" style="width: 150px">Cancle</button>
             <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
             <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
               <div class="spinner-border" role="status">
