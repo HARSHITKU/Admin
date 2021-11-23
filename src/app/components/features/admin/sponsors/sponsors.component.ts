@@ -39,7 +39,6 @@ export class SponsorsComponent implements OnInit {
   getAllSponsors(){
     this.sponsorService.getSponsors().subscribe((res => {
       this.sponsors = res.data;
-      console.log('sponsors', this.sponsors)
     }))
   }
 
