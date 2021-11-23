@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { CharityService } from '../charity/charity.service';
 import { InnovationService } from '../innovation/innovation.service';
+import { OrdersService } from '../orders/orders.service';
 import { RedeemService } from '../redeem/redeem.service';
 import { UsersService } from '../users/users.service';
 import { DashboardService } from './dashboard.service';
@@ -27,15 +28,15 @@ export class DashboardComponent implements OnInit {
   totalUser: any;
   totalCharity: any;
   totalInnovation: any;
-  totalRedeems: any;
+  totalOrders: any;
   columnDefsCharity: any;
   columnDefsOrder: any;
   constructor(
     private dashboardService: DashboardService,
     private usersService: UsersService,
     private charityService: CharityService,
-    private redeemService: RedeemService,
     private innovationService: InnovationService,
+    private ordersService: OrdersService
     ) { 
     this.columnDefsUser = [
       {
@@ -109,26 +110,26 @@ export class DashboardComponent implements OnInit {
       {
         headerName: 'Description',
         field: 'description',
-        maxWidth: 150,
-        minWidth: 150,
+        maxWidth: 160,
+        minWidth: 160,
         tooltipField: 'description',
       },
       {
         headerName: 'Earned',
         field: 'earnedChips',
-        maxWidth: 150,
+        maxWidth: 100,
         tooltipField: 'earnedChips',
       },
       {
         headerName: 'Status',
         field: 'status',
-        maxWidth: 150,
+        maxWidth: 100,
         tooltipField: 'status',
       },
       {
         headerName: 'Verified?',
         field: 'isVerified',
-        maxWidth: 150,
+        maxWidth: 100,
         tooltipField: 'isVerified',
       },
     ];
@@ -150,7 +151,7 @@ export class DashboardComponent implements OnInit {
       {
         headerName: 'Earned',
         field: 'earnedChips',
-        maxWidth: 130,
+        maxWidth: 100,
         tooltipField: 'earnedChips',
       },
       {
@@ -160,15 +161,15 @@ export class DashboardComponent implements OnInit {
         tooltipField: 'kidName',
       },
       {
-        headerName: 'Kid Age',
+        headerName: 'Age',
         field: 'age',
-        maxWidth: 130,
+        maxWidth: 80,
         tooltipField: 'age',
       },
       {
         headerName: 'Verified?',
         field: 'isVerified',
-        maxWidth: 120,
+        maxWidth: 100,
         tooltipField: 'isVerified',
         cellRenderer: function (e: any) {
           if(e.value === 'true'){
@@ -179,108 +180,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     ];
-
-    this.columnDefsOrder = [
-      {
-        headerName: 'Product Image',
-        field: 'productImage',
-        maxWidth: 130,
-        cellRenderer: function (param: any) {
-          return `<img src="${param.value}" alt="Default.img" width="20">`;
-        },
-      },
-      {
-        headerName: 'Product Name',
-        field: 'productName',
-        minWidth: 150,
-        tooltipField: 'productName',
-      },
-      {
-        headerName: 'Product Description',
-        field: 'productDescription',
-        minWidth: 150,
-        tooltipField: 'productDescription',
-      },
-      {
-        headerName: 'Product Category',
-        field: 'productCategory',
-        minWidth: 150,
-        tooltipField: 'productCategory',
-      },
-      {
-        headerName: 'Chips',
-        field: 'amount',
-        width: 80,
-        tooltipField: 'amount',
-      },
-      {
-        headerName: 'Quantity',
-        field: 'quantity',
-        width: 100,
-        tooltipField: 'quantity',
-      },
-      {
-        headerName: 'Status',
-        field: 'status',
-        width: 100,
-        tooltipField: 'status',
-      },
-      {
-        headerName: 'Order Date',
-        field: 'time',
-        minWidth: 20,
-        tooltipField: 'time',
-      },
-      {
-        headerName: 'Customer Name',
-        field: 'userName',
-        minWidth: 120,
-        tooltipField: 'userName',
-      },
-      {
-        headerName: 'Customer Email',
-        field: 'userEmail',
-        minWidth: 150,
-        tooltipField: 'userEmail',
-      },
-      {
-        headerName: 'Customer Contact No.',
-        field: 'contact',
-        minWidth: 150,
-        tooltipField: 'contact',
-      },
-      {
-        headerName: 'Customer Address',
-        field: 'fullAddress',
-        minWidth: 150,
-        tooltipField: 'fullAddress',
-      },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'edit',
-        cellRenderer: function () {
-          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'delete',
-        cellRenderer: function () {
-          return '<i class="fa fa-trash" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-    ];
-
    }
 
    
@@ -288,7 +187,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharities();
-    this.getRedeems()
     this.getCharitys()
     this.getInnovations()
 
@@ -298,8 +196,8 @@ export class DashboardComponent implements OnInit {
     this.charityService.getCharityListData().subscribe(item => {
       this.totalCharity = item.data.length;
     });
-    this.redeemService.getAllRedeem().subscribe(item => {
-      this.totalRedeems = item.data.length;
+    this.ordersService.getAllOrders().subscribe(item => {
+      this.totalOrders = item.data.length;
     })
     this.innovationService.getInnovationListData().subscribe(item => {
       this.totalInnovation = item.data.length;
@@ -333,19 +231,6 @@ export class DashboardComponent implements OnInit {
         });
       }
     });
-  }
-
-  getRedeems() {
-    this.dashboardService.getRecentRedeems().subscribe((redeems) => {
-      if(redeems) {
-        this.redeems = redeems.data;
-        this.updatedRedeems = this.redeems?.map((redeem) => {
-          return {
-
-          }
-        })
-      }
-    })
   }
 
   getCharitys() {

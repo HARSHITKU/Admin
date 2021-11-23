@@ -34,10 +34,10 @@ export class TopNavigationComponent implements OnInit {
       //   name: 'Notification',
       //   icon: 'notifications',
       // },
-      {
-        name: 'Account',
-        icon: 'account_circle',
-      },
+      // {
+      //   name: 'Account',
+      //   icon: 'account_circle',
+      // },
       {
         name: 'Logout',
         icon: 'power_settings_new'

@@ -14,10 +14,20 @@
         <div class="mb-3">
           <label for="floatingInput">Mobile Number</label>
           <input type="text" class="custom-input" id="floatingInput" placeholder="Enter Mobile number" formControlName="phone" maxlength="10" required>
+          <div *ngIf="f.phone.touched && f.phone.invalid" class="text-danger mt-1">
+            <div *ngIf="f.phone.errors && f.phone.errors.required">Mobile is Required.</div>
+            <div *ngIf="f.phone.errors && f.phone.errors.maxlength">Mobile must have 10 digits.</div>
+            <div *ngIf="f.phone.errors && f.phone.errors.minlength">Mobile must have 10 digits.</div>
+         </div> 
         </div>
         <div class="my-2">
           <label for="floatingPassword">Password</label>
           <input type="password" class="custom-input" id="floatingPassword" placeholder="Password" formControlName="otp" maxlength="6" required>
+          <div *ngIf="f.otp.touched && f.otp.invalid" class="text-danger mt-1">
+            <div *ngIf="f.otp.errors && f.otp.errors.required">OTP is Required.</div>
+            <div *ngIf="f.otp.errors && f.otp.errors.maxlength">OTP must have 6 digits.</div>
+            <div *ngIf="f.otp.errors && f.otp.errors.minlength">OTP must have 6 digits.</div>
+         </div> 
         </div>
         <div class="text-center mt-3">
           <button *ngIf="!isLoading" type="submit" class="primary-button shadow">Sign in</button>

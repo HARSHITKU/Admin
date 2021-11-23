@@ -10,10 +10,10 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <div style="color: skyblue" class="card shadow" routerLink="/chotapaisa/admin/redeem/all-redeems">
+        <div style="color: skyblue" class="card shadow" routerLink="/chotapaisa/admin/orders/all-orders">
           <div class="card-body text-center">
-            <h4 class="card-title">{{totalRedeems}}</h4>
-            <h2 class="card-text">Total Redeems</h2>
+            <h4 class="card-title">{{totalOrders}}</h4>
+            <h2 class="card-text">Total Orders</h2>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
   </div>
   <div class="recent-container">
     <div class="row w-100 px-4 pb-4">
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <h1>Recent Users</h1>
         <hr>
         <admin-shared
@@ -48,8 +48,8 @@
           [isShowHeader]="false"
         ></admin-shared>
       </div>
-      <div class="col-lg-6">
-        <h1>Recent Redeems</h1>
+      <!-- <div class="col-lg-6">
+        <h1>Recent Orders</h1>
         <hr>
         <admin-shared
           [rowData]="updatedUsers"
@@ -57,7 +57,7 @@
           [isShowExportCSVButton]="false"
           [isShowHeader]="false"
         ></admin-shared>
-      </div>
+      </div> -->
       <div class="col-lg-6 mt-5">
         <h1>Recent Charities</h1>
         <hr>

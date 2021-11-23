@@ -31,7 +31,7 @@ export class SideNavigationComponent implements OnInit {
     this.authenticationService.getUserProfile().subscribe((response) => {
       this.user = response;
       this.userDetails = this.user.data;
-      this.userImage = this.userDetails.profileImage;
+      this.userImage = !this.userDetails.profileImage == undefined || null? this.userDetails.profileImage : "https://www.w3schools.com/howto/img_avatar.png";
     });
   }
 

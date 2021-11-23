@@ -23,9 +23,21 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      phone: ['', Validators.required],
-      otp: ['', Validators.required],
+      phone: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ])],
+      otp: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(6)
+      ])],
     });
+  }
+
+  get f(){
+    return this.form.controls;
   }
 
   ngOnInit() {}
