@@ -53,9 +53,9 @@ export class UsersComponent implements OnInit {
       },
       {
         headerName: 'Date of Birth',
-        field: 'displayDOB',
+        field: 'dateOfBirth',
         maxWidth: 120,
-        tooltipField: 'displayDOB',
+        tooltipField: 'dateOfBirth',
       },
       {
         headerName: 'Address',
@@ -215,5 +215,12 @@ export class UsersComponent implements OnInit {
       verticalPosition: this.verticalPosition,
       duration: 3000
     });
+  }
+
+  convertDate(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
 }

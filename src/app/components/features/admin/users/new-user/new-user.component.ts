@@ -73,6 +73,7 @@ export class NewUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   closeDialog(message: string) {
@@ -83,6 +84,7 @@ export class NewUserComponent implements OnInit {
   }
 
   get f(){
+    
     return this.userForm.controls;
   }
 
@@ -155,7 +157,7 @@ export class NewUserComponent implements OnInit {
     }
     this.userForm.get('firstName')?.setValue(userDetails.firstName);
     this.userForm.get('lastName')?.setValue(userDetails.lastName);
-    this.userForm.get('dateOfBirth')?.setValue(userDetails.dateOfBirth);
+    this.userForm.get('dateOfBirth')?.setValue(formatDate(userDetails.dateOfBirth,'yyyy-MM-dd','en'));
     this.userForm.get('email')?.setValue(userDetails.email);
     this.userForm.get('landmark')?.setValue(userDetails.landmark);
     this.userForm.get('phone')?.setValue(userDetails.phone);
@@ -173,6 +175,10 @@ export class NewUserComponent implements OnInit {
       verticalPosition: this.verticalPosition,
       duration: 3000
     });
+  }
+
+  closeIconClicked(){
+    this.dialogRef.close(0);
   }
 
   convertDate(str:any) {
