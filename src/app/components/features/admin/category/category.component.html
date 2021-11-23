@@ -1,0 +1,20 @@
+<main>
+    <div class="content-container">
+      <h1 class="main-heading">Category</h1>
+      <div>
+        <admin-shared
+        [rowData]="updatedCategories"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions"
+        [isDeleteUnClicked]="unclickDelete"
+        [isAddButtonRequired]="true"
+        [isPaginationRequired]="true"
+        (isRowClickedToViewData)="getRowsDataToView($event)"
+        (isRowClickedToDeleteData)="getDeletedRowData($event)"
+        (isRowClickedToEditData)="getRowsDataToBeEdited($event)"
+        (isAddButtonClicked)="getAddButtonStatus($event)"
+        ></admin-shared>
+      </div>
+    </div>
+  </main>
+  

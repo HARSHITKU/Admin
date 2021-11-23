@@ -1,1 +1,16 @@
-<p>view-category works!</p>
+<div class="container">
+    <h1>Category Detail</h1>
+    <div class="row">
+        <div class="col-lg-12 my-2">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" disabled value="{{categoryDetails.title}}">
+        </div>
+        <div class="col-lg-12 my-2">
+            <label for="description">Description</label>
+            <textarea type="text" disabled id="description" rows="5" class="form-control" value="{{categoryDetails.description}}"></textarea>
+        </div>
+        <div class="col-lg-12 my-2">
+            <button class="btn btn-primary"(click)="closeIconClicked()">Close</button>
+        </div>
+    </div>
+</div>

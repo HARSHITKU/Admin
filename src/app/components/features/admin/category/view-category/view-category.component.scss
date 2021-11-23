@@ -1,0 +1,14 @@
+.charity-clm {
+    img{
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+    }
+    h4 {
+        span { font-weight: 900;}
+    }
+}
+
+::ng-deep .cdk-overlay-pane{
+    overflow: auto;
+}

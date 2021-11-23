@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-category',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewCategoryComponent implements OnInit {
 
-  constructor() { }
+  title: string = "View";
+  categoryDetails: any;
 
-  ngOnInit(): void {
+  constructor( public dialogRef: MatDialogRef<ViewCategoryComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any) {
   }
 
+  ngOnInit(): void {
+    this.categoryDetails = this.data;
+    
+  }
+
+  closeIconClicked(){
+    this.dialogRef.close(0);
+  }
 }
