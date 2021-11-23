@@ -22,12 +22,14 @@ export class DashboardComponent implements OnInit {
   charities: any[] | undefined;
   updatedCharities: any[] | undefined;
   columnDefsUser: any;
+  columnDefsInnovation: any;
   gridOptions: GridOptions;
   totalUser: any;
   totalCharity: any;
   totalInnovation: any;
   totalRedeems: any;
-  columnDefsCharity: ({ headerName: string; field: string; maxWidth: number; tooltipField: string; minWidth?: undefined; cellRenderer?: undefined; } | { headerName: string; field: string; maxWidth: number; minWidth: number; tooltipField: string; cellRenderer?: undefined; } | { headerName: string; field: string; cellRenderer: () => string; maxWidth: number; tooltipField?: undefined; minWidth?: undefined; })[];
+  columnDefsCharity: any;
+  columnDefsOrder: any;
   constructor(
     private dashboardService: DashboardService,
     private usersService: UsersService,
@@ -101,14 +103,48 @@ export class DashboardComponent implements OnInit {
       {
         headerName: 'Name',
         field: 'name',
+        maxWidth: 150,
+        tooltipField: 'name',
+      },
+      {
+        headerName: 'Description',
+        field: 'description',
+        maxWidth: 150,
+        minWidth: 150,
+        tooltipField: 'description',
+      },
+      {
+        headerName: 'Earned',
+        field: 'earnedChips',
+        maxWidth: 150,
+        tooltipField: 'earnedChips',
+      },
+      {
+        headerName: 'Status',
+        field: 'status',
+        maxWidth: 150,
+        tooltipField: 'status',
+      },
+      {
+        headerName: 'Verified?',
+        field: 'isVerified',
+        maxWidth: 150,
+        tooltipField: 'isVerified',
+      },
+    ];
+
+    this.columnDefsInnovation = [
+      {
+        headerName: 'Name',
+        field: 'name',
         maxWidth: 200,
         tooltipField: 'name',
       },
       {
         headerName: 'Description',
         field: 'description',
-        maxWidth: 450,
-        minWidth: 450,
+        maxWidth: 200,
+        minWidth: 200,
         tooltipField: 'description',
       },
       {
@@ -118,22 +154,137 @@ export class DashboardComponent implements OnInit {
         tooltipField: 'earnedChips',
       },
       {
-        headerName: 'Status',
-        field: 'status',
+        headerName: 'Kid Name',
+        field: 'kidName',
         maxWidth: 200,
-        tooltipField: 'status',
+        tooltipField: 'kidName',
+      },
+      {
+        headerName: 'Kid Age',
+        field: 'age',
+        maxWidth: 130,
+        tooltipField: 'age',
       },
       {
         headerName: 'Verified?',
         field: 'isVerified',
         maxWidth: 120,
         tooltipField: 'isVerified',
+        cellRenderer: function (e: any) {
+          if(e.value === 'true'){
+            return 'Yes'
+          }else {
+            return 'No'
+          }
+        }
+      }
+    ];
+
+    this.columnDefsOrder = [
+      {
+        headerName: 'Product Image',
+        field: 'productImage',
+        maxWidth: 130,
+        cellRenderer: function (param: any) {
+          return `<img src="${param.value}" alt="Default.img" width="20">`;
+        },
+      },
+      {
+        headerName: 'Product Name',
+        field: 'productName',
+        minWidth: 150,
+        tooltipField: 'productName',
+      },
+      {
+        headerName: 'Product Description',
+        field: 'productDescription',
+        minWidth: 150,
+        tooltipField: 'productDescription',
+      },
+      {
+        headerName: 'Product Category',
+        field: 'productCategory',
+        minWidth: 150,
+        tooltipField: 'productCategory',
+      },
+      {
+        headerName: 'Chips',
+        field: 'amount',
+        width: 80,
+        tooltipField: 'amount',
+      },
+      {
+        headerName: 'Quantity',
+        field: 'quantity',
+        width: 100,
+        tooltipField: 'quantity',
+      },
+      {
+        headerName: 'Status',
+        field: 'status',
+        width: 100,
+        tooltipField: 'status',
+      },
+      {
+        headerName: 'Order Date',
+        field: 'time',
+        minWidth: 20,
+        tooltipField: 'time',
+      },
+      {
+        headerName: 'Customer Name',
+        field: 'userName',
+        minWidth: 120,
+        tooltipField: 'userName',
+      },
+      {
+        headerName: 'Customer Email',
+        field: 'userEmail',
+        minWidth: 150,
+        tooltipField: 'userEmail',
+      },
+      {
+        headerName: 'Customer Contact No.',
+        field: 'contact',
+        minWidth: 150,
+        tooltipField: 'contact',
+      },
+      {
+        headerName: 'Customer Address',
+        field: 'fullAddress',
+        minWidth: 150,
+        tooltipField: 'fullAddress',
+      },
+      {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'edit',
+        cellRenderer: function () {
+          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'delete',
+        cellRenderer: function () {
+          return '<i class="fa fa-trash" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
       },
     ];
-    this.gridOptions = <GridOptions>{
-      headerHeight: window.innerWidth <= 1024 ? 88 : 30,
-    };
+
    }
+
+   
+
 
   ngOnInit(): void {
     this.getCharities();
@@ -216,7 +367,25 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getInnovations() {}
+  getInnovations() {
+    this.innovationService.getInnovationListData().subscribe((response) => {
+      if (response) {
+        this.innovations = response.data;
+        this.updatedInnovations = this.innovations?.map((innovation) => {
+          return {
+            name: `${innovation.name}`,
+            earnedChips: `${innovation.earnedChips}`,
+            isVerified: `${innovation.isVerified}`,
+            kidName: `${innovation.kidName}`,
+            age: `${innovation.age}`,
+            userId: `${innovation.userId}`,
+            coverImage: `${innovation.coverImage}`,
+            description: `${innovation.description}`,
+          };
+        });
+      }
+    });
+  }
 
 }
 

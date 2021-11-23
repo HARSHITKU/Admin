@@ -1,0 +1,230 @@
+
+<main>
+    <div class="content-container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="main-heading">{{title}}</h1>
+        <p class="close-modal" (click)="closeModal()">x</p>
+      </div>
+        <form [formGroup]="innovationForm" (ngSubmit)="addUpdateinnovationDetails(innovationForm.value)">
+          <div class="row">
+      <div class="innovation-clm col-lg-12">
+        <h2>Innovation Details</h2>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <img *ngIf="userId" [src]="innovationImage"  alt="">
+            <input *ngIf="!userId" type="file" accept="image/*" (change)="onSelectFile($event)" formControlName="image" />
+            <div *ngIf="f.image.touched && f.image.invalid" class="text-danger mt-1">
+              <div *ngIf="f.image.errors && f.image.errors.required">Cover Image is Required.</div>
+           </div> 
+            <div *ngIf="imageFile">
+              <img *ngIf="!userId" [src]="imageFile" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="mt-2">
+              <label for="name">Title</label>
+              <input id="name" type="text" formControlName="name" *ngIf="userId" readonly="readonly" class="form-control">
+              <input id="name" type="text" formControlName="name" *ngIf="!userId" class="form-control">
+              <div *ngIf="f.name.touched && f.name.invalid" class="text-danger mt-1">
+                <div *ngIf="f.name.errors && f.name.errors.required">Name is Required.</div>
+             </div> 
+            </div>
+            <div class="mt-2">
+              <label for="desc">Description</label>
+              <textarea id="desc" rows="3" type="text" formControlName="description" *ngIf="userId" readonly="readonly" class="form-control"></textarea>
+              <textarea id="desc" rows="3" type="text" formControlName="description" *ngIf="!userId" class="form-control"></textarea>
+              <div *ngIf="f.description.touched && f.description.invalid" class="text-danger mt-1">
+                <div *ngIf="f.description.errors && f.description.errors.required">Description is Required.</div>
+             </div> 
+            </div>
+            <div class="row mt-2 justify-content-between">
+              <div class="col-lg-3">
+                <label for="kidName">Kid Name</label>
+                <input id="kidName" type="text" formControlName="kidName" *ngIf="userId" readonly="readonly" class="form-control">
+                <input id="kidName" type="text" formControlName="kidName" *ngIf="!userId" class="form-control">
+                <div *ngIf="f.kidName.touched && f.kidName.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.kidName.errors && f.kidName.errors.required">Required.</div>
+               </div> 
+              </div>
+              <div class="col-lg-3">
+                <label for="age">Kid Age</label>
+                <input id="age" type="number" formControlName="age" *ngIf="userId" readonly="readonly" class="form-control">
+                <input id="age" type="number" formControlName="age" *ngIf="!userId" class="form-control">
+                <div *ngIf="f.age.touched && f.age.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.age.errors && f.age.errors.required">Required.</div>
+               </div> 
+              </div>
+              <div class="col-lg-3">
+                <label for="earnedChips">Earned Chips</label>
+                <input id="earnedChips" type="number" formControlName="earnedChips" class="form-control">
+                <div *ngIf="f.earnedChips.touched && f.earnedChips.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.earnedChips.errors && f.earnedChips.errors.required">Required.</div>
+               </div> 
+              </div>
+              <div class="col-lg-3">
+                <label for="isVerified">Verified?</label>
+                <select placeholder="Select" formControlName="isVerified" id="isVerified">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+                <div *ngIf="f.isVerified.touched && f.isVerified.invalid" class="text-danger mt-1">
+                  <div *ngIf="f.isVerified.errors && f.isVerified.errors.required">Required.</div>
+               </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- if the popup for editing the innovation -->
+      <div *ngIf="userDetails" class="user-clm col-lg-12">
+        <h2>User Details</h2>
+        <hr>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="uname">Name</label>
+              <input id="uname" type="text" [value]="userDetails.firstName + ' ' + userDetails.lastName" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="email">Email</label>
+              <input id="email" type="text" [value]="userDetails.email" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="phone">Mobile</label>
+              <input id="phone" type="text" [value]="userDetails.phone" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="address">Address #1</label>
+              <input type="text" id="address" [value]="userDetails.addresses[0].address" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="landmark">Landmark</label>
+              <input type="text" id="landmark" [value]="userDetails.addresses[0].landmark" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" [value]="userDetails.addresses[0].pinCode" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class=" mt-2">
+              <label for="city">City</label>
+              <input type="text" id="city" [value]="userDetails.addresses[0].city" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="state">State</label>
+              <input type="text" id="city" [value]="userDetails.addresses[0].state" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="country">Country</label>
+              <input type="text" id="city" [value]="userDetails.addresses[0].country" class="form-control" readonly="readonly">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- if the popup for adding new innovation -->
+      <div *ngIf="title === 'Add New Innovation'">
+        <h2>Add User Detail</h2>
+        <hr>
+        <form *ngIf="!newUserData" #numForm="ngForm" (ngSubmit)="onSubmit(numForm)" class="mb-5 d-flex" style=" width: 600px; align-items: flex-end;">
+          <div>
+            <label for="num">Enter User's Mobile Number</label>
+          <input type="text" name="num" id="num" maxlength="10" class="form-control" ngModel placeholder="Enter 10 digit Number"> 
+          </div>
+          <button *ngIf="!isAddNewinnovationLoading" style="height: 40px;" type="submit" class="btn btn-primary mx-3">Find User</button>
+          <button *ngIf="isAddNewinnovationLoading" style="height: 40px;" type="submit" class="btn btn-primary mx-3">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+          <p class="not-found" *ngIf="noUserFound">No User Found!</p>
+        </form>
+        
+        <div *ngIf="newUserData" class="row">
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="uname">Name</label>
+              <input id="uname" type="text" [value]="newUserData.firstName + ' ' + newUserData.lastName" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="email">Email</label>
+              <input id="email" type="text" [value]="newUserData.email" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="phone">Mobile</label>
+              <input id="phone" type="text" [value]="newUserData.phone" readonly="readonly" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mt-2">
+              <label for="address">Address #1</label>
+              <input type="text" id="address" [value]="newUserData.addresses[0].address" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="landmark">Landmark</label>
+              <input type="text" id="landmark" [value]="newUserData.addresses[0].landmark" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" [value]="newUserData.addresses[0].pinCode" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class=" mt-2">
+              <label for="city">City</label>
+              <input type="text" id="city" [value]="newUserData.addresses[0].city" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="state">State</label>
+              <input type="text" id="city" [value]="newUserData.addresses[0].state" class="form-control" readonly="readonly">
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="mt-2">
+              <label for="country">Country</label>
+              <input type="text" id="city" [value]="newUserData.addresses[0].country" class="form-control" readonly="readonly">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="d-flex mt-2">
+        <button class="mx-2 btn-secondary secondary-button" type="reset" (click)="closeModal()" style="width: 150px">Cancle</button>
+        <button *ngIf="!isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
+        <button *ngIf="isLoading" class="mx-2 primary-button" type="submit" style="width: 150px">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </div>
+        </form>
+    </div>
+  </main>
+
+

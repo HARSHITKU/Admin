@@ -6,15 +6,26 @@ import { NewInnovationComponent } from './new-innovation/new-innovation.componen
 import { ViewInnovationComponent } from './view-innovation/view-innovation.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { InnovationComponent } from './innovation.component'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [DeleteInnovationComponent, NewInnovationComponent, ViewInnovationComponent, InnovationComponent],
+  declarations: [
+    DeleteInnovationComponent,
+    NewInnovationComponent,
+    ViewInnovationComponent, 
+    InnovationComponent],
   imports: [
     CommonModule,
     InnovationRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
   ],
   exports: [DeleteInnovationComponent, NewInnovationComponent, ViewInnovationComponent, InnovationComponent]
 })

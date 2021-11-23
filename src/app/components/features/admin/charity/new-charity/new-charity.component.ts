@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Charity } from 'src/app/models/charity';
 import { UsersService } from '../../users/users.service';
-// import { CharityDetails } from 'src/app/models/charity-details';
 import { CharityService } from '../charity.service';
 
 @Component({
@@ -29,6 +28,7 @@ export class NewCharityComponent implements OnInit {
   imageInput: any;
   imageFile: any;
   noUserFound: boolean = false;
+  file: any;
 
   constructor(
     private fb: FormBuilder,
@@ -45,15 +45,17 @@ export class NewCharityComponent implements OnInit {
       status: ['', Validators.required],
       isVerified: ['', Validators.required],
       earnedChips: ['', Validators.required],
-      coverImage: ['', Validators.required],
+      image: ['', Validators.required],
+      age: ['', Validators.required],
+      kidName: ['', Validators.required],
     });
 
     if (this.data.hasOwnProperty('userId')) {
       this.title = 'Update Existing charity';
-      this.buttonText = 'Update charity';
+      this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.userId = this.data.userId
-      this.charityImage = this.data.coverImage
+      this.charityImage = this.data.image
     } else {  
       this.title = 'Add New Charity';
       this.buttonText = 'Add';
@@ -62,11 +64,11 @@ export class NewCharityComponent implements OnInit {
   get f(){
     return this.charityForm.controls;
   }
+
   ngOnInit(): void {
     if(this.data.userId) {
       this.usersService.getUser(this.data.userId).subscribe(user => {
         this.userDetails = user.data;
-        console.log(user.data);
       })
     }
   }
@@ -96,6 +98,7 @@ export class NewCharityComponent implements OnInit {
   }
 
   onSelectFile(e:any) {
+    this.file = e.target.files[0];
     if(e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -105,7 +108,7 @@ export class NewCharityComponent implements OnInit {
     }
  }
 
-  addUpdatecharityDetails(charityDetails: Charity) {
+  addUpdatecharityDetails(charityDetails: any) {
     this.isLoading = true;
     let charityNewDetails = this.generatePayload(charityDetails);
     if (this.title === 'Update Existing charity') {
@@ -122,11 +125,20 @@ export class NewCharityComponent implements OnInit {
         this.openSnackBar(error.error.message);
       })
     } else {
-      this.charityService.addCharity(charityDetails).subscribe((response) => {
+      const formData = new FormData(); 
+      formData.append('image', this.file);  
+      formData.append('userId', this.newUserData._id);
+      formData.append('name', charityDetails.name);
+      formData.append('description', charityDetails.description);
+      formData.append('status', charityDetails.status);
+      formData.append('isVerified', charityDetails.isVerified);
+      formData.append('earnedChips', charityDetails.earnedChips);
+      this.charityService.addCharity(formData).subscribe((response) => {
         if (response) {
           this.isLoading = false;
           this.openSnackBar('charity Data Added Successfully');
           this.closeDialog(response);
+          
         }else {
           this.isLoading = false;
         }
@@ -144,7 +156,7 @@ export class NewCharityComponent implements OnInit {
       description: charityDetails.description,
       status: charityDetails.status,
       isVerified: charityDetails.isVerified,
-      coverImage: charityDetails.coverImage,
+      image: charityDetails.image,
       earnedChips: charityDetails.earnedChips,
     };
     return charity;
@@ -156,7 +168,7 @@ export class NewCharityComponent implements OnInit {
     this.charityForm.get('isVerified')?.setValue(charityDetails.isVerified);
     this.charityForm.get('status')?.setValue(charityDetails.status);
     this.charityForm.get('description')?.setValue(charityDetails.description);
-    this.charityForm.get('coverImage')?.setValue(charityDetails.coverImage);
+    this.charityForm.get('image')?.setValue(charityDetails.image);
     this.charityForm.get('userId')?.setValue(charityDetails.userId);
   }
 

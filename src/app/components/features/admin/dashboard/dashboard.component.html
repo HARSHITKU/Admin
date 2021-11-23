@@ -73,8 +73,9 @@
         <h1>Recent Innovations</h1>
         <hr>
         <admin-shared
-          [rowData]="updatedUsers"
+          [rowData]="updatedInnovations"
           [gridOptions]="gridOptions"
+          [columnDefs]="columnDefsInnovation"
           [isShowExportCSVButton]="false"
           [isShowHeader]="false"
         ></admin-shared>

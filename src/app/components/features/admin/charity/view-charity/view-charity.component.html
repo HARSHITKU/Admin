@@ -6,7 +6,7 @@
         <hr>
         <div class="row">
           <div class="col-lg-6">
-            <img [src]="charityDetails.coverImage" alt="">
+            <img [src]="charityDetails.image" alt="">
           </div>
           <div class="col-lg-6">
             <div class="mt-2">
@@ -56,37 +56,37 @@
           <div class="col-lg-3">
             <div class="mt-2">
               <label for="address">Address #1</label>
-              <input type="text" id="address" [value]="userDetails.address.address" class="form-control" disabled>
+              <input type="text" id="address" [value]="userDetails.addresses[0].address" class="form-control" disabled>
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="landmark">Landmark</label>
-              <input type="text" id="landmark" [value]="userDetails.address.landmark" class="form-control" disabled>
+              <input type="text" id="landmark" [value]="userDetails.addresses[0].landmark" class="form-control" disabled>
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="pincode">Pincode</label>
-              <input type="text" id="pincode" [value]="userDetails.address.pinCode" class="form-control" disabled>
+              <input type="text" id="pincode" [value]="userDetails.addresses[0].pinCode" class="form-control" disabled>
             </div>
           </div>
           <div class="col-lg-2">
             <div class=" mt-2">
               <label for="city">City</label>
-              <input type="text" id="city" [value]="userDetails.address.city" class="form-control" disabled>
+              <input type="text" id="city" [value]="userDetails.addresses[0].city" class="form-control" disabled>
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="state">State</label>
-              <input type="text" id="city" [value]="userDetails.address.state" class="form-control" disabled>
+              <input type="text" id="city" [value]="userDetails.addresses[0].state" class="form-control" disabled>
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="country">Country</label>
-              <input type="text" id="city" [value]="userDetails.address.country" class="form-control" disabled>
+              <input type="text" id="city" [value]="userDetails.addresses[0].country" class="form-control" disabled>
             </div>
           </div>
         </div>

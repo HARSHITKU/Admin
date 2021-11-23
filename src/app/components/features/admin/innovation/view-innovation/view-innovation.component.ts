@@ -26,6 +26,7 @@ export class ViewInnovationComponent implements OnInit {
      this.isUser = true;
     })
     this.innovationDetails = this.data;
+    console.log(this.data)
     
   }
 

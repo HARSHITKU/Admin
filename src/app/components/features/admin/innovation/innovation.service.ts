@@ -36,7 +36,7 @@ export class InnovationService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/innovations' + innovationId;
+    const apiUrl = this.baseURL + 'admin/innovations/' + innovationId;
     return this.http.get<any>(apiUrl, httpOptions);
   }
 
@@ -48,7 +48,7 @@ export class InnovationService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/innovations' + innovationId;
+    const apiUrl = this.baseURL + 'admin/innovations/' + innovationId;
     return this.http.delete(apiUrl, httpOptions);
   }
 
@@ -56,7 +56,7 @@ export class InnovationService {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Accept': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }),
     };
@@ -72,7 +72,7 @@ export class InnovationService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/innovations' + userId;
+    const apiUrl = this.baseURL + 'admin/innovations/' + userId;
     return this.http.patch(apiUrl, innovation, httpOptions);
   }
 }

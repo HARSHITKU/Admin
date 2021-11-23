@@ -22,8 +22,8 @@ export class ViewCharityComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService.getUser(this.data.userId).subscribe(res => {
-     this.userDetails = res.data
-     this.isUser = true;
+      this.userDetails = res.data
+      this.isUser = true;
     })
     this.charityDetails = this.data;
     

@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { UsersService } from '../../users/users.service';
-// import { CharityDetails } from 'src/app/models/charity-details';
 import { InnovationService } from '../innovation.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class NewInnovationComponent implements OnInit {
   title: string = '';
   buttonText: string = '';
   isLoading: boolean = false;
-  isAddNewInnovationLoading: boolean = false;
+  isAddNewinnovationLoading: boolean = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   userDetails: any;
@@ -27,6 +26,8 @@ export class NewInnovationComponent implements OnInit {
   newUserData: any;
   imageInput: any;
   imageFile: any;
+  noUserFound: boolean = false;
+  file: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,10 +41,12 @@ export class NewInnovationComponent implements OnInit {
       userId: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      status: ['', Validators.required],
+      // status: ['', Validators.required],
       isVerified: ['', Validators.required],
       earnedChips: ['', Validators.required],
-      coverImage: ['', Validators.required],
+      image: ['', Validators.required],
+      age: ['', Validators.required],
+      kidName: ['', Validators.required],
     });
 
     if (this.data.hasOwnProperty('userId')) {
@@ -51,17 +54,22 @@ export class NewInnovationComponent implements OnInit {
       this.buttonText = 'Update';
       this.setFormValue(this.data);
       this.userId = this.data.userId
-      this.innovationImage = this.data.coverImage
+      this.innovationImage = this.data.image
     } else {  
       this.title = 'Add New Innovation';
       this.buttonText = 'Add';
     }
+  }
+
+  get f(){
+    return this.innovationForm.controls;
   }
   
   ngOnInit(): void {
     if(this.data.userId) {
       this.usersService.getUser(this.data.userId).subscribe(user => {
         this.userDetails = user.data;
+        console.log(this.userDetails);
       })
     }
   }
@@ -74,20 +82,31 @@ export class NewInnovationComponent implements OnInit {
   }
 
   onSubmit(data:any) {
-    this.isAddNewInnovationLoading = true;
+    this.isAddNewinnovationLoading = true;
     this.newUserMobileNumber = data.value.num
     this.usersService.getUserListData().subscribe( res => {
       res.data.map( (user:any) => {
         if(this.newUserMobileNumber === user.phone){
           this.newUserData = user;
-          this.isAddNewInnovationLoading = false;
+          this.isAddNewinnovationLoading = false;
+          this.noUserFound = false;
+        }else {
+          this.isAddNewinnovationLoading = false;
+          this.noUserFound = true;
         }
       })
     })
   }
 
-  readFile(fileEvent: any) {
-    this.imageFile =  fileEvent.target.files[0].name;
+  onSelectFile(e:any) {
+    this.file = e.target.files[0];
+    if(e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (e:any) => {
+        this.imageFile = e.target.result;
+      }
+    }
  }
 
   addUpdateinnovationDetails(innovationDetails: any) {
@@ -102,39 +121,61 @@ export class NewInnovationComponent implements OnInit {
           this.openSnackBar('Innovation Data Updated Successfully');
           this.closeDialog(response);
         }
+      }, error => {
+        this.isLoading = false
+        this.openSnackBar(error.error.message);
       });
     } else {
-      this.InnovationService.addInnovation(innovationDetails).subscribe((response) => {
+      const formData = new FormData(); 
+      formData.append('image', this.file);  
+      formData.append('userId', this.newUserData._id);
+      formData.append('name', innovationDetails.name);
+      formData.append('description', innovationDetails.description);
+      // formData.append('status', innovationDetails.status);
+      formData.append('isVerified', innovationDetails.isVerified);
+      formData.append('earnedChips', innovationDetails.earnedChips);
+      formData.append('age', innovationDetails.age);
+      formData.append('kidName', innovationDetails.kidName);
+      this.InnovationService.addInnovation(formData).subscribe((response) => {
         if (response) {
           this.isLoading = false;
           this.openSnackBar('Innovation Data Added Successfully');
           this.closeDialog(response);
+        }else {
+          this.isLoading = false;
         }
+      },  error => {
+        this.isLoading = false
+        this.openSnackBar(error.error.message);
       });
     }
   }
 
   generatePayload(innovationDetails: any) {
-    let charity = {
+    let innovation = {
       userId: innovationDetails.userId,
       name: innovationDetails.name,
       description: innovationDetails.description,
-      status: innovationDetails.status,
+      // status: innovationDetails.status,
       isVerified: innovationDetails.isVerified,
-      coverImage: innovationDetails.coverImage,
+      image: innovationDetails.image,
       earnedChips: innovationDetails.earnedChips,
+      age: innovationDetails.age,
+      kidName: innovationDetails.kidName,
     };
-    return charity;
+    return innovation;
   }
 
   setFormValue(innovationDetails: any) {
     this.innovationForm.get('earnedChips')?.setValue(innovationDetails.earnedChips);
     this.innovationForm.get('name')?.setValue(innovationDetails.name);
     this.innovationForm.get('isVerified')?.setValue(innovationDetails.isVerified);
-    this.innovationForm.get('status')?.setValue(innovationDetails.status);
+    // this.innovationForm.get('status')?.setValue(innovationDetails.status);
     this.innovationForm.get('description')?.setValue(innovationDetails.description);
-    this.innovationForm.get('coverImage')?.setValue(innovationDetails.coverImage);
+    this.innovationForm.get('image')?.setValue(innovationDetails.image);
     this.innovationForm.get('userId')?.setValue(innovationDetails.userId);
+    this.innovationForm.get('age')?.setValue(innovationDetails.age);
+    this.innovationForm.get('kidName')?.setValue(innovationDetails.kidName);
   }
 
   openSnackBar(message: string) {

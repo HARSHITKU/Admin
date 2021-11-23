@@ -33,8 +33,8 @@ export class InnovationComponent implements OnInit {
       {
         headerName: 'Description',
         field: 'description',
-        maxWidth: 450,
-        minWidth: 450,
+        maxWidth: 350,
+        minWidth: 350,
         tooltipField: 'description',
       },
       {
@@ -44,10 +44,16 @@ export class InnovationComponent implements OnInit {
         tooltipField: 'earnedChips',
       },
       {
-        headerName: 'Status',
-        field: 'status',
+        headerName: 'Kid Name',
+        field: 'kidName',
         maxWidth: 200,
-        tooltipField: 'status',
+        tooltipField: 'kidName',
+      },
+      {
+        headerName: 'Kid Age',
+        field: 'age',
+        maxWidth: 130,
+        tooltipField: 'age',
       },
       {
         headerName: 'Verified?',
@@ -93,10 +99,10 @@ export class InnovationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCharities();
+    this.getInnovations();
   }
 
-  getCharities() {
+  getInnovations() {
     this.innovationService.getInnovationListData().subscribe((response) => {
       if (response) {
         this.innovations = response.data;
@@ -107,9 +113,10 @@ export class InnovationComponent implements OnInit {
             earnedChips: `${innovation.earnedChips}`,
             isVerified: `${innovation.isVerified}`,
             userId: `${innovation.userId}`,
-            coverImage: `${innovation.coverImage}`,
+            image: `${innovation.coverImage}`,
             description: `${innovation.description}`,
-            status: `${innovation.status}`,
+            age: `${innovation.age}`,
+            kidName: `${innovation.kidName}`,
             id: `${innovation._id}`,
           };
         });
@@ -134,7 +141,7 @@ export class InnovationComponent implements OnInit {
     });
     deleteDataDialogue.afterClosed().subscribe((response) => {
       if(response?.status === 'success'){
-        this.getCharities();
+        this.getInnovations();
       }else{
         return
       }
@@ -149,7 +156,7 @@ export class InnovationComponent implements OnInit {
     });
     updateDataDialogue?.afterClosed().subscribe((response) => {
       if(response?.status === 'success'){
-        this.getCharities();
+        this.getInnovations();
       }else{
         return
       }
@@ -165,7 +172,7 @@ export class InnovationComponent implements OnInit {
       });
       addDataDialogue.afterClosed().subscribe((response) => {
         if(response?.status === 'success'){
-          this.getCharities();
+          this.getInnovations();
         }else{
           return
         }

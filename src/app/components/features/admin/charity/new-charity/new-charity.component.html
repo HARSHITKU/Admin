@@ -13,9 +13,9 @@
         <div class="row">
           <div class="col-lg-6">
             <img *ngIf="userId" [src]="charityImage"  alt="">
-            <input *ngIf="!userId" type="file" accept="image/*" (change)="onSelectFile($event)" formControlName="coverImage" />
-            <div *ngIf="f.coverImage.touched && f.coverImage.invalid" class="text-danger mt-1">
-              <div *ngIf="f.coverImage.errors && f.coverImage.errors.required">Cover Image is Required.</div>
+            <input *ngIf="!userId" type="file" accept="image/*" (change)="onSelectFile($event)" formControlName="image" />
+            <div *ngIf="f.image.touched && f.image.invalid" class="text-danger mt-1">
+              <div *ngIf="f.image.errors && f.image.errors.required">Cover Image is Required.</div>
            </div> 
             <div *ngIf="imageFile">
               <img *ngIf="!userId" [src]="imageFile" alt="">
@@ -47,8 +47,8 @@
                </div> 
               </div>
               <div class="col-lg-4">
-                <label for="isVerified">Status</label>
-                <select class="form-control" placeholder="Select" formControlName="status" id="status">
+                <label for="status">Status</label>
+                <select placeholder="Select" formControlName="status" id="status">
                   <option value="pending">Pending</option>
                   <option value="picked">Picked</option>
                   <option value="delivered">Delivered</option>
@@ -59,7 +59,7 @@
               </div>
               <div class="col-lg-4">
                 <label for="isVerified">Verified?</label>
-                <select class="form-control" placeholder="Select" formControlName="isVerified" id="isVerified">
+                <select placeholder="Select" formControlName="isVerified" id="isVerified">
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                 </select>
@@ -97,37 +97,37 @@
           <div class="col-lg-3">
             <div class="mt-2">
               <label for="address">Address #1</label>
-              <input type="text" id="address" [value]="userDetails.address.address" class="form-control" readonly="readonly">
+              <input type="text" id="address" [value]="userDetails.addresses[0].address" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="landmark">Landmark</label>
-              <input type="text" id="landmark" [value]="userDetails.address.landmark" class="form-control" readonly="readonly">
+              <input type="text" id="landmark" [value]="userDetails.addresses[0].landmark" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="pincode">Pincode</label>
-              <input type="text" id="pincode" [value]="userDetails.address.pinCode" class="form-control" readonly="readonly">
+              <input type="text" id="pincode" [value]="userDetails.addresses[0].pinCode" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class=" mt-2">
               <label for="city">City</label>
-              <input type="text" id="city" [value]="userDetails.address.city" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="userDetails.addresses[0].city" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="state">State</label>
-              <input type="text" id="city" [value]="userDetails.address.state" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="userDetails.addresses[0].state" class="form-control" readonly="readonly">
             </div>
           </div>
           <div class="col-lg-2">
             <div class="mt-2">
               <label for="country">Country</label>
-              <input type="text" id="city" [value]="userDetails.address.country" class="form-control" readonly="readonly">
+              <input type="text" id="city" [value]="userDetails.addresses[0].country" class="form-control" readonly="readonly">
             </div>
           </div>
         </div>

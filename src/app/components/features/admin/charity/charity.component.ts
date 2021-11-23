@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GridOptions } from 'ag-grid-community';
-import { Charity } from 'src/app/models/charity';
+// import { Charity } from 'src/app/models/charity';
 import { DeleteChairtyComponent } from './delete-charity/delete-charity.component';
 import { NewCharityComponent } from './new-charity/new-charity.component';
 import { CharityService } from './charity.service';
@@ -14,7 +14,7 @@ import { UsersService } from '../users/users.service';
   styleUrls: ['./charity.component.scss'],
 })
 export class ChairtyComponent implements OnInit {
-  charities: Charity[] | undefined;
+  charities: any[] | undefined;
   updatedcharity: any[] | undefined;
   columnDefs: any;
   gridOptions: GridOptions;
@@ -106,7 +106,7 @@ export class ChairtyComponent implements OnInit {
             earnedChips: `${charity.earnedChips}`,
             isVerified: `${charity.isVerified}`,
             userId: `${charity.userId}`,
-            coverImage: `${charity.coverImage}`,
+            image: `${charity.coverImage}`,
             description: `${charity.description}`,
             status: `${charity.status}`,
             id: `${charity._id}`,

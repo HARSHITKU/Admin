@@ -52,11 +52,11 @@ export class CharityService {
     return this.http.delete(apiUrl, httpOptions);
   }
 
-  addCharity(Charity: Charity): Observable<any> {
+  addCharity(Charity: any): Observable<any> {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Accept': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }),
     };
