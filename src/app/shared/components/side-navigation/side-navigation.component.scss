@@ -81,7 +81,6 @@ aside {
               color: $admin-primary;
               @include flex-view;
               justify-content: flex-variables(space-around);
-              // Hidden for some applicaions
               display: none;
 
               mat-icon{
@@ -175,7 +174,6 @@ aside {
     .sub-navigation-wrapper{
       @include flex-view;
       text-decoration: none;
-      // padding: $p-2 $p-2 $p-2 $p-4;
 
       mat-icon {
         color: $admin-text-color-secondary;
@@ -198,7 +196,6 @@ aside {
 
   .sub-navigation-items:hover {
     background: $admin-primary;
-    // border-radius: 0 30px 30px 0;
     cursor: pointer;
 
     mat-icon {
