@@ -14,6 +14,7 @@ import { DeleteRedeemComponent } from './delete-redeem/delete-redeem.component';
 export class RedeemComponent implements OnInit {
   redeemList: Redeem[] | undefined;
   UpdatedRedeem: any[] | undefined;
+  rowCount: number | undefined = 0;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -21,6 +22,14 @@ export class RedeemComponent implements OnInit {
   constructor(private redeemService: RedeemService, private dialog: MatDialog) {
 
     this.columnDefs = [
+      {
+        headerName: 'Image',
+        field: 'imageCover',
+        maxWidth: 100,
+        cellRenderer :function(param: any){
+          return `<img src="${param.value}" alt="Default.img" width="20">`
+        }
+      },
       {
         headerName: 'Name',
         field: 'name',
@@ -90,6 +99,7 @@ export class RedeemComponent implements OnInit {
     this.redeemService.getAllRedeem().subscribe((response) => {
       if (response) {
         this.redeemList = response.data;
+        this.rowCount = this.redeemList?.length;
         this.UpdatedRedeem = this.redeemList?.map((products)=>{
           return {
             name: `${products.name}`,
@@ -97,6 +107,7 @@ export class RedeemComponent implements OnInit {
             price: `${products.price}`,
             quantity: `${products.quantity}`,
             categoryId: `${products.category}`,
+            image: `${products.imageCover}`
           }
         })
       }

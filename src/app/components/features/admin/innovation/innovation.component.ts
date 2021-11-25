@@ -16,6 +16,7 @@ export class InnovationComponent implements OnInit {
 
   innovations: any;
   updatedInnovation: any[] | undefined;
+  rowCount: number | undefined = 0;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -106,6 +107,7 @@ export class InnovationComponent implements OnInit {
     this.innovationService.getInnovationListData().subscribe((response) => {
       if (response) {
         this.innovations = response.data;
+        this.rowCount = this.innovations?.length;
         this.updatedInnovation = this.innovations?.map((innovation: any) => {
           return {
             name: `${innovation.name}`,
@@ -124,12 +126,9 @@ export class InnovationComponent implements OnInit {
   }
 
   getRowsDataToView(event: any){
-    const viewDataDialogue = this.dialog.open(ViewInnovationComponent, {
+    this.dialog.open(ViewInnovationComponent, {
       data: event,
       width: '70vw'
-    });
-    viewDataDialogue.afterClosed().subscribe((response) => {
-      console.log('virw compo pop up closed');
     });
   }
 

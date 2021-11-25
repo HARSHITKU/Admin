@@ -25,9 +25,7 @@ export class ViewInnovationComponent implements OnInit {
      this.userDetails = res.data
      this.isUser = true;
     })
-    this.innovationDetails = this.data;
-    console.log(this.data)
-    
+    this.innovationDetails = this.data;    
   }
 
   closeIconClicked(){

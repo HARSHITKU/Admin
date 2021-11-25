@@ -21,7 +21,6 @@ export class DeleteCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryId = this.data.id;
-    console.log(this.data)
   }
 
   closeDialog(message: string){

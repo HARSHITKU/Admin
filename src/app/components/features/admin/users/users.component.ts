@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
         headerName: 'Date of Birth',
         field: 'displayDOB',
         maxWidth: 120,
-        tooltipField: 'dateOfBirth',
+        tooltipField: 'displayDOB',
       },
       {
         headerName: 'Address',

@@ -1,6 +1,6 @@
 export class Redeem {
    
-    redeem : string | undefined;
+    imageCover : string | undefined;
     _id: string | undefined;
     name: string | undefined;
     description : string | undefined;

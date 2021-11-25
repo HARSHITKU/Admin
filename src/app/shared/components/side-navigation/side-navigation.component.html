@@ -10,10 +10,10 @@
         <div class="profile-container">
           <div class="profile-wrapper">
             <div class="profile-detail-wrapper">
-              <div class="picture-container">
+              <div class="picture-container" *ngIf="userDetails">
                 <img
-                  src={{userImage}}
-                  alt="profile-picture"
+                  [src]="userImage"
+                  alt="userDetails?.firstName"
                 />
               </div>
               <div class="details-container">

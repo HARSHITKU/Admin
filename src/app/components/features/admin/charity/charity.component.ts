@@ -16,6 +16,7 @@ import { UsersService } from '../users/users.service';
 export class ChairtyComponent implements OnInit {
   charities: any[] | undefined;
   updatedcharity: any[] | undefined;
+  rowCount: number | undefined = 0;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -100,6 +101,7 @@ export class ChairtyComponent implements OnInit {
     this.charityService.getCharityListData().subscribe((response) => {
       if (response) {
         this.charities = response.data;
+        this.rowCount = this.charities?.length;
         this.updatedcharity = this.charities?.map((charity) => {
           return {
             name: `${charity.name}`,
@@ -117,12 +119,9 @@ export class ChairtyComponent implements OnInit {
   }
 
   getRowsDataToView(event: any){
-    const viewDataDialogue = this.dialog.open(ViewCharityComponent, {
+    this.dialog.open(ViewCharityComponent, {
       data: event,
       width: '70vw'
-    });
-    viewDataDialogue.afterClosed().subscribe((response) => {
-      console.log('virw compo pop up closed');
     });
   }
 

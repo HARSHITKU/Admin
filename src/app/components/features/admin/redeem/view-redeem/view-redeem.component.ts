@@ -15,7 +15,6 @@ export class ViewRedeemComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = this.data;
-    console.log(this.products)
   }
   
   closeIconClicked(){

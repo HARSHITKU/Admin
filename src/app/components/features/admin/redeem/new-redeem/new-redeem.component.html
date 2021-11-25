@@ -1,45 +1,117 @@
 <main>
-    <div class="content-container">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1 class="main-heading">{{title}}</h1>
-        <p class="close-modal" (click)="closeModal()">x</p>
-      </div>
-      <div class="card shadow px-5 py-2">
-         <form [formGroup]="userForm" (ngSubmit)="addUpdateDetails(userForm.value)">
-          <div class="row mt-2">
-            <p>Basic Information</p>
-            <hr>
-            <div class="col-lg-6 my-2">
-              <label for="fName">  Name</label>
-              <input type="text" id="Name" class="custom-input" required placeholder="Enter name" formControlName="name">
-            </div>       
-             
-              <div class="col-lg-6 my-2">
-                  <label for="address">Price</label>
-                  <input type="text"  id="price" class="custom-input" required placeholder="Enter price" formControlName="price">
-              </div>
-
-              <div class="col-lg-6 my-2">
-                  <label for="cate">Category</label>
-                  <select class="custom-input" required formControlName="category">
-                    <option *ngFor="let category of categories" [value]="category._id">{{category.title}}</option>
-                  </select>
-              </div>
-              <div class="col-lg-6 my-2">
-                  <label for="address">Quantity</label>
-                  <input type="text"  id="quantity" class="custom-input" required placeholder="Enter quantity" formControlName="quantity">
-              </div>
-              <div class="col-lg-12 my-2">
-                <label for="lName">Description</label>
-                <textarea type="text" id="description" class="custom-input" required placeholder="Enter description" formControlName="description"></textarea>
-              </div>  
-            </div>
-            <div class="d-flex mt-4" style="float: right;">
-              <button class="mx-2 btn-secondary secondary-button" type="button" (click)="closeModal()" style="width: 150px">Cancle</button>
-              <button class="mx-2 primary-button" type="submit" style="width: 150px">{{buttonText}}</button>
-            </div>
-         </form>
-      </div>
+  <div class="content-container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="main-heading">{{ title }}</h1>
+      <p class="close-modal" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+      </p>
     </div>
-  </main>
-  
+    <div class="card shadow px-5 py-2">
+      <form
+        [formGroup]="userForm"
+        (ngSubmit)="addUpdateDetails(userForm.value)"
+      >
+        <div class="row mt-2">
+          <p>Basic Information</p>
+          <hr />
+          <div class="col-lg-6 my-2">
+            <label for="fName"> Name</label>
+            <input
+              type="text"
+              id="Name"
+              class="custom-input"
+              required
+              placeholder="Enter name"
+              formControlName="name"
+            />
+          </div>
+
+          <div class="col-lg-6 my-2">
+            <label for="address">Price</label>
+            <input
+              type="text"
+              id="price"
+              class="custom-input"
+              required
+              placeholder="Enter price"
+              formControlName="price"
+            />
+          </div>
+
+          <div class="col-lg-6 my-2">
+            <label for="cate">Category</label>
+            <select class="custom-input" required formControlName="category">
+              <option
+                *ngFor="let category of categories"
+                [value]="category._id"
+              >
+                {{ category.title }}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-6 my-2">
+            <label for="address">Quantity</label>
+            <input
+              type="text"
+              id="quantity"
+              class="custom-input"
+              required
+              placeholder="Enter quantity"
+              formControlName="quantity"
+            />
+          </div>
+          <div class="col-lg-12 my-2">
+            <label for="lName">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              class="custom-input"
+              required
+              placeholder="Enter description"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="col-lg-12">
+            <label for="img">Product Image</label>
+            <input
+              formControlName="image"
+              (change)="readFile($event)"
+              accept="image/*"
+              type="file"
+              id="img"
+              class="custom-input"
+            />
+          </div>
+        </div>
+        <div class="d-flex mt-4" style="float: right">
+          <button
+            class="mx-2 btn-secondary secondary-button"
+            type="button"
+            (click)="closeModal()"
+            style="width: 150px"
+          >
+            Cancel
+          </button>
+          <button
+            *ngIf="!isLoading"
+            class="mx-2 primary-button"
+            type="submit"
+            style="width: 150px"
+          >
+            {{ buttonText }}
+          </button>
+          <button
+            *ngIf="isLoading"
+            class="mx-2 primary-button"
+            type="submit"
+            style="width: 150px"
+          >
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

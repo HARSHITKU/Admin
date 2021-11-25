@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
 
   categories: any[] | undefined;
   updatedCategories: any[] | undefined;
+  rowCount: number | undefined = 0;
   columnDefs: any;
   gridOptions: GridOptions;
   unclickDelete: boolean = false;
@@ -36,8 +37,8 @@ export class CategoryComponent implements OnInit {
       {
         headerName: 'Description',
         field: 'description',
-        maxWidth: 700,
-        minWidth: 700,
+        maxWidth: 600,
+        minWidth: 600,
         tooltipField: 'description',
       },
       {
@@ -78,7 +79,7 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe((response) => {
       if (response) {
         this.categories = response.data;
-        console.log(this.categories)
+        this.rowCount = this.categories?.length;
         this.updatedCategories = this.categories?.map((category) => {
           return {
             title: `${category.title}`,
@@ -96,7 +97,7 @@ export class CategoryComponent implements OnInit {
       width: '30vw'
     });
     viewDataDialogue.afterClosed().subscribe((response) => {
-      console.log('virw compo pop up closed');
+      
     });
   }
 

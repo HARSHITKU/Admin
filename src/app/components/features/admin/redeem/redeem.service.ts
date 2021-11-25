@@ -53,7 +53,7 @@ export class RedeemService {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Accept': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }),
     };
@@ -65,7 +65,7 @@ export class RedeemService {
     let token = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Accept': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }),
     };

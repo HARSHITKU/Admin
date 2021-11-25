@@ -69,7 +69,6 @@ export class NewInnovationComponent implements OnInit {
     if(this.data.userId) {
       this.usersService.getUser(this.data.userId).subscribe(user => {
         this.userDetails = user.data;
-        console.log(this.userDetails);
       })
     }
   }
