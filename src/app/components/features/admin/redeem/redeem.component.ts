@@ -47,7 +47,7 @@ export class RedeemComponent implements OnInit {
       },
       {
         headerName: 'Category',
-        field: 'categoryId',
+        field: 'categoryId.title',
         minWidth: 10,
         tooltipField: 'categoryId',
       },
@@ -83,6 +83,7 @@ export class RedeemComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRedeem();
+    
   }
 
   getAllRedeem() {
@@ -91,8 +92,11 @@ export class RedeemComponent implements OnInit {
         this.redeemList = response.data;
         this.UpdatedRedeem = this.redeemList?.map((products)=>{
           return {
-            name: `${products}`,
-            description: `${products.description}`
+            name: `${products.name}`,
+            description: `${products.description}`,
+            price: `${products.price}`,
+            quantity: `${products.quantity}`,
+            categoryId: `${products.category}`,
           }
         })
       }
@@ -123,6 +127,7 @@ export class RedeemComponent implements OnInit {
     const updateDataDialogue = this.dialog.open(NewRedeemComponent, {
       data: event,
       panelClass: 'panelStyle',
+      width: '60vw'
     });
     updateDataDialogue?.afterClosed().subscribe((response) => {
       if(response?.status === 'success'){
@@ -139,6 +144,7 @@ export class RedeemComponent implements OnInit {
       const addDataDialogue = this.dialog.open(NewRedeemComponent, {
         height: 'products',
         data: event,
+        width: '60vw',
         panelClass: 'panelStyle',
       });
       addDataDialogue.afterClosed().subscribe((response) => {

@@ -6,5 +6,6 @@ export class Redeem {
     description : string | undefined;
     price : string | undefined;
     quantity: string | undefined;
+    category: string | undefined;
 
 }
