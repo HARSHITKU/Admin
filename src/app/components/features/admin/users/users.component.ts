@@ -53,7 +53,7 @@ export class UsersComponent implements OnInit {
       },
       {
         headerName: 'Date of Birth',
-        field: 'dateOfBirth',
+        field: 'displayDOB',
         maxWidth: 120,
         tooltipField: 'dateOfBirth',
       },
@@ -135,7 +135,7 @@ export class UsersComponent implements OnInit {
             phone: `${user.phone}`,
             displayDOB: `${new Date(user.dateOfBirth).getDate()}-${new Date(
               user.dateOfBirth
-            ).getMonth()}-${new Date(user.dateOfBirth).getFullYear()}`,
+            ).getMonth() + 1}-${new Date(user.dateOfBirth).getFullYear()}`,
             dateOfBirth: `${user.dateOfBirth}`,
             address: `${user.addresses[0]?.landmark} ${user.addresses[0]?.address}`,
             landmark: user.addresses[0]?.landmark,
