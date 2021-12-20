@@ -83,7 +83,7 @@ export class NewAboutComponent implements OnInit {
 
   generatePayload(newDetail: any) {
     let payload = {
-      about: newDetail.about,
+      aboutUs: newDetail.about,
       isDefault: newDetail.isDefault
     };
     return payload;

@@ -23,7 +23,7 @@ export class AboutService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/about';
+    const apiUrl = this.baseURL + 'admin/aboutUs';
     return this.http.get<any>(apiUrl, httpOptions);
   }
 
@@ -35,7 +35,7 @@ export class AboutService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/about/' + userId;
+    const apiUrl = this.baseURL + 'admin/aboutUs/' + userId;
     return this.http.get<any>(apiUrl, httpOptions);
   }
 
@@ -47,7 +47,7 @@ export class AboutService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/about/' + userId;
+    const apiUrl = this.baseURL + 'admin/aboutUs/' + userId;
     return this.http.delete(apiUrl, httpOptions);
   }
 
@@ -59,7 +59,7 @@ export class AboutService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/about';
+    const apiUrl = this.baseURL + 'admin/aboutUs';
     return this.http.post(apiUrl, aboutData, httpOptions);
   }
 
@@ -71,7 +71,7 @@ export class AboutService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    const apiUrl = this.baseURL + 'admin/about/' + userId;
+    const apiUrl = this.baseURL + 'admin/aboutUs/' + userId;
     return this.http.patch(apiUrl, aboutData, httpOptions);
   }
 }

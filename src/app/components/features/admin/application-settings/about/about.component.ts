@@ -79,7 +79,7 @@ export class AboutComponent implements OnInit {
         this.aboutList = this.aboutList?.map(about => {
           return {
             id: `${about._id}`,
-            about: `${about.about}`,
+            about: `${about.aboutUs}`,
             isDefault: about.isDefault ? 'Yes' : 'No'
           }
         })
