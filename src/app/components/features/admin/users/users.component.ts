@@ -128,7 +128,7 @@ export class UsersComponent implements OnInit {
         this.rowCount = this.users?.length;
         this.updatedUsers = this.users?.map((user) => {
           return {
-            name: `${user.firstName} ${user.lastName}`,
+            name: `${user.firstName} ${user.lastName !== undefined ? user.lastName : ''}`,
             firstName: user.firstName,
             lastName: user.lastName,
             email: `${user.email}`,

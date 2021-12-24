@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-4">
               <label for="lName">Last Name</label>
-              <input type="text" id="lName" class="custom-input" required placeholder="Enter last name" formControlName="lastName">
+              <input type="text" id="lName" class="custom-input" placeholder="Enter last name" formControlName="lastName">
               <div *ngIf="f.lastName.touched && f.lastName.invalid" class="text-warning mt-1">
                 <div *ngIf="f.lastName.errors && f.lastName.errors.required">Last Name is Required.</div>
                 <div *ngIf="f.lastName.errors && f.lastName.errors.minlength">Last Name must be at least 3 char long.</div>
@@ -63,7 +63,7 @@
             </div>
             <div class="col-lg-4">
               <label for="landmark">Landmark</label>
-              <input type="text" id="landmark" class="custom-input" required placeholder="Enter Landmark" formControlName="landmark">
+              <input type="text" id="landmark" class="custom-input" placeholder="Enter Landmark" formControlName="landmark">
               <div *ngIf="f.landmark.touched && f.landmark.invalid" class="text-warning mt-1">
                 <div *ngIf="f.landmark.errors && f.landmark.errors.required">Landmark is Required.</div>
              </div> 

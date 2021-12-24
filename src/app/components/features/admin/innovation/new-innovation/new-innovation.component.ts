@@ -45,8 +45,8 @@ export class NewInnovationComponent implements OnInit {
       isVerified: ['', Validators.required],
       earnedChips: ['', Validators.required],
       image: ['', Validators.required],
-      age: ['', Validators.required],
-      kidName: ['', Validators.required],
+      age: [''],
+      kidName: [''],
     });
 
     if (this.data.hasOwnProperty('userId')) {
@@ -173,7 +173,7 @@ export class NewInnovationComponent implements OnInit {
     this.innovationForm.get('description')?.setValue(innovationDetails.description);
     this.innovationForm.get('image')?.setValue(innovationDetails.image);
     this.innovationForm.get('userId')?.setValue(innovationDetails.userId);
-    this.innovationForm.get('age')?.setValue(innovationDetails.age);
+    // this.innovationForm.get('age')?.setValue(innovationDetails.age);
     this.innovationForm.get('kidName')?.setValue(innovationDetails.kidName);
   }
 

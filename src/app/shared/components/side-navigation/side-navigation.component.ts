@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CommonService } from 'src/app/services/common.service';
 import { NavigationItems } from '../../models/navigationItems';
 
 @Component({
@@ -78,11 +77,6 @@ export class SideNavigationComponent implements OnInit {
         name: 'Categories',
         route: '/chotapaisa/admin/categories/all-categories',
       },
-      // {
-      //   icon: 'inventory_2',
-      //   name: "Product",
-      //   route: '/chotapaisa/admin/products',
-      // },
       {
         icon: 'groups',
         name: 'Sponsors',
@@ -105,11 +99,11 @@ export class SideNavigationComponent implements OnInit {
             name: 'Quotation',
             route: '/chotapaisa/admin/application-setup/all-setup/quotation',
           },
-          {
-            icon: 'play_circle_filled',
-            name: 'Video Setup',
-            route: '/chotapaisa/admin/application-setup/all-setup/video',
-          },
+          // {
+          //   icon: 'play_circle_filled',
+          //   name: 'Video Setup',
+          //   route: '/chotapaisa/admin/application-setup/all-setup/video',
+          // },
           {
             icon: 'info',
             name: 'About',
@@ -129,37 +123,12 @@ export class SideNavigationComponent implements OnInit {
           },
         ],
       }
-      // {
-      //   icon: 'people',
-      //   name: "Customers"
-      // },
-      // {
-      //   icon: 'search',
-      //   name: "Coupons"
-      // },
-      // {
-      //   icon: 'payment',
-      //   name: "Withdrawal"
-      // },
-      // {
-      //   icon: 'multiline_chart',
-      //   name: "Analytics"
-      // },
-      // {
-      //   icon: 'paid',
-      //   name: "Refund"
-      // },
-      // {
-      //   icon: 'reviews',
-      //   name: "Reviews"
-      // },
     );
   }
 
   expandSubMenu(navItem: any) {
     this.parentMenu = navItem.name;
     if (navItem.isSubItemPresent) {
-      // this.expandSubNavMenu = !this.expandSubNavMenu;
       this.expandSubNavMenu = true;
     }
   }

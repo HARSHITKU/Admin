@@ -47,7 +47,7 @@ export class NewUserComponent implements OnInit {
   ) {
     this.userForm = this.fb.group({
       firstName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      lastName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      lastName: [''],
       phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern( "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])],
       dateOfBirth: ['', Validators.required],

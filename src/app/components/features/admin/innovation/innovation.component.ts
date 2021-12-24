@@ -34,8 +34,8 @@ export class InnovationComponent implements OnInit {
       {
         headerName: 'Description',
         field: 'description',
-        maxWidth: 350,
-        minWidth: 350,
+        maxWidth: 480,
+        minWidth: 480,
         tooltipField: 'description',
       },
       {
@@ -44,18 +44,18 @@ export class InnovationComponent implements OnInit {
         maxWidth: 130,
         tooltipField: 'earnedChips',
       },
-      {
-        headerName: 'Kid Name',
-        field: 'kidName',
-        maxWidth: 200,
-        tooltipField: 'kidName',
-      },
-      {
-        headerName: 'Kid Age',
-        field: 'age',
-        maxWidth: 130,
-        tooltipField: 'age',
-      },
+      // {
+      //   headerName: 'Kid Name',
+      //   field: 'kidName',
+      //   maxWidth: 200,
+      //   tooltipField: 'kidName',
+      // },
+      // {
+      //   headerName: 'Kid Age',
+      //   field: 'age',
+      //   maxWidth: 130,
+      //   tooltipField: 'age',
+      // },
       {
         headerName: 'Verified?',
         field: 'isVerified',
@@ -116,8 +116,8 @@ export class InnovationComponent implements OnInit {
             userId: `${innovation.userId}`,
             image: `${innovation.coverImage}`,
             description: `${innovation.description}`,
-            age: `${innovation.age}`,
-            kidName: `${innovation.kidName}`,
+            // age: `${innovation.age}`,
+            // kidName: `${innovation.kidName}`,
             id: `${innovation._id}`,
           };
         });
