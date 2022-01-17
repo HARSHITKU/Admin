@@ -22,6 +22,29 @@ export class VideoComponent implements OnInit {
 
   constructor(private videoService: VideoService, private dialog: MatDialog) {
     this.columnDefs = [
+      {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'edit',
+        cellRenderer: function () {
+          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {headerName: '',
+        field: 'delete',
+        cellRenderer: function () {
+          return '<i class="fa fa-trash" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
     {
       headerName: 'Video',
       field: 'videoURL',
@@ -35,29 +58,6 @@ export class VideoComponent implements OnInit {
       field: 'isDefault',
       minWidth: 50,
       tooltipField: 'isDefault',
-    },
-    {
-      headerName: '',
-      field: 'view',
-      cellRenderer: function () {
-        return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-      },
-      maxWidth: 50,
-    },
-    {
-      headerName: '',
-      field: 'edit',
-      cellRenderer: function () {
-        return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-      },
-      maxWidth: 50,
-    },
-    {headerName: '',
-      field: 'delete',
-      cellRenderer: function () {
-        return '<i class="fa fa-trash" aria-hidden="true"></i>';
-      },
-      maxWidth: 50,
     },
     ];
     this.gridOptions = <GridOptions> {

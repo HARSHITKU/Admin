@@ -26,6 +26,30 @@ export class UsersComponent implements OnInit {
   constructor(private usersService: UsersService, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.columnDefs = [
       {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'edit',
+        cellRenderer: function () {
+          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'delete',
+        cellRenderer: function () {
+          return '<i class="fa fa-trash" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
         headerName: 'Img',
         field: 'profileImage',
         maxWidth: 100,
@@ -86,30 +110,6 @@ export class UsersComponent implements OnInit {
         field: 'blocked',
         maxWidth: 100,
         tooltipField: 'blocked',
-      },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'edit',
-        cellRenderer: function () {
-          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'delete',
-        cellRenderer: function () {
-          return '<i class="fa fa-trash" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{

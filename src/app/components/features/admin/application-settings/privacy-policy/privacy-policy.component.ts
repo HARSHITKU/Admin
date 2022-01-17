@@ -26,20 +26,6 @@ export class PrivacyPolicyComponent implements OnInit {
   ) {
     this.columnDefs = [
       {
-        headerName: 'privacyPolicy',
-        field: 'privacyPolicy',
-        maxWidth: 900,
-        minWidth: 900,
-        tooltipField: 'privacyPolicy',
-        default: 'privacypolicy',
-      },
-      {
-        headerName: 'Default',
-        field: 'isDefault',
-        maxWidth: 200,
-        tooltipField: 'isDefault',
-      },
-      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -62,6 +48,20 @@ export class PrivacyPolicyComponent implements OnInit {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
         maxWidth: 50,
+      },
+      {
+        headerName: 'privacyPolicy',
+        field: 'privacyPolicy',
+        maxWidth: 900,
+        minWidth: 900,
+        tooltipField: 'privacyPolicy',
+        default: 'privacypolicy',
+      },
+      {
+        headerName: 'Default',
+        field: 'isDefault',
+        maxWidth: 200,
+        tooltipField: 'isDefault',
       },
     ];
     this.gridOptions = <GridOptions>{

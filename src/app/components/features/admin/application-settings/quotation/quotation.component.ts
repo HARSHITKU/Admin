@@ -23,19 +23,6 @@ export class QuotationComponent implements OnInit {
   constructor(private quotationService:QuotationService, private dialog:MatDialog) {
     this.columnDefs = [
       {
-        headerName: 'Quotation',
-        field: 'quotation',
-        minWidth: 900,
-        maxWidth: 900,
-        tooltipField: 'quotation',
-      },
-      {
-        headerName: 'Default',
-        field: 'isDefault',
-        minWidth: 50,
-        tooltipField: 'isDefault',
-      },
-      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -58,6 +45,19 @@ export class QuotationComponent implements OnInit {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
         maxWidth: 50,
+      },
+      {
+        headerName: 'Quotation',
+        field: 'quotation',
+        minWidth: 900,
+        maxWidth: 900,
+        tooltipField: 'quotation',
+      },
+      {
+        headerName: 'Default',
+        field: 'isDefault',
+        minWidth: 50,
+        tooltipField: 'isDefault',
       },
     ];
     this.gridOptions = <GridOptions>{

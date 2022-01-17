@@ -22,19 +22,6 @@ export class TermsConditionsComponent implements OnInit {
   constructor(private termsCoditionService: TermsCoditionService, private dialog: MatDialog) {
     this.columnDefs = [
       {
-        headerName: 'TermsConditions',
-        field: 'termsAndConditions',
-        maxWidth: 900,
-        minWidth: 900,
-        tooltipField: 'termsAndConditions',
-      },
-      {
-        headerName: 'Default',
-        field: 'isDefault',
-        maxWidth: 200,
-        tooltipField: 'isDefault',
-      },
-      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -57,6 +44,19 @@ export class TermsConditionsComponent implements OnInit {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
         maxWidth: 50,
+      },
+      {
+        headerName: 'TermsConditions',
+        field: 'termsAndConditions',
+        maxWidth: 900,
+        minWidth: 900,
+        tooltipField: 'termsAndConditions',
+      },
+      {
+        headerName: 'Default',
+        field: 'isDefault',
+        maxWidth: 200,
+        tooltipField: 'isDefault',
       },
     ];
     this.gridOptions = <GridOptions>{

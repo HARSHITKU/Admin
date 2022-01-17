@@ -25,19 +25,6 @@ export class AboutComponent implements OnInit {
 
     this.columnDefs = [
       {
-        headerName: 'About',
-        field: 'about',
-        maxWidth: 900,
-        minWidth: 900,
-        tooltipField: 'about',
-      },
-      {
-        headerName: 'Default',
-        field: 'isDefault',
-        maxWidth: 200,
-        tooltipField: 'isDefault',
-      },
-      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -60,6 +47,19 @@ export class AboutComponent implements OnInit {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
         maxWidth: 50,
+      },
+      {
+        headerName: 'About',
+        field: 'about',
+        maxWidth: 900,
+        minWidth: 900,
+        tooltipField: 'about',
+      },
+      {
+        headerName: 'Default',
+        field: 'isDefault',
+        maxWidth: 200,
+        tooltipField: 'isDefault',
       },
     ];
     this.gridOptions = <GridOptions>{

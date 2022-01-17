@@ -23,6 +23,30 @@ export class RedeemComponent implements OnInit {
 
     this.columnDefs = [
       {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'edit',
+        cellRenderer: function () {
+          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'delete',
+        cellRenderer: function () {
+          return '<i class="fa fa-trash" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
         headerName: 'Image',
         field: 'imageCover',
         maxWidth: 100,
@@ -59,30 +83,6 @@ export class RedeemComponent implements OnInit {
         field: 'categoryId.title',
         minWidth: 10,
         tooltipField: 'categoryId',
-      },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'edit',
-        cellRenderer: function () {
-          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'delete',
-        cellRenderer: function () {
-          return '<i class="fa fa-trash" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{

@@ -22,6 +22,14 @@ export class SupportComponent implements OnInit {
 
     this.columnDefs = [
       {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
         headerName: 'Name',
         field: 'name',
         maxWidth: 400,
@@ -44,14 +52,6 @@ export class SupportComponent implements OnInit {
         field: 'enquiry',
         minWidth: 550,
         tooltipField: 'enquiry',
-      },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{

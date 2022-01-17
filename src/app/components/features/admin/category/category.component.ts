@@ -28,20 +28,6 @@ export class CategoryComponent implements OnInit {
   ) { 
     this.columnDefs = [
       {
-        headerName: 'Title',
-        field: 'title',
-        maxWidth: 400,
-        minWidth: 400,
-        tooltipField: 'title',
-      },
-      {
-        headerName: 'Description',
-        field: 'description',
-        maxWidth: 600,
-        minWidth: 600,
-        tooltipField: 'description',
-      },
-      {
         headerName: '',
         field: 'view',
         cellRenderer: function () {
@@ -64,6 +50,20 @@ export class CategoryComponent implements OnInit {
           return '<i class="fa fa-trash" aria-hidden="true"></i>';
         },
         maxWidth: 50,
+      },
+      {
+        headerName: 'Title',
+        field: 'title',
+        maxWidth: 400,
+        minWidth: 400,
+        tooltipField: 'title',
+      },
+      {
+        headerName: 'Description',
+        field: 'description',
+        maxWidth: 600,
+        minWidth: 600,
+        tooltipField: 'description',
       },
     ];
     this.gridOptions = <GridOptions>{

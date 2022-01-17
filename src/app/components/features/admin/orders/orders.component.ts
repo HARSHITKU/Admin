@@ -30,6 +30,30 @@ export class OrdersComponent implements OnInit {
   ) {
     this.columnDefs = [
       {
+        headerName: '',
+        field: 'view',
+        cellRenderer: function () {
+          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'edit',
+        cellRenderer: function () {
+          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
+        headerName: '',
+        field: 'delete',
+        cellRenderer: function () {
+          return '<i class="fa fa-trash" aria-hidden="true"></i>';
+        },
+        maxWidth: 50,
+      },
+      {
         headerName: 'Product Image',
         field: 'productImage',
         maxWidth: 130,
@@ -102,30 +126,6 @@ export class OrdersComponent implements OnInit {
         field: 'fullAddress',
         minWidth: 150,
         tooltipField: 'fullAddress',
-      },
-      {
-        headerName: '',
-        field: 'view',
-        cellRenderer: function () {
-          return ' <i class="fa fa-eye" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'edit',
-        cellRenderer: function () {
-          return ' <i class="fa fa-edit" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
-      },
-      {
-        headerName: '',
-        field: 'delete',
-        cellRenderer: function () {
-          return '<i class="fa fa-trash" aria-hidden="true"></i>';
-        },
-        maxWidth: 50,
       },
     ];
     this.gridOptions = <GridOptions>{
