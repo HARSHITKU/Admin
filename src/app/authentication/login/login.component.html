@@ -22,11 +22,10 @@
         </div>
         <div class="my-2">
           <label for="floatingPassword">Password</label>
-          <input type="password" class="custom-input" id="floatingPassword" placeholder="Password" formControlName="otp" maxlength="6" required>
-          <div *ngIf="f.otp.touched && f.otp.invalid" class="text-danger mt-1">
-            <div *ngIf="f.otp.errors && f.otp.errors.required">OTP is Required.</div>
-            <div *ngIf="f.otp.errors && f.otp.errors.maxlength">OTP must have 6 digits.</div>
-            <div *ngIf="f.otp.errors && f.otp.errors.minlength">OTP must have 6 digits.</div>
+          <input type="password" class="custom-input" id="floatingPassword" placeholder="Password" formControlName="password" minlength="8" required>
+          <div *ngIf="f.password.touched && f.password.invalid" class="text-danger mt-1">
+            <div *ngIf="f.password.errors && f.password.errors.required">Password is Required.</div>
+            <div *ngIf="f.password.errors && f.password.errors.minlength">Password must be of minimum 8 characters</div>
          </div> 
         </div>
         <div class="text-center mt-3">

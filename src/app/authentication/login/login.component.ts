@@ -28,10 +28,9 @@ export class LoginComponent implements OnInit {
         Validators.minLength(10),
         Validators.maxLength(10)
       ])],
-      otp: ['', Validators.compose([
+      password: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(6)
+        Validators.minLength(8)
       ])],
     });
   }
@@ -47,8 +46,8 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.authService.login(credentials).subscribe((response: any) => {
         if (response) {
-          if (response.user.role === 'admin') {
-            localStorage.setItem('token', response.loginToken);
+          if (response.data.admin.role === 'admin') {
+            localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             this.router.navigate(['/chotapaisa']);
             this.isCustomError = false;

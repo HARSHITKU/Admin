@@ -21,7 +21,7 @@ export class AuthenticationService {
   }
 
   login(adminCredential: AdminCredentials): Observable<AdminCredentials> {
-    return this.http.post<AdminCredentials>(this.baseURL + 'users/login', adminCredential);
+    return this.http.post<AdminCredentials>(this.baseURL + 'admin/login', adminCredential);
   }
 
   logout() {
